@@ -68,7 +68,7 @@ export default function PoleFormationPage() {
           Apprendre ensemble, bâtir le futur
         </h1>
         <p className="text-gray-500 max-w-2xl mx-auto mb-16 text-[16px] leading-relaxed">
-          Pas de prérequis, juste de la curiosité. Nous croyons au partage libre des connaissances à travers des ateliers pratiques menés par des étudiants pour des étudiants.
+          Pas de prérequis, juste de la curiosité. Nous croyons au partage libre des connaissances à travers des ateliers pratiques menés par des experts pour tous les passionnés.
         </p>
 
         {/* FORMATS D'APPRENTISSAGE */}

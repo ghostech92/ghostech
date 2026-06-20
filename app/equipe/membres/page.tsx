@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function MembresEquipe() {
-  const [filter, setFilter] = useState<"tous" | "dev" | "design" | "data">("tous");
-
   const membres = [
     {
       id: 1,
       name: "Ange Adjé",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Innovation", "Tech", "IUA"],
+      skills: ["Innovation", "Tech", "Stratégie"],
+      description: "Expert en innovation technologique, Ange apporte sa vision globale pour orienter les choix stratégiques et architecturaux des projets.",
       avatar: "/menbre/Ange_Adje.jpeg"
     },
     {
@@ -19,7 +20,8 @@ export default function MembresEquipe() {
       name: "Brim Ange Flora",
       role: "Membre Ghostech",
       category: "design",
-      skills: ["Design", "Créativité", "IUA"],
+      skills: ["Design", "Créativité", "Product"],
+      description: "Designer passionnée, Flora combine esthétisme et ergonomie pour concevoir des interfaces utilisateur mémorables et impactantes.",
       avatar: "/menbre/Brim_Ange_Flora .jpeg"
     },
     {
@@ -27,7 +29,8 @@ export default function MembresEquipe() {
       name: "Convaud Kouassi Othnie",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Développement", "Tech", "IUA"],
+      skills: ["Développement", "Tech", "Architecture"],
+      description: "Développeur chevronné, Othnie transforme des concepts complexes en solutions logicielles fiables et performantes.",
       avatar: "/menbre/CONVAUD_Kouassi_Othnie.jpeg"
     },
     {
@@ -35,7 +38,8 @@ export default function MembresEquipe() {
       name: "Doukrou Eiffel",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Développement", "Innovation", "IUA"],
+      skills: ["Développement", "Innovation", "Web"],
+      description: "Spécialiste du développement et de l'innovation, Eiffel est toujours à la recherche des dernières technologies pour optimiser nos outils.",
       avatar: "/menbre/Doukrou_Eiffel .jpeg"
     },
     {
@@ -43,7 +47,8 @@ export default function MembresEquipe() {
       name: "Emma Kossonou",
       role: "Membre Ghostech",
       category: "data",
-      skills: ["Data", "Analyse", "IUA"],
+      skills: ["Data", "Analyse", "Business"],
+      description: "Data Analyst, Emma extrait des informations précieuses des données pour éclairer les décisions stratégiques de l'équipe.",
       avatar: "/menbre/Emma_KOSSONOU.jpeg"
     },
     {
@@ -51,7 +56,8 @@ export default function MembresEquipe() {
       name: "Ethan Bokamé",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Tech", "Développement", "IUA"],
+      skills: ["Tech", "Développement", "Backend"],
+      description: "Développeur polyvalent, Ethan assure la robustesse et la scalabilité du code au cœur des différents pôles de Ghostech.",
       avatar: "/menbre/Ethan_Bokamé.png"
     },
     {
@@ -59,7 +65,8 @@ export default function MembresEquipe() {
       name: "Helloïs Kouassi",
       role: "Membre Ghostech",
       category: "design",
-      skills: ["UI/UX", "Design", "IUA"],
+      skills: ["UI/UX", "Design", "Ergonomie"],
+      description: "Expert UI/UX, Helloïs place l'utilisateur au centre de ses réflexions pour garantir des parcours fluides et intuitifs.",
       avatar: "/menbre/Helloïs_KOUASSI.jpeg"
     },
     {
@@ -67,7 +74,8 @@ export default function MembresEquipe() {
       name: "Jérémie Harding",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Développement", "Innovation", "IUA"],
+      skills: ["Développement", "Innovation", "Cloud"],
+      description: "Développeur créatif, Jérémie aime relever de nouveaux défis techniques en proposant des architectures innovantes.",
       avatar: "/menbre/JÉRÉMIE_HARDING.jpeg"
     },
     {
@@ -75,7 +83,8 @@ export default function MembresEquipe() {
       name: "Marie Michelle Diragbou",
       role: "Membre Ghostech",
       category: "design",
-      skills: ["Créativité", "Design", "IUA"],
+      skills: ["Créativité", "Design", "Branding"],
+      description: "Créative dans l'âme, Marie Michelle insuffle une véritable identité visuelle et artistique dans chacun de nos projets.",
       avatar: "/menbre/Marie_Michelle_Diragbou.jpeg"
     },
     {
@@ -83,7 +92,8 @@ export default function MembresEquipe() {
       name: "Maïmouna Soro",
       role: "Membre Ghostech",
       category: "data",
-      skills: ["Data", "Analyse", "IUA"],
+      skills: ["Data", "Analyse", "Intelligence"],
+      description: "Rigoureuse et analytique, Maïmouna manipule la donnée pour mettre en évidence les tendances clés et orienter nos stratégies.",
       avatar: "/menbre/Maïmouna_Soro.jpeg"
     },
     {
@@ -91,93 +101,105 @@ export default function MembresEquipe() {
       name: "Yaniss Elie Sey",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Tech", "Innovation", "IUA"],
+      skills: ["Tech", "Innovation", "Systèmes"],
+      description: "Technophile et développeur passionné, Yaniss est constamment en veille sur les outils de pointe pour accélérer notre productivité.",
       avatar: "/menbre/Yaniss_Elie_Sey.jpeg"
     }
   ];
 
-  const filteredMembres = filter === "tous"
-    ? membres
-    : membres.filter(m => m.category === filter);
+  const [activeMember, setActiveMember] = useState(membres[0]);
 
   return (
-    <main className="w-full min-h-screen bg-white text-[#0F2137] flex flex-col items-center">
-
-      {/* TITRE ET BANNIÈRE INFOS */}
-      <section className="w-full max-w-6xl px-4 py-8 text-center">
-        <h3 className="text-sm font-bold text-[#357dab] uppercase tracking-widest mb-3">La Communauté</h3>
-        <h1 className="text-4xl md:text-5xl font-bold text-[#02073E] mb-6 font-b612">
-          Les visages de Ghostech
-        </h1>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-12 text-[16px] leading-relaxed">
-          Découvrez la liste des étudiants de l'IUA qui unissent leurs forces et leurs compétences pour donner vie à nos différentes solutions numériques.
-        </p>
-
-        {/* FILTRES PAR SPÉCIALITÉ */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {[
-            { id: "tous", label: "Tous les membres" },
-            { id: "dev", label: "💻 Développeurs" },
-            { id: "design", label: "🎨 Designers" },
-            { id: "data", label: "📊 Data & IA" }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id as any)}
-              className={`px-5 py-2.5 rounded-xl font-semibold text-[14px] transition-all ${filter === tab.id
-                  ? "bg-[#357dab] text-white shadow-md shadow-teal-700/10"
-                  : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+    <main className="w-full min-h-screen bg-[#1c1c1c] pt-20 text-white flex flex-col items-center font-dm-sans">
+      
+      {/* HEADER SECTION (EXACTLY LIKE IMAGE) */}
+      <div className="w-full flex flex-col lg:flex-row justify-between items-start pt-20 pb-20 px-6 md:px-12 max-w-[1600px] mx-auto gap-10">
+        <div className="shrink-0">
+          <h1 className="text-4xl md:text-[56px] leading-none font-bold text-white tracking-tighter uppercase mb-2">
+            L'EQUIPE GHOSTECH.
+          </h1>
+          <p className="text-sm text-gray-300 flex items-center gap-2">
+            <span className="w-[18px] h-[18px] bg-white text-black inline-flex items-center justify-center rounded-[3px] text-[10px] font-bold">G</span>
+            <span className="italic">innovation partners</span>
+          </p>
         </div>
 
-        {/* GRILLE DU TROMBINOSCOPE */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto text-left mb-20">
-          {filteredMembres.map((membre) => (
-            <div
-              key={membre.id}
-              className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition text-center flex flex-col items-center"
-            >
-              {/* Avatar rond */}
-              <div className="w-24 h-24 rounded-full bg-gray-50 overflow-hidden mb-4 border-2 border-gray-50">
+        <div className="lg:max-w-3xl text-gray-200 text-lg md:text-[22px] font-light leading-snug lg:text-left mt-2 lg:mt-0">
+          <p>
+            Derrière chaque système performant, chaque interface millimétrée et chaque modèle prédictif se cache un talent unique. Parcourez notre collectif pluridisciplinaire et rencontrez les visages qui font vibrer notre moteur d'innovation.
+          </p>
+        </div>
+      </div>
+
+      {/* TWO-COLUMN LAYOUT */}
+      <section className="w-full max-w-[1600px] px-6 md:px-12 pb-48 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16">
+        
+        {/* LEFT: INFO BOX */}
+        <div className="w-full lg:w-[350px] xl:w-[400px] shrink-0 lg:sticky top-24">
+          <div className="aspect-square border border-white/50 p-6 flex flex-col justify-between relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeMember?.id}
+                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }}
+                className="flex flex-col h-full"
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h4 className="text-[22px] font-normal text-white mb-0 leading-tight tracking-tight">{activeMember?.name}</h4>
+                    <p className="text-[15px] text-gray-300 mt-1">{activeMember?.role}</p>
+                  </div>
+                  {/* Thumbnail in corner */}
+                  <div className="w-[70px] h-[70px] shrink-0 overflow-hidden bg-[#444] ml-3">
+                     <img src={activeMember?.avatar} alt={activeMember?.name} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                
+                {/* Description */}
+                <div className="mt-6 text-[14px] text-gray-400 font-light leading-relaxed pr-4">
+                  {activeMember?.description}
+                </div>
+                
+                <div className="text-[13px] text-white uppercase tracking-widest mt-auto pt-6 leading-relaxed">
+                  MADE IN GHOSTECH 2026<br/>
+                  INNOVATION INTELLIGENCE<br/>
+                  TECH CREATIVE
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* RIGHT: PHOTOS GRID */}
+        <div className="w-full flex-1 h-[500px] lg:h-[650px] xl:h-[750px] overflow-y-auto pr-2 lg:pr-4 pb-8 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40">
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
+            {membres.map((membre, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
+                key={membre.id}
+                onMouseEnter={() => setActiveMember(membre)}
+                className="aspect-square relative overflow-hidden bg-[#444] cursor-pointer"
+              >
                 <img
                   src={membre.avatar}
                   alt={membre.name}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover transition-all duration-[600ms] ease-out ${
+                    activeMember?.id === membre.id 
+                      ? 'grayscale-0 opacity-100 scale-105' 
+                      : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 scale-100'
+                  }`}
                 />
-              </div>
-
-              {/* Textes */}
-              <h4 className="text-md font-bold text-[#02073E] mb-1 line-clamp-1">
-                {membre.name}
-              </h4>
-              <p className="text-xs text-[#357dab] font-semibold mb-4">
-                {membre.role}
-              </p>
-
-              {/* Badges de compétences */}
-              <div className="flex flex-wrap justify-center gap-1 mt-auto pt-2 border-t border-gray-50 w-full">
-                {membre.skills.map((skill, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-gray-50 text-gray-500 text-[10px] px-2 py-0.5 rounded font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="w-full max-w-7xl mt-auto py-12 border-t border-gray-100 text-center text-sm text-gray-400">
-        Copyright 2026 Ghostech, IUA
-      </footer>
     </main>
   );
 }

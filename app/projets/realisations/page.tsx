@@ -23,7 +23,7 @@ export default function RealisationsProjets() {
       category: "web-mobile",
       title: "QbLog Platform",
       subtitle: "Le média interne de l'innovation",
-      desc: "Conception et déploiement d'un système de gestion de contenu (CMS) ultra-léger et moderne, permettant aux étudiants et chercheurs de publier leurs articles de veille technologique.",
+      desc: "Conception et déploiement d'un système de gestion de contenu (CMS) ultra-léger et moderne, permettant aux talents et chercheurs de publier leurs articles de veille technologique.",
       status: "Production",
       statusColor: "bg-green-100 text-green-700",
       tags: ["Next.js", "Tailwind CSS", "Cloudinary"],
@@ -43,9 +43,9 @@ export default function RealisationsProjets() {
     {
       id: 4,
       category: "web-mobile",
-      title: "Portail Étudiant IUA Portal",
+      title: "Portail Campus & Éducation",
       subtitle: "Simplifier la vie universitaire",
-      desc: "Application mobile centralisant les emplois du temps, les ressources de cours et la communication directe entre l'administration de l'Institut Universitaire d'Abidjan et les étudiants.",
+      desc: "Application mobile centralisant les emplois du temps, les ressources de cours et la communication directe entre l'administration et les apprenants.",
       status: "En cours",
       statusColor: "bg-orange-100 text-orange-700",
       tags: ["React Native", "Node.js", "MongoDB"],
@@ -143,7 +143,7 @@ export default function RealisationsProjets() {
 
       {/* FOOTER */}
       <footer className="w-full max-w-7xl mt-auto py-12 border-t border-gray-100 text-center text-sm text-gray-400">
-        Copyright 2026 Ghostech, IUA
+        Copyright 2026 Ghostech
       </footer>
     </main>
   );

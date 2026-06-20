@@ -4,62 +4,84 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Partenaires from "@/components/Partenaires";
 
-export default function BureauEquipe() {
+export default function BureauPoles() {
   const leaders = [
     {
       id: 1,
-      name: "Adjé Ange",
-      role: "Président",
-      department: "Direction",
-      bio: "Garant de la vision globale de Ghostech. Dirige les orientations stratégiques du club.",
-      avatar: "/menbre/Ange_Adje.jpeg",
+      name: "Ethan Bokamé",
+      role: "Responsable Développement Web & Mobile",
+      department: "Pôle 1",
+      bio: "Construit des applications innovantes et performantes. Supervise le développement technique des projets Ghostech.",
+      avatar: "/menbre/Ethan_Bokamé.png",
       linkedin: "#",
-      email: "president@ghostech.ci",
-      phone: "+225 00 00 00 00 01"
+      email: "ethan.bokame@ghostech.ci",
+      phone: "+225 00 00 00 00 08"
     },
     {
       id: 2,
-      name: "Convaud Kouassi Othniel",
-      role: "Vice-Président",
-      department: "Direction",
-      bio: "Assiste le président dans ses fonctions et coordonne les opérations courantes.",
-      avatar: "/menbre/CONVAUD_Kouassi_Othnie.jpeg",
+      name: "Brim Ange Flora",
+      role: "Responsable Data & Intelligence Artificielle",
+      department: "Pôle 2",
+      bio: "Analyse les données et conçoit des modèles prédictifs intelligents. Pilote les initiatives liées à l'IA.",
+      avatar: "/menbre/Brim_Ange_Flora .jpeg",
       linkedin: "#",
-      email: "vp@ghostech.ci",
-      phone: "+225 00 00 00 00 02"
+      email: "ange.brim@ghostech.ci",
+      phone: "+225 00 00 00 00 09"
     },
     {
       id: 3,
-      name: "Marie Michel",
-      role: "Responsable Partenariats",
-      department: "Partenariats",
-      bio: "En charge de développer et de maintenir les relations avec nos partenaires et sponsors (AIESEC CI, AfroLink).",
-      avatar: "/menbre/Marie_Michelle_Diragbou.jpeg",
+      name: "Bradley Bilson",
+      role: "Responsable Réseaux & Télécommunications",
+      department: "Pôle 3",
+      bio: "Assure la connectivité et la robustesse de l'infrastructure réseau. Gère les systèmes de communication.",
+      avatar: "/menbre/placeholder.png",
       linkedin: "#",
-      email: "partenariats@ghostech.ci",
-      phone: "+225 00 00 00 00 03"
+      email: "bradley.bilson@ghostech.ci",
+      phone: "+225 00 00 00 00 10"
     },
     {
       id: 4,
-      name: "Emma Kossonou",
-      role: "Secrétaire Générale",
-      department: "Administration",
-      bio: "Assure le suivi administratif, la communication interne et la gestion documentaire de l'équipe.",
-      avatar: "/menbre/Emma_KOSSONOU.jpeg",
+      name: "Yaniss Elie Sey",
+      role: "Responsable Cybersécurité",
+      department: "Pôle 4",
+      bio: "Protège les systèmes d'information et forme l'équipe aux bonnes pratiques de sécurité et d'audit.",
+      avatar: "/menbre/Yaniss_Elie_Sey.jpeg",
       linkedin: "#",
-      email: "secretariat@ghostech.ci",
-      phone: "+225 00 00 00 00 04"
+      email: "yaniss.elie@ghostech.ci",
+      phone: "+225 00 00 00 00 11"
     },
     {
       id: 5,
-      name: "Doukrou Eiffel",
-      role: "Trésorier",
-      department: "Finances",
-      bio: "Gère les ressources financières et veille au bon fonctionnement budgétaire des activités.",
-      avatar: "/menbre/Doukrou_Eiffel .jpeg",
+      name: "Adjé Ange",
+      role: "Responsable Design Graphique & UI/UX (Intérim)",
+      department: "Pôle 5",
+      bio: "Garantit l'ergonomie, l'esthétique et la cohérence de l'identité visuelle de toutes les solutions Ghostech.",
+      avatar: "/menbre/Ange_Adje.jpeg",
       linkedin: "#",
-      email: "tresorerie@ghostech.ci",
-      phone: "+225 00 00 00 00 05"
+      email: "adje.ange@ghostech.ci",
+      phone: "+225 00 00 00 00 12"
+    },
+    {
+      id: 6,
+      name: "Jérémie Harding",
+      role: "Responsable Robotique & IoT",
+      department: "Pôle 6",
+      bio: "Connecte le monde physique au numérique à travers la conception de systèmes embarqués et d'objets connectés.",
+      avatar: "/menbre/JÉRÉMIE_HARDING.jpeg",
+      linkedin: "#",
+      email: "jeremie.harding@ghostech.ci",
+      phone: "+225 00 00 00 00 13"
+    },
+    {
+      id: 7,
+      name: "À définir",
+      role: "Responsable Entrepreneuriat Tech & Innovation",
+      department: "Pôle 7 & 8",
+      bio: "Stimule la création de startups et l'esprit entrepreneurial (En Partenariat avec AIESEC CI / AfroLink).",
+      avatar: "/menbre/placeholder.png",
+      linkedin: "#",
+      email: "entrepreneuriat@ghostech.ci",
+      phone: "+225 00 00 00 00 14"
     }
   ];
 
@@ -82,7 +104,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.5 }}
             className="text-[11px] font-bold text-[#357dab] bg-[#357dab]/10 px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 backdrop-blur-md border border-[#357dab]/20"
           >
-            L'Équipe Dirigeante
+            L'Expertise Technique
           </motion.div>
 
           <motion.h1 
@@ -91,7 +113,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-b612"
           >
-            Bureau Exécutif
+            Pôles Techniques
           </motion.h1>
 
           <motion.p 
@@ -100,7 +122,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-300 max-w-2xl mx-auto text-[16px] md:text-lg leading-relaxed"
           >
-            L'équipe de direction qui pilote la vision Ghostech et propulse l'écosystème technologique. Construire. Impacter. Conquérir.
+            8 pôles d'expertise au cœur de l'organisation Ghostech. Rencontrez les responsables qui encadrent nos différentes cellules de spécialité.
           </motion.p>
         </div>
       </section>

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -24,7 +23,7 @@ export default function Home() {
       titlePre: "Ghostech :",
       titleHighlight: "Innovation, Formation",
       titlePost: "et Entrepreneuriat en Afrique",
-      description: "Une organisation technologique créée par des étudiants passionnés de technologie à l’IUA.",
+      description: "Un collectif technologique créé par des talents passionnés de numérique et d'innovation.",
       buttonText: "Découvrir Ghostech"
     },
     {
@@ -40,7 +39,7 @@ export default function Home() {
       titlePre: "Rejoignez notre réseau :",
       titleHighlight: "Entraide, Apprentissage",
       titlePost: "et Expertise Partagée",
-      description: "Développez vos compétences aux côtés d'autres étudiants passionnés et experts du domaine.",
+      description: "Développez vos compétences aux côtés d'autres talents passionnés et experts du domaine.",
       buttonText: "Nous rejoindre"
     }
   ];
@@ -258,17 +257,17 @@ export default function Home() {
               <span className="text-[#e49834] font-bold">
                 Chez Ghostech, nous croyons fermement en la pédagogie active pour favoriser l'apprentissage optimal.
               </span>{" "}
-              Nous adoptons une approche centrée sur l'étudiant, où l'apprentissage est actif, collaboratif et expérientiel.
-              Plutôt que de simplement transmettre des connaissances de manière passive, nous encourageons nos étudiants
+              Nous adoptons une approche centrée sur l'apprenant, où l'apprentissage est actif, collaboratif et expérientiel.
+              Plutôt que de simplement transmettre des connaissances de manière passive, nous encourageons nos apprenants
               à devenir des acteurs engagés dans leur propre apprentissage.
             </p>
             <p>
-              La pédagogie active permet aux étudiants de développer des compétences clés telles que la pensée critique,
+              La pédagogie active permet aux apprenants de développer des compétences clés telles que la pensée critique,
               la créativité, <span className="font-bold text-[#0F2137]">la résolution de problèmes et la collaboration, qui sont essentielles
                 dans le monde du numérique en constante évolution.</span>
             </p>
             <p>
-              En adoptant une pédagogie active, nous préparons nos étudiants à devenir des professionnels compétents et
+              En adoptant une pédagogie active, nous préparons nos talents à devenir des professionnels compétents et
               adaptables, capables de résoudre des problèmes complexes, d'innover et de s'adapter aux défis du monde
               du travail en constante mutation.
             </p>
@@ -415,7 +414,7 @@ export default function Home() {
         <h3 className="text-sm font-bold text-[#357dab] uppercase tracking-widest mb-3">Notre Équipe</h3>
         <h2 className="text-3xl md:text-[40px] font-bold font-b612 text-[#0F2137] mb-4">Rencontrez nos talents</h2>
         <p className="text-[16px] text-gray-500 max-w-[500px] mb-12 leading-relaxed">
-          Découvrez les étudiants passionnés de technologie et d’innovation derrière la vision de Ghostech.
+          Découvrez les talents passionnés de technologie et d’innovation derrière la vision de Ghostech.
         </p>
         <div className="relative w-full px-4 md:px-12">
           <button onClick={scrollLeft} className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-gray-200 shadow-lg flex items-center justify-center hover:bg-gray-50 hover:shadow-xl active:scale-95 transition-all text-[#0F2137]">
@@ -505,7 +504,7 @@ export default function Home() {
               Nous transformons vos idées technologiques en projets concrets
             </h2>
             <p className="text-gray-500 text-[16px] leading-relaxed">
-              Rejoignez une communauté d'étudiants de l'IUA passionnés par le code, le design et l'innovation pour bâtir ensemble l'avenir technologique.
+              Rejoignez une communauté de talents et d'experts passionnés par le code, le design et l'innovation pour bâtir ensemble l'avenir technologique.
             </p>
             <div className="grid grid-cols-2 gap-4 text-[15px] font-medium text-[#0F2137]">
               {[
@@ -705,7 +704,7 @@ export default function Home() {
             <div className="p-6 flex flex-col flex-1 justify-between">
               <div>
                 <h4 className="font-bold text-[18px] text-[#0F2137] mb-3 leading-snug">Lancement officiel de l'organisation Ghostech à l'IUA</h4>
-                <p className="text-gray-500 text-[14px] leading-relaxed mb-4">Le 03 mars 2025, une nouvelle ère technologique commence avec des étudiants passionnés.</p>
+                <p className="text-gray-500 text-[14px] leading-relaxed mb-4">Le 03 mars 2025, une nouvelle ère technologique commence avec des talents passionnés.</p>
               </div>
               <span className="text-xs text-gray-400 font-medium">03 Mars 2025 • Lecture 5 min</span>
             </div>
@@ -734,7 +733,7 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 relative group flex-1 min-h-[220px]">
               <Image src="/blog-4.png" alt="Blog post" fill className="object-cover opacity-90" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-white pointer-events-none">
-                <h4 className="font-bold text-[16px] leading-snug">Hackathon étudiant : Les meilleurs projets récompensés</h4>
+                <h4 className="font-bold text-[16px] leading-snug">Hackathon Tech : Les meilleurs projets récompensés</h4>
               </div>
             </div>
           </div>
@@ -779,34 +778,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* SECTION SUBSCRIBE (amélioration) */}
-      {/* ============================================================ */}
-      <section className="w-full bg-[#e49834] from-[#0F2137] to-[#1a2e4a] py-20 px-4 flex justify-center relative">
-        <div className="max-w-5xl w-full bg-white rounded-[32px] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-10 shadow-2xl shadow-black/30 relative z-10">
-          <div className="max-w-md text-center lg:text-left">
-            <h2 className="text-2xl md:text-[32px] font-bold font-b612 text-[#0F2137] mb-4 leading-tight">
-              Intéressé par l'innovation ? Rejoignez-nous
-            </h2>
-            <p className="text-[15px] text-gray-500 leading-relaxed">
-              Rejoignez notre réseau d'étudiants passionnés à l'IUA et ailleurs.
-            </p>
-          </div>
-          <div className="w-full max-w-md flex bg-[#F4F6F9] rounded-xl p-1.5 border border-gray-200 shadow-inner">
-            <input type="email" placeholder="Entrez votre email" className="w-full px-4 bg-transparent text-[#0F2137] focus:outline-none text-[15px]" />
-            <button className="bg-[#357dab] text-white px-6 py-3 rounded-lg font-bold text-[15px] hover:bg-[#2a6390] transition-colors shrink-0 shadow-md">
-              S'inscrire
-            </button>
-          </div>
-        </div>
-        <div className="absolute left-12 bottom-0 text-4xl hidden xl:block select-none opacity-20">🌵</div>
-        <div className="absolute right-12 bottom-0 text-4xl hidden xl:block select-none opacity-20">📚</div>
-      </section>
 
-      {/* ============================================================ */}
-      {/* FOOTER PREMIUM GHOSTECH */}
-      {/* ============================================================ */}
-      <Footer />
 
     </main>
   );

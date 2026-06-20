@@ -8,9 +8,7 @@ export default function RejoindreEquipe() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    filiere: "",
-    pole: "numerique",
+    portfolio: "",
     motivation: ""
   });
 
@@ -29,19 +27,19 @@ export default function RejoindreEquipe() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-white text-[#0F2137] flex flex-col items-center">
+    <main className="w-full min-h-screen bg-white text-[#0F2137] flex flex-col items-center pt-32 lg:pt-40">
 
       {/* SECTION DU CONTENU */}
       <section className="w-full max-w-6xl px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
 
         {/* COLONNE DE GAUCHE : ARGUMENTS DE MOTIVATION */}
         <div className="lg:col-span-5 text-left">
-          <h3 className="text-sm font-bold text-[#357dab] uppercase tracking-widest mb-3">Recrutements</h3>
+          <h3 className="text-sm font-bold text-[#357dab] uppercase tracking-widest mb-3">Rejoins-nous</h3>
           <h1 className="text-4xl font-bold text-[#02073E] mb-6 font-b612 leading-tight">
-            Deviens acteur de l'innovation tech à l'IUA
+            Candidature spontanée
           </h1>
           <p className="text-gray-500 text-[15px] leading-relaxed mb-8">
-            Rejoindre Ghostech, ce n'est pas juste ajouter une ligne sur ton CV. C'est intégrer un collectif d'étudiants déterminés à construire de vraies solutions.
+            Rejoindre Ghostech, ce n'est pas juste ajouter une ligne sur ton CV. C'est intégrer un collectif de talents déterminés à construire de vraies solutions.
           </p>
 
           {/* LISTE DES ARGUMENTS */}
@@ -65,7 +63,7 @@ export default function RejoindreEquipe() {
               <div>
                 <h4 className="text-md font-bold text-[#02073E] mb-1">Mentorat & Esprit d'équipe</h4>
                 <p className="text-gray-500 text-[13px] leading-relaxed">
-                  Ne reste plus jamais bloqué sur un bug. Tu progresses aux côtés d'étudiants plus expérimentés dans une ambiance d'entraide constante.
+                  Ne reste plus jamais bloqué sur un bug. Tu progresses aux côtés de talents plus expérimentés dans une ambiance d'entraide constante.
                 </p>
               </div>
             </div>
@@ -97,7 +95,7 @@ export default function RejoindreEquipe() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Ex: Kouassi Konan"
+                    placeholder="Ex: Jean Dupont"
                     className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition"
                   />
                 </div>
@@ -109,62 +107,33 @@ export default function RejoindreEquipe() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Ex: mail@iua.ci"
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Numéro WhatsApp</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Ex: 0708091011"
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Classe / Filière à l'IUA</label>
-                  <input
-                    type="text"
-                    name="filiere"
-                    required
-                    value={formData.filiere}
-                    onChange={handleChange}
-                    placeholder="Ex: Licence 3 MIAGE"
+                    placeholder="Ex: jean.dupont@email.com"
                     className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Pôle principal d'intérêt</label>
-                <select
-                  name="pole"
-                  value={formData.pole}
+                <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Lien (LinkedIn, GitHub, Portfolio...)</label>
+                <input
+                  type="url"
+                  name="portfolio"
+                  value={formData.portfolio}
                   onChange={handleChange}
-                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition appearance-none"
-                >
-                  <option value="numerique">Pôle Numérique (Dev, Code, Infra)</option>
-                  <option value="formation">Pôle Formation (Ateliers, Partage)</option>
-                  <option value="entrepreneuriat">Pôle Entrepreneuriat (Gestion, Idées)</option>
-                </select>
+                  placeholder="https://..."
+                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition"
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Dis-nous en quelques mots pourquoi tu veux nous rejoindre</label>
+                <label className="block text-xs font-bold text-[#02073E] uppercase tracking-wider mb-2">Parlez-nous de vous</label>
                 <textarea
                   name="motivation"
                   required
-                  rows={4}
+                  rows={5}
                   value={formData.motivation}
                   onChange={handleChange}
-                  placeholder="Tes technos préférées, tes envies, ce que tu veux apprendre ou apporter au club..."
+                  placeholder="Vos compétences, ce que vous recherchez, vos projets actuels..."
                   className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#357dab] transition resize-none"
                 />
               </div>
@@ -184,7 +153,7 @@ export default function RejoindreEquipe() {
               </div>
               <h3 className="text-2xl font-bold text-[#02073E]">Candidature bien reçue !</h3>
               <p className="text-gray-500 text-[14px] max-w-sm mx-auto leading-relaxed">
-                Merci {formData.name}. L'équipe du bureau va analyser ton profil. On te contacte très vite sur WhatsApp ou par email pour l'étape suivante !
+                Merci {formData.name}. L'équipe va analyser ton profil et tes réalisations. On te recontacte très vite par email !
               </p>
               <button
                 onClick={() => setSubmitted(false)}
@@ -199,7 +168,7 @@ export default function RejoindreEquipe() {
 
       {/* FOOTER */}
       <footer className="w-full max-w-7xl mt-auto py-12 border-t border-gray-100 text-center text-sm text-gray-400">
-        Copyright 2026 Ghostech, IUA
+        Copyright 2026 Ghostech
       </footer>
     </main>
   );

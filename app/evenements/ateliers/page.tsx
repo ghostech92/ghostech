@@ -71,7 +71,7 @@ export default function AteliersPage() {
           Partages de compétences & Workshops
         </h1>
         <p className="text-gray-500 max-w-2xl mx-auto mb-12 text-[16px] leading-relaxed">
-          Des sessions courtes et ultra-pratiques animées par des étudiants ou des professionnels pour acquérir des compétences immédiatement applicables.
+          Des sessions courtes et ultra-pratiques animées par des experts ou des professionnels pour acquérir des compétences immédiatement applicables.
         </p>
 
         {/* BARRE DE FILTRES */}

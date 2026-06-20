@@ -63,7 +63,7 @@ export default function ProgrammesFormation() {
           Nos Programmes de Formation
         </h1>
         <p className="text-gray-500 max-w-2xl mx-auto mb-12 text-[16px] leading-relaxed">
-          Des cursus pratiques et intensifs conçus par des étudiants de l'IUA pour propulser les compétences techniques en Afrique.
+          Des cursus pratiques et intensifs conçus par des experts passionnés pour propulser les compétences techniques en Afrique.
         </p>
 
         {/* CATEGORY FILTER */}
@@ -125,7 +125,7 @@ export default function ProgrammesFormation() {
 
       {/* FOOTER */}
       <footer className="w-full max-w-7xl mt-auto py-12 border-t border-gray-100 text-center text-sm text-gray-400">
-        Copyright 2026 Ghostech, IUA
+        Copyright 2026 Ghostech
       </footer>
     </main>
   );

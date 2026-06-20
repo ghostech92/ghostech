@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // ─── COMPOSANT COUNTER (compteur animé) ───
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -61,24 +62,24 @@ export default function PoleNumeriquePage() {
   // ─── NOUVELLE STACK TECHNIQUE ÉLARGIE ───
   const techStacks = [
     // Web
-    { name: "Next.js", category: "web", version: "14+", icon: "🌐" },
-    { name: "TypeScript", category: "web", version: "Strict", icon: "🛡️" },
-    { name: "Tailwind CSS", category: "web", version: "v3/v4", icon: "🎨" },
-    { name: "Laravel", category: "web", version: "11 (PHP 8.3)", icon: "⚡" },
-    { name: "Node.js", category: "web", version: "LTS", icon: "🟢" },
+    { name: "Next.js", category: "web", version: "14+", icon: "language" },
+    { name: "TypeScript", category: "web", version: "Strict", icon: "code_blocks" },
+    { name: "Tailwind CSS", category: "web", version: "v3/v4", icon: "palette" },
+    { name: "Laravel", category: "web", version: "11 (PHP 8.3)", icon: "bolt" },
+    { name: "Node.js", category: "web", version: "LTS", icon: "terminal" },
     // Data & IA
-    { name: "Python", category: "data", version: "3.11", icon: "🐍" },
-    { name: "Pandas / NumPy", category: "data", version: "Libs", icon: "📊" },
-    { name: "Machine Learning", category: "data", version: "Scikit-Learn", icon: "🧠" },
-    { name: "Tableau / PowerBI", category: "data", version: "Visualisation", icon: "📈" },
+    { name: "Python", category: "data", version: "3.11", icon: "data_object" },
+    { name: "Pandas / NumPy", category: "data", version: "Libs", icon: "analytics" },
+    { name: "Machine Learning", category: "data", version: "Scikit-Learn", icon: "psychology" },
+    { name: "Tableau / PowerBI", category: "data", version: "Visualisation", icon: "monitoring" },
     // Cloud & DevOps
-    { name: "Docker", category: "cloud", version: "Conteneurs", icon: "🐳" },
-    { name: "AWS / GCP", category: "cloud", version: "Cloud", icon: "☁️" },
-    { name: "Git & CI/CD", category: "cloud", version: "Intégration", icon: "🔄" },
+    { name: "Docker", category: "cloud", version: "Conteneurs", icon: "deployed_code" },
+    { name: "AWS / GCP", category: "cloud", version: "Cloud", icon: "cloud" },
+    { name: "Git & CI/CD", category: "cloud", version: "Intégration", icon: "sync" },
     // Cybersécurité
-    { name: "Wireshark", category: "security", version: "Analyse", icon: "🔍" },
-    { name: "Kali Linux", category: "security", version: "Pentest", icon: "💻" },
-    { name: "Zero Trust", category: "security", version: "Architecture", icon: "🔐" },
+    { name: "Wireshark", category: "security", version: "Analyse", icon: "policy" },
+    { name: "Kali Linux", category: "security", version: "Pentest", icon: "bug_report" },
+    { name: "Zero Trust", category: "security", version: "Architecture", icon: "lock" },
   ];
 
   // ─── PROJETS AVEC IMAGES ───
@@ -87,7 +88,7 @@ export default function PoleNumeriquePage() {
       title: "QbLog",
       type: "Plateforme de Contenu SaaS",
       tech: ["Next.js", "Tailwind CSS", "Cloudinary"],
-      desc: "Un CMS moderne conçu pour centraliser et dynamiser les publications, articles et partages de connaissances de la communauté étudiante.",
+      desc: "Un CMS moderne conçu pour centraliser et dynamiser les publications, articles et partages de connaissances de la communauté technologique.",
       status: "Optimisation UI & Media",
       statusColor: "bg-blue-500/10 text-blue-600 border-blue-200",
       image: "https://picsum.photos/seed/qblog/600/400",
@@ -130,46 +131,49 @@ export default function PoleNumeriquePage() {
     <main className="w-full min-h-screen bg-white text-[#0F2137] flex flex-col items-center overflow-hidden">
 
       {/* ============================================================ */}
-      {/* HERO AVEC PARALLAXE & FORMES FLOTTANTES */}
+      {/* HERO TYPE CARTE (DÉGRADÉ PASTEL) */}
       {/* ============================================================ */}
-      <section className="relative w-full overflow-hidden pt-24 pb-20 px-4 bg-gradient-to-br from-[#0F2137] via-[#1a2e4a] to-[#357dab] text-white">
-        
-        <div className="absolute inset-0 pointer-events-none select-none z-0">
-          <div className="absolute top-10 left-[5%] w-24 h-24 rounded-full bg-[#e49834]/20 animate-float-slow"></div>
-          <div className="absolute bottom-20 right-[8%] w-36 h-36 rounded-full bg-[#2DCA73]/20 animate-float-medium"></div>
-          <div className="absolute top-1/3 right-[20%] w-16 h-16 border-4 border-white/10 rotate-45 animate-spin-slow"></div>
-          <div className="absolute bottom-1/4 left-[15%] w-20 h-20 border-2 border-[#e49834]/30 rounded-full animate-pulse-slow"></div>
-          <div className="absolute top-2/3 left-[40%] w-12 h-12 bg-white/5 rounded-full blur-sm animate-float-fast"></div>
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <span className="inline-block text-sm font-bold uppercase tracking-widest text-[#e49834] mb-3">
-            Pôle Numérique &amp; R&D
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-b612 leading-tight mb-6">
-            L'ensemble des technologies <br />
-            <span className="bg-gradient-to-r from-[#e49834] via-[#2DCA73] to-[#357dab] bg-clip-text text-transparent animate-gradient-x">
-              au service de l'innovation
-            </span>
-          </h1>
-          <p className="text-gray-200 text-lg max-w-3xl mx-auto opacity-90 leading-relaxed">
-            Ghostech ne se limite pas au développement web. Nous couvrons l'intégralité du spectre numérique : <br />
-            <strong className="text-white">Data Science, Cloud Computing, Cybersécurité, IoT, Design et bien plus.</strong>
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+      <section className="relative w-full max-w-[1400px] mx-auto mt-32 px-4 sm:px-6 mb-16">
+        <div className="w-full rounded-[2.5rem] bg-gradient-to-r from-[#F9C1A5] via-[#DECFDB] to-[#96C9F0] px-6 py-20 md:py-28 flex flex-col items-center text-center shadow-sm relative overflow-hidden">
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-[56px] font-bold font-b612 text-[#0F2137] leading-[1.2] mb-6 max-w-4xl"
+          >
+            L'ensemble des technologies <br className="hidden md:block" />
+            au service de l'innovation
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[#0F2137]/80 text-base md:text-[17px] max-w-2xl mx-auto leading-relaxed mb-10 font-medium"
+          >
+            Ghostech ne se limite pas au développement web. Nous couvrons l'intégralité du spectre numérique : Data Science, Cloud Computing, Cybersécurité, IoT, et bien plus.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto"
+          >
+            <a
+              href="#stack"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FDFDFD] text-[#0F2137] font-bold text-[15px] border border-[#0F2137] hover:bg-white transition-colors shadow-sm flex items-center justify-center"
+            >
+              Découvrez la stack
+            </a>
             <a
               href="#projets"
-              className="px-8 py-3 rounded-full bg-[#e49834] text-[#0F2137] font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-black text-white font-bold text-[15px] hover:bg-gray-900 transition-colors shadow-lg flex items-center justify-center"
             >
               Voir nos chantiers
             </a>
-            <a
-              href="#stack"
-              className="px-8 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
-            >
-              Explorer la stack
-            </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -180,9 +184,9 @@ export default function PoleNumeriquePage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
           {[
             { label: "Projets livrés", value: 12, suffix: "+" },
-            { label: "Étudiants formés", value: 45, suffix: "+" },
+            { label: "Talents formés", value: 200, suffix: "+" },
             { label: "Domaines couverts", value: 6, suffix: "" },
-            { label: "Hackathons organisés", value: 5, suffix: "" },
+            { label: "Hackathons organisés", value: 1, suffix: "" },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
               <div className="text-4xl md:text-5xl font-bold font-b612 text-[#357dab]">
@@ -295,16 +299,22 @@ export default function PoleNumeriquePage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {filteredStacks.map((tech, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-xl hover:border-[#357dab]/30 transition-all duration-300 group"
             >
-              <span className="text-2xl">{tech.icon}</span>
+              <div className="w-10 h-10 rounded-full bg-[#F4F6F9] group-hover:bg-[#357dab] flex items-center justify-center transition-colors">
+                <span className="material-symbols-rounded text-gray-500 group-hover:text-white transition-colors">{tech.icon}</span>
+              </div>
               <div>
                 <h4 className="text-sm font-bold text-[#0F2137]">{tech.name}</h4>
                 <p className="text-[10px] text-gray-400 font-medium">{tech.version}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -312,112 +322,49 @@ export default function PoleNumeriquePage() {
       {/* ============================================================ */}
       {/* STANDARDS DE QUALITÉ (cartes avec icônes) */}
       {/* ============================================================ */}
-      <section className="w-full max-w-6xl px-4 py-20">
+      <section className="w-full max-w-6xl pb-80 px-4 py-20">
         <h2 className="text-3xl font-bold font-b612 text-[#0F2137] mb-12 text-center">
           Nos standards de qualité transversaux
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              icon: "🧩",
+              icon: "database",
               title: "Intégrité des données",
               desc: "Nous garantissons la fiabilité et la cohérence des données, qu'il s'agisse de bases relationnelles, de flux IoT ou de jeux de données massifs.",
             },
             {
-              icon: "🔒",
+              icon: "security",
               title: "Sécurité par conception",
               desc: "La sécurité est intégrée dès la phase de conception, avec des audits réguliers, du chiffrement et une veille constante sur les vulnérabilités.",
             },
             {
-              icon: "⚡",
+              icon: "speed",
               title: "Scalabilité et performance",
               desc: "Nos architectures sont conçues pour monter en charge et s'adapter aux besoins croissants, que ce soit pour une application web ou un pipeline de données.",
             },
           ].map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-white border border-gray-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white border border-gray-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center group"
             >
-              <div className="text-5xl mb-4">{item.icon}</div>
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#F4F6F9] group-hover:bg-[#357dab] flex items-center justify-center transition-colors">
+                <span className="material-symbols-rounded text-3xl text-gray-400 group-hover:text-white transition-colors">{item.icon}</span>
+              </div>
               <h3 className="text-lg font-bold text-[#0F2137] mb-3">{item.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* APPEL À L'ACTION (CTA) */}
-      {/* ============================================================ */}
-      <section className="w-full max-w-4xl px-4 py-16 mb-8">
-        <div className="bg-gradient-to-r from-[#0F2137] to-[#1a2e4a] rounded-3xl p-10 text-center text-white shadow-2xl">
-          <h2 className="text-3xl font-b612 font-bold mb-4">
-            Rejoignez notre pôle numérique
-          </h2>
-          <p className="text-gray-300 text-sm max-w-lg mx-auto leading-relaxed">
-            Que vous soyez développeur, data scientist, expert cloud ou passionné de cybersécurité,
-            contribuez à des projets concrets et apprenez aux côtés de talents engagés.
-          </p>
-          <a
-            href="#"
-            className="inline-block mt-8 px-10 py-3 rounded-full bg-[#e49834] text-[#0F2137] font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-          >
-            Postuler maintenant
-          </a>
-        </div>
-      </section>
+     
 
-      {/* ============================================================ */}
-      {/* FOOTER (identique au site principal) */}
-      {/* ============================================================ */}
-      <footer className="w-full bg-[#0F2137] text-white pt-16 pb-8 px-4 flex flex-col items-center">
-        <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          <div className="flex flex-col items-start">
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/logo1.svg" alt="Logo" className="h-8 w-auto filter brightness-0 invert" />
-            </div>
-            <p className="text-gray-400 text-[14px] leading-relaxed mb-4">
-              Ghostech – Innovation, Formation et Entrepreneuriat en Afrique.
-            </p>
-            <div className="flex gap-4 mt-2">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">📘</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">🐦</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">🔗</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">▶️</a>
-            </div>
-          </div>
 
-          <div className="flex flex-col gap-3">
-            <h5 className="font-bold text-white mb-1 text-[15px]">À propos</h5>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Centre d'aide</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Support Technique</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Notre histoire</Link>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <h5 className="font-bold text-white mb-1 text-[15px]">Informations</h5>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Règlements</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Confidentialité</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Cookies</Link>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <h5 className="font-bold text-white mb-1 text-[15px]">Communauté</h5>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Discord</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">Twitter</Link>
-            <Link href="#" className="text-gray-400 hover:text-[#357dab] text-[14px] transition-colors">LinkedIn</Link>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 w-full max-w-6xl pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-[13px]">
-            &copy; {new Date().getFullYear()} Ghostech – Tous droits réservés.
-          </p>
-          <p className="text-gray-500 text-[13px]">
-            Made with ❤️ à Abidjan, Côte d'Ivoire
-          </p>
-        </div>
-      </footer>
 
       {/* ─── ANIMATIONS CSS ─── */}
       <style jsx>{`

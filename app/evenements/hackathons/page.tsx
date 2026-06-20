@@ -152,7 +152,7 @@ export default function HackathonsPage() {
         <div className="mt-24 bg-[#FFF5ED] rounded-[24px] p-8 md:p-12 text-center max-w-4xl mx-auto border border-orange-100">
           <h3 className="text-2xl font-bold text-[#02073E] mb-3">Vous souhaitez sponsoriser un hackathon ?</h3>
           <p className="text-gray-500 text-[15px] max-w-xl mx-auto mb-6 leading-relaxed">
-            Associez votre entreprise ou institution à l’élite technique étudiante de l'IUA et découvrez des solutions logicielles inédites.
+            Associez votre entreprise ou institution à l’élite technique de notre collectif et découvrez des solutions logicielles inédites.
           </p>
           <Link
             href="#"

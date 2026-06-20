@@ -42,12 +42,6 @@ const polesLinks: LinkItem[] = [
     icon: "code",
   },
   {
-    title: "Formation & Innovation",
-    href: "/poles/formation",
-    description: "Ateliers, certifications et apprentissage continu",
-    icon: "school",
-  },
-  {
     title: "Entrepreneuriat",
     href: "/poles/entrepreneuriat",
     description: "Incubation et accompagnement de projets tech",
@@ -63,9 +57,21 @@ const equipeLinks: LinkItem[] = [
     icon: "admin_panel_settings",
   },
   {
+    title: "Bureau Événementiels",
+    href: "/equipe/bureau/evenementiels",
+    description: "Les responsables de nos événements",
+    icon: "event",
+  },
+  {
+    title: "Bureau Pôles Techniques",
+    href: "/equipe/bureau/poles",
+    description: "Les responsables de nos pôles d'expertise",
+    icon: "code",
+  },
+  {
     title: "Membres",
     href: "/equipe/membres",
-    description: "Découvrez notre communauté d'étudiants passionnés",
+    description: "Découvrez notre communauté de talents passionnés",
     icon: "groups",
   },
   {
@@ -199,33 +205,47 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* ÉQUIPE (Mega Menu) */}
+            {/* ÉQUIPE (Split Mega Menu) */}
             <div className="relative group">
               <button className="flex items-center gap-1 px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
                 Équipe <Icon name="expand_more" className="text-[18px] opacity-70" />
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-3 w-[400px]">
-                  <div className="flex flex-col gap-1">
-                    {equipeLinks.map((link) => (
-                      <ListItem key={link.title} {...link} />
-                    ))}
+                <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-5 w-[500px] flex gap-6">
+                  {/* Colonne 1 : Bureaux */}
+                  <div className="flex-1">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
+                      <Icon name="admin_panel_settings" className="text-[16px]" /> Direction
+                    </h4>
+                    <SimpleListItem title="Bureau Exécutif" href="/equipe/bureau" icon="stars" />
+                    <SimpleListItem title="Bureau Événementiels" href="/equipe/bureau/evenementiels" icon="event" />
+                    <SimpleListItem title="Bureau Pôles Techniques" href="/equipe/bureau/poles" icon="code" />
+                  </div>
+                  <div className="w-px bg-gray-100"></div>
+                  {/* Colonne 2 : Communauté */}
+                  <div className="flex-1">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
+                      <Icon name="groups" className="text-[16px]" /> Communauté
+                    </h4>
+                    <SimpleListItem title="Membres" href="/equipe/membres" icon="people" />
+                    <SimpleListItem title="Nous Rejoindre" href="/equipe/rejoindre" icon="person_add" />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* ACTIVITÉS (Split Mega Menu) */}
+            {/* ÉVÈNEMENTS (Split Mega Menu) */}
             <div className="relative group">
               <button className="flex items-center gap-1 px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-                Activités <Icon name="expand_more" className="text-[18px] opacity-70" />
+                Évènements <Icon name="expand_more" className="text-[18px] opacity-70" />
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-5 w-[500px] flex gap-6">
                   <div className="flex-1">
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="event" className="text-[16px]" /> Événements
+                      <Icon name="event" className="text-[16px]" /> Programmes
                     </h4>
+                    <SimpleListItem title="Formation & Innovation" href="/poles/formation" icon="school" />
                     <SimpleListItem title="Hackathons" href="/evenements/hackathons" icon="terminal" />
                     <SimpleListItem title="Ateliers" href="/evenements/ateliers" icon="model_training" />
                   </div>
@@ -308,9 +328,12 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* Projets & Événements */}
+              {/* Évènements */}
               <div className="flex flex-col gap-3">
-                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Activités</span>
+                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Évènements</span>
+                <Link href="/poles/formation" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
+                  <Icon name="school" className="text-gray-400 text-xl" /> Formation & Innovation
+                </Link>
                 <Link href="/evenements/hackathons" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
                   <Icon name="terminal" className="text-gray-400 text-xl" /> Hackathons
                 </Link>

@@ -4,62 +4,29 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Partenaires from "@/components/Partenaires";
 
-export default function BureauEquipe() {
+export default function BureauEvenementiels() {
   const leaders = [
     {
       id: 1,
-      name: "Adjé Ange",
-      role: "Président",
-      department: "Direction",
-      bio: "Garant de la vision globale de Ghostech. Dirige les orientations stratégiques du club.",
-      avatar: "/menbre/Ange_Adje.jpeg",
+      name: "Brim Ange Flora",
+      role: "Binôme Événementiel",
+      department: "Hackathons, Ateliers, Formations",
+      bio: "Une organisation en binôme pour couvrir l'ensemble des temps forts Ghostech tout au long de l'année. Gère l'organisation des Hackathons, Ateliers et Formations.",
+      avatar: "/menbre/Brim_Ange_Flora .jpeg",
       linkedin: "#",
-      email: "president@ghostech.ci",
-      phone: "+225 00 00 00 00 01"
+      email: "ange.brim@ghostech.ci",
+      phone: "+225 00 00 00 00 06"
     },
     {
       id: 2,
-      name: "Convaud Kouassi Othniel",
-      role: "Vice-Président",
-      department: "Direction",
-      bio: "Assiste le président dans ses fonctions et coordonne les opérations courantes.",
-      avatar: "/menbre/CONVAUD_Kouassi_Othnie.jpeg",
+      name: "Ethan Bokamé",
+      role: "Binôme Événementiel",
+      department: "Bootcamps, Sorties détente",
+      bio: "Une organisation en binôme pour couvrir l'ensemble des temps forts Ghostech tout au long de l'année. Spécialisé dans les Bootcamps et Sorties détente.",
+      avatar: "/menbre/Ethan_Bokamé.png",
       linkedin: "#",
-      email: "vp@ghostech.ci",
-      phone: "+225 00 00 00 00 02"
-    },
-    {
-      id: 3,
-      name: "Marie Michel",
-      role: "Responsable Partenariats",
-      department: "Partenariats",
-      bio: "En charge de développer et de maintenir les relations avec nos partenaires et sponsors (AIESEC CI, AfroLink).",
-      avatar: "/menbre/Marie_Michelle_Diragbou.jpeg",
-      linkedin: "#",
-      email: "partenariats@ghostech.ci",
-      phone: "+225 00 00 00 00 03"
-    },
-    {
-      id: 4,
-      name: "Emma Kossonou",
-      role: "Secrétaire Générale",
-      department: "Administration",
-      bio: "Assure le suivi administratif, la communication interne et la gestion documentaire de l'équipe.",
-      avatar: "/menbre/Emma_KOSSONOU.jpeg",
-      linkedin: "#",
-      email: "secretariat@ghostech.ci",
-      phone: "+225 00 00 00 00 04"
-    },
-    {
-      id: 5,
-      name: "Doukrou Eiffel",
-      role: "Trésorier",
-      department: "Finances",
-      bio: "Gère les ressources financières et veille au bon fonctionnement budgétaire des activités.",
-      avatar: "/menbre/Doukrou_Eiffel .jpeg",
-      linkedin: "#",
-      email: "tresorerie@ghostech.ci",
-      phone: "+225 00 00 00 00 05"
+      email: "ethan.bokame@ghostech.ci",
+      phone: "+225 00 00 00 00 07"
     }
   ];
 
@@ -82,7 +49,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.5 }}
             className="text-[11px] font-bold text-[#357dab] bg-[#357dab]/10 px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 backdrop-blur-md border border-[#357dab]/20"
           >
-            L'Équipe Dirigeante
+            L'Équipe d'Organisation
           </motion.div>
 
           <motion.h1 
@@ -91,7 +58,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-b612"
           >
-            Bureau Exécutif
+            Événementiels
           </motion.h1>
 
           <motion.p 
@@ -100,7 +67,7 @@ export default function BureauEquipe() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-300 max-w-2xl mx-auto text-[16px] md:text-lg leading-relaxed"
           >
-            L'équipe de direction qui pilote la vision Ghostech et propulse l'écosystème technologique. Construire. Impacter. Conquérir.
+            Hackathons, Ateliers, Formations, Bootcamps et Sorties détente. L'équipe qui orchestre l'ensemble des temps forts Ghostech.
           </motion.p>
         </div>
       </section>
