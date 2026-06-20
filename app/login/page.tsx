@@ -90,12 +90,6 @@ export default function LoginPage() {
       
       {/* Left column: sign-in form */}
       <section className="flex-1 flex items-center justify-center p-8 bg-white relative">
-        {/* Lien retour */}
-        <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-gray-500 hover:text-[#357dab] transition-colors">
-          <span className="material-symbols-rounded text-xl">arrow_back</span>
-          <span className="font-medium text-sm">Retour</span>
-        </Link>
-
         <div className="w-full max-w-md mt-12 md:mt-0">
           <div className="flex flex-col items-center mb-8">
              <img src="/logo1.svg" alt="Ghostech Logo" className="h-12 w-auto mb-6" />

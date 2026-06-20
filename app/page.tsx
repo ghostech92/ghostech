@@ -4,9 +4,95 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
+const heroSlides = [
+  {
+    titlePre: "Découvrez",
+    highlight: "Formations Tech",
+    titlePost: "pour développer vos compétences numériques.",
+    statsNum: "200+",
+    statsText: "Talents formés",
+    btnText: "En savoir plus",
+    images: ["/header_photo/h1.avif", "/header_photo/h2.avif", "/header_photo/h3.avif"],
+    mockupHeader: "Ghostech Academy",
+    mockupTitle: "G-TECH Summit",
+    mockupSubtitle: "Développement Web & Mobile",
+    mockupDesc: "Des formations pratiques et certifiantes pour les talents de demain.",
+    team: "GHOSTECH IUA",
+    status: "EN COURS",
+    colors: {
+      gradient: "from-[#f5f8ff] to-[#e6effc]",
+      triangle: "bg-[#709DF1]",
+      highlightText: "text-[#357dab]",
+      statsNum: "text-[#357dab]",
+      btn: "bg-[#357dab]",
+      btnHover: "hover:bg-[#2a6590]",
+      mockupBg: "bg-[#677994]",
+      mockupBorder: "border-[#8194b0]",
+      dotsActive: "bg-[#357dab]",
+      mockupTitleColor: "text-[#0F2137]",
+      mockupSubtitleColor: "text-[#357dab]"
+    }
+  },
+  {
+    titlePre: "Participez à nos",
+    highlight: "Hackathons & Événements",
+    titlePost: "pour innover et créer des solutions concrètes.",
+    statsNum: "50+",
+    statsText: "Projets réalisés",
+    btnText: "Découvrir",
+    images: ["/header_photo/h4.png", "/header_photo/h5.jpg", "/header_photo/h6.jpg"],
+    mockupHeader: "Innovation & Technologie",
+    mockupTitle: "Digital Creator",
+    mockupSubtitle: "IA & Cybersécurité",
+    mockupDesc: "Hackathons, workshops et défis tech pour repousser les limites.",
+    team: "COMMUNAUTÉ GHOSTECH",
+    status: "INSCRIPTIONS OUVERTES",
+    colors: {
+      gradient: "from-[#fff8f5] to-[#fdece9]",
+      triangle: "bg-[#ECA792]",
+      highlightText: "text-[#e49834]",
+      statsNum: "text-[#e49834]",
+      btn: "bg-[#e49834]",
+      btnHover: "hover:bg-[#c98429]",
+      mockupBg: "bg-[#8E7166]",
+      mockupBorder: "border-[#A6897E]",
+      dotsActive: "bg-[#e49834]",
+      mockupTitleColor: "text-[#e49834]",
+      mockupSubtitleColor: "text-[#e49834]"
+    }
+  },
+  {
+    titlePre: "Rejoignez la",
+    highlight: "Communauté Ghostech",
+    titlePost: "et bâtissez l'avenir technologique de l'Afrique.",
+    statsNum: "500+",
+    statsText: "Membres actifs",
+    btnText: "Rejoindre",
+    images: ["/header_photo/h7.jpg", "/header_photo/h8.jpg", "/header_photo/h9.jpg"],
+    mockupHeader: "Réseau & Mentorat",
+    mockupTitle: "Incubation Projets",
+    mockupSubtitle: "Entrepreneuriat Tech",
+    mockupDesc: "Un réseau de mentors et d'experts pour accélérer vos projets.",
+    team: "GHOSTECH NETWORK",
+    status: "ACTIF",
+    colors: {
+      gradient: "from-[#f0fcf9] to-[#e0f7f1]",
+      triangle: "bg-[#42C89A]",
+      highlightText: "text-[#42C89A]",
+      statsNum: "text-[#42C89A]",
+      btn: "bg-[#42C89A]",
+      btnHover: "hover:bg-[#34a37b]",
+      mockupBg: "bg-[#3A7E68]",
+      mockupBorder: "border-[#539B84]",
+      dotsActive: "bg-[#42C89A]",
+      mockupTitleColor: "text-[#0F2137]",
+      mockupSubtitleColor: "text-[#42C89A]"
+    }
+  }
+];
+
 export default function Home() {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
   // --- Gestion du scroll pour le parallaxe ---
@@ -16,46 +102,10 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // --- Slides du hero ---
-  const slides = [
-    {
-      src: "/header_photo/h1.avif",
-      titlePre: "Ghostech :",
-      titleHighlight: "Innovation, Formation",
-      titlePost: "et Entrepreneuriat en Afrique",
-      description: "Un collectif technologique créé par des talents passionnés de numérique et d'innovation.",
-      buttonText: "Découvrir Ghostech"
-    },
-    {
-      src: "/header_photo/h2.avif",
-      titlePre: "Façonnons l'Avenir :",
-      titleHighlight: "Développement Numérique",
-      titlePost: "et Solutions Innovantes",
-      description: "Des applications de pointe pour transformer l'écosystème technologique en Afrique.",
-      buttonText: "Voir nos projets"
-    },
-    {
-      src: "/header_photo/h3.avif",
-      titlePre: "Rejoignez notre réseau :",
-      titleHighlight: "Entraide, Apprentissage",
-      titlePost: "et Expertise Partagée",
-      description: "Développez vos compétences aux côtés d'autres talents passionnés et experts du domaine.",
-      buttonText: "Nous rejoindre"
-    }
-  ];
-
-  // --- Carrousel automatique du hero ---
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   // --- Countdown ---
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
-    const targetDate = new Date("2026-07-25T00:00:00").getTime();
+    const targetDate = new Date("2026-08-14T00:00:00").getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -73,6 +123,30 @@ export default function Home() {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // --- Carrousel Hero ---
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setHeroSlideIndex((prev) => (prev + 1) % heroSlides.length);
+        setIsFading(false);
+      }, 300);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const changeSlide = (index: number) => {
+    if (index === heroSlideIndex) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setHeroSlideIndex(index);
+      setIsFading(false);
+    }, 300);
+  };
 
   // --- Carrousel équipe ---
   const scrollLeft = () => {
@@ -102,139 +176,149 @@ export default function Home() {
     <main className="w-full flex flex-col items-center bg-white overflow-hidden text-[#0F2137]">
 
       {/* ============================================================ */}
-      {/* HERO AVEC PARALLAXE SUR LES IMAGES DE FOND */}
+      {/* NOUVEAU HERO (GHOSTECH DYNAMIQUE & PLUS PETIT) */}
       {/* ============================================================ */}
-      <div className="w-full flex flex-col items-center relative overflow-hidden">
-        {slides.map((slide, index) => {
-          const translateY = scrollY * 0.3;
-          return (
-            <div
-              key={slide.src}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
-                }`}
-              style={{ transform: `translateY(${translateY}px)`, willChange: "transform" }}
-            >
-              <Image src={slide.src} alt="Background" fill className="object-cover" priority={index === 0} />
-            </div>
-          );
-        })}
-        <div className="absolute inset-0 bg-black/60 z-0"></div>
+      <section className="w-full bg-[#f8f9fb] pt-20 pb-0 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
 
-        <div className="w-full flex flex-col pt-24 px-4 md:px-10 lg:px-20 relative pb-32 z-10 min-h-screen justify-center items-start">
-          <div className="w-full max-w-7xl mx-auto relative min-h-[400px] md:min-h-[300px] flex items-center">
-            {slides.map((slide, index) => (
-              <div
-                key={index}
-                className={`absolute left-0 w-full max-w-3xl flex flex-col items-start transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                  }`}
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-b612 text-white leading-[1.15] mb-6 tracking-tight">
-                  {slide.titlePre} <br className="hidden md:block" />
-                  <span className="text-[#e49834] inline-block mt-2">{slide.titleHighlight}</span>{" "}
-                  <br className="hidden md:block" />
-                  {slide.titlePost}
-                </h1>
-                <p className="text-[17px] text-gray-200 mb-10 max-w-xl">{slide.description}</p>
-                <div className="flex items-center gap-4">
-                  <button className="bg-[#357dab] text-white px-8 py-3.5 rounded-full font-bold text-[15px] hover:bg-[#0ca6a6] shadow-[0_0_10px_rgba(10,128,128,0.4)] hover:shadow-[0_0_24px_rgba(10,128,128,0.7)] transition-all transform hover:-translate-y-0.5 relative overflow-hidden group">
-                    <span className="relative z-10 flex items-center gap-2">
-                      {slide.buttonText}
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </span>
-                    <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full -translate-x-full skew-x-12 transition-transform duration-500 ease-in-out"></div>
-                  </button>
-                  <button className="text-white border border-white/30 px-8 py-3.5 rounded-full font-bold text-[15px] hover:bg-white/10 hover:border-white/60 transition-all backdrop-blur-sm">
-                    En savoir plus
-                  </button>
-                </div>
+          {/* Contenu principal */}
+          <div className={`relative w-full flex flex-col md:flex-row items-start justify-between gap-8 pt-6 pb-16 transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
+
+            {/* Côté Gauche (Texte) */}
+            <div className="w-full md:w-[55%] flex flex-col items-start z-10">
+              {/* Breadcrumb */}
+              <nav className="flex items-center gap-1.5 text-[13px] text-gray-400 mb-6">
+                <span className="hover:text-[#357dab] cursor-pointer transition-colors">Accueil</span>
+                <span>›</span>
+                <span className="hover:text-[#357dab] cursor-pointer transition-colors">{heroSlides[heroSlideIndex].mockupHeader}</span>
+                <span>›</span>
+                <span className="text-gray-600 font-medium">{heroSlides[heroSlideIndex].highlight}</span>
+              </nav>
+
+              {/* Titre */}
+              <h1 className="text-3xl md:text-[40px] lg:text-[48px] font-extrabold text-[#0F2137] leading-[1.1] tracking-tight mb-5 font-b612 uppercase">
+                {heroSlides[heroSlideIndex].highlight}
+              </h1>
+
+              {/* Badges */}
+              <div className="flex items-center gap-4 mb-6">
+                {heroSlides[heroSlideIndex].statsNum && (
+                  <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
+                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    {heroSlides[heroSlideIndex].statsNum} {heroSlides[heroSlideIndex].statsText}
+                  </span>
+                )}
+                <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                  {heroSlides[heroSlideIndex].status}
+                </span>
               </div>
-            ))}
+
+              {/* Description */}
+              <p className="text-[15px] text-gray-500 leading-relaxed max-w-[520px] mb-4">
+                {heroSlides[heroSlideIndex].titlePre && <>{heroSlides[heroSlideIndex].titlePre} </>}
+                {heroSlides[heroSlideIndex].titlePost}
+                {' '}{heroSlides[heroSlideIndex].mockupDesc}
+              </p>
+
+              {/* Lire la suite */}
+              <button className="text-[#357dab] font-semibold text-[14px] hover:underline mb-6 transition-colors">
+                Lire la suite
+              </button>
+            </div>
+
+            {/* Côté Droit (Images header_photo dynamiques) */}
+            <div className="hidden md:flex w-[40%] justify-end items-center relative min-h-[320px]">
+              {/* Image principale grande */}
+              <div className="absolute right-8 top-2 w-[200px] h-[200px] lg:w-[260px] lg:h-[260px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500">
+                <Image src={heroSlides[heroSlideIndex].images[0]} alt="Ghostech" fill className="object-cover" />
+              </div>
+              {/* Image secondaire */}
+              <div className="absolute right-[180px] lg:right-[220px] top-[40px] lg:top-[50px] w-[140px] h-[140px] lg:w-[170px] lg:h-[170px] rounded-2xl overflow-hidden shadow-lg rotate-[-3deg] transition-all duration-500">
+                <Image src={heroSlides[heroSlideIndex].images[1]} alt="Ghostech" fill className="object-cover" />
+              </div>
+              {/* Image en bas à droite */}
+              <div className="absolute right-[20px] top-[200px] lg:top-[230px] w-[130px] h-[130px] lg:w-[150px] lg:h-[150px] rounded-2xl overflow-hidden shadow-lg rotate-[2deg] transition-all duration-500">
+                <Image src={heroSlides[heroSlideIndex].images[2]} alt="Ghostech" fill className="object-cover" />
+              </div>
+              {/* Points décoratifs */}
+              <div className="absolute right-[60px] top-0 w-2 h-2 rounded-full bg-[#357dab]/40"></div>
+              <div className="absolute right-[280px] top-[30px] w-1.5 h-1.5 rounded-full bg-[#e49834]/50"></div>
+              <div className="absolute right-[200px] top-[280px] w-2.5 h-2.5 rounded-full bg-[#42C89A]/40"></div>
+            </div>
           </div>
 
-          {/* Contrôles du carrousel hero */}
-          <button
-            onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/25 hover:border-white/50 backdrop-blur-sm transition-all group z-20"
-            aria-label="Diapositive précédente"
-          >
-            <svg className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/25 hover:border-white/50 backdrop-blur-sm transition-all group z-20"
-            aria-label="Diapositive suivante"
-          >
-            <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-          <div className="absolute -bottom-16 left-0 flex items-center gap-3">
-            {slides.map((_, index) => (
+          {/* Barre d'événements en bas du hero */}
+          <div className="w-full bg-white rounded-t-2xl border border-gray-200 border-b-0 shadow-lg px-4 md:px-6 py-5 -mb-[1px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 md:divide-x md:divide-gray-200">
+
+              {/* Formations */}
+              <div className="flex items-center gap-4 px-4 md:px-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#357dab] to-[#1f4d6e] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
+                </div>
+                <div>
+                  <h4 className="text-[16px] font-bold text-[#0F2137] leading-tight">Formations</h4>
+                  <div className="flex items-center gap-1.5 text-[12px] text-gray-400 font-medium">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    À VENIR
+                  </div>
+                </div>
+              </div>
+
+              {/* G-TECH Summit */}
+              <div className="flex items-center gap-4 px-4 md:px-6">
+                <div className="w-10 h-10 rounded-xl bg-[#357dab] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>emoji_events</span>
+                </div>
+                <div>
+                  <h4 className="text-[16px] font-bold text-[#0F2137] leading-tight">G-TECH Summit</h4>
+                  <p className="text-[12px] font-bold text-[#357dab]">14-15 Août 2026</p>
+                  <p className="text-[11px] text-gray-400">Abidjan, Côte d&apos;Ivoire</p>
+                </div>
+              </div>
+
+              {/* Digital Creator + Countdown */}
+              <div className="flex items-center gap-4 px-4 md:px-6">
+                <div className="w-10 h-10 rounded-xl bg-[#0F2137] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>videocam</span>
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-[15px] font-bold text-[#0F2137] leading-tight mb-1">Digital Creator</h4>
+                  <div className="flex items-center gap-1.5">
+                    {[
+                      { value: countdown.days, label: "J" },
+                      { value: countdown.hours, label: "H" },
+                      { value: countdown.minutes, label: "M" },
+                      { value: countdown.seconds, label: "S" },
+                    ].map((item, i) => (
+                      <div key={i} className="bg-[#0F2137] text-white rounded px-2 py-1 flex items-center gap-0.5 min-w-[40px] justify-center">
+                        <span className="text-[14px] font-bold font-b612 leading-none">{String(item.value).padStart(2, "0")}</span>
+                        <span className="text-[8px] uppercase text-gray-400">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <button className="bg-[#357dab] text-white px-4 py-2 rounded-lg font-bold text-[12px] hover:bg-[#2a6590] transition-all shadow-sm whitespace-nowrap shrink-0">
+                  Je m&apos;inscris
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center items-center gap-2.5 mt-8 mb-4">
+            {heroSlides.map((_, i) => (
               <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`transition-all duration-300 rounded-full ${index === currentSlide
-                    ? "w-8 h-2 bg-[#357dab] shadow-[0_0_8px_rgba(10,128,128,0.8)]"
-                    : "w-2 h-2 bg-white/40 hover:bg-white/70"
-                  }`}
+                key={i}
+                onClick={() => changeSlide(i)}
+                className={`transition-all duration-300 rounded-full ${i === heroSlideIndex ? `w-8 h-2 ${heroSlides[heroSlideIndex].colors.dotsActive}` : "w-2 h-2 bg-gray-300 hover:bg-gray-400"}`}
+                aria-label={`Aller à la diapositive ${i + 1}`}
               />
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* SECTION FORMATIONS / ÉVÉNEMENTS (amélioration des cartes) */}
-      {/* ============================================================ */}
-      <section className="w-full bg-white py-16 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          {/* Carte 1 */}
-          <div className="bg-gradient-to-br from-[#357dab] to-[#1f4d6e] rounded-2xl p-8 text-white flex flex-col justify-between min-h-[240px] shadow-xl hover:shadow-2xl transition-shadow duration-300">
-            <div>
-              <h3 className="text-3xl md:text-4xl font-bold font-b612 mb-3">Formations</h3>
-              <div className="flex items-center gap-2 text-white/90 text-[14px] mb-4">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                À VENIR
-              </div>
-            </div>
-            <div className="w-12 h-[3px] bg-white/60 rounded-full"></div>
-          </div>
-
-          {/* Carte 2 */}
-          <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col gap-3">
-            <h3 className="text-2xl md:text-[28px] font-bold text-[#357dab] font-b612">G-TECH Summit</h3>
-            <p className="text-[13px] font-bold text-gray-500 uppercase tracking-wider">Fin des candidatures dans...</p>
-            <div className="mt-2">
-              <p className="text-[16px] font-bold text-[#0F2137]">24-25 Juillet 2026</p>
-              <p className="text-[15px] text-gray-500">Abidjan, Côte d&apos;Ivoire</p>
-            </div>
-          </div>
-
-          {/* Carte 3 */}
-          <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col gap-4">
-            <h3 className="text-2xl md:text-[28px] font-bold text-[#357dab] font-b612">Digital Creator</h3>
-            <p className="text-[13px] font-bold text-gray-500 uppercase tracking-wider">Fin des candidatures dans...</p>
-            <div className="flex gap-3">
-              {[
-                { value: countdown.days, label: "JOURS" },
-                { value: countdown.hours, label: "HEURES" },
-                { value: countdown.minutes, label: "MINUTES" },
-                { value: countdown.seconds, label: "SECONDES" },
-              ].map((item, i) => (
-                <div key={i} className="bg-[#0F2137] text-white rounded-lg px-3 py-2.5 flex flex-col items-center min-w-[60px]">
-                  <span className="text-2xl font-bold font-b612 leading-none">{String(item.value).padStart(2, "0")}</span>
-                  <span className="text-[9px] uppercase tracking-wider mt-1 text-gray-400">{item.label}</span>
-                </div>
-              ))}
-            </div>
-            <p className="text-[#357dab] text-[13px] font-medium">Les inscriptions ne sont plus disponibles !</p>
-            <button className="bg-[#357dab] text-white px-6 py-2.5 rounded-lg font-bold text-[14px] hover:bg-[#d49730] transition-all shadow-md w-fit">
-              Je m&apos;inscris
-            </button>
           </div>
         </div>
       </section>
@@ -681,8 +765,8 @@ export default function Home() {
                 key={index}
                 onClick={() => setExpSlideIndex(index)}
                 className={`transition-all duration-300 rounded-full ${index === expSlideIndex
-                    ? "w-8 h-2 bg-[#357dab] shadow-[0_0_8px_rgba(10,128,128,0.8)]"
-                    : "w-2 h-2 bg-gray-400 hover:bg-gray-600"
+                  ? "w-8 h-2 bg-[#357dab] shadow-[0_0_8px_rgba(10,128,128,0.8)]"
+                  : "w-2 h-2 bg-gray-400 hover:bg-gray-600"
                   }`}
               />
             ))}

@@ -143,11 +143,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const scrolled = useScroll(20);
 
-  // Hide the navbar on the login and register pages
-  if (pathname === "/login" || pathname === "/register") {
-    return null;
-  }
-
   // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (open) {
@@ -159,6 +154,11 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Hide the navbar on the login and register pages
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
 
   return (
     <>
@@ -243,11 +243,10 @@ export default function Navbar() {
                 <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-5 w-[500px] flex gap-6">
                   <div className="flex-1">
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="event" className="text-[16px]" /> Programmes
+                      <Icon name="event" className="text-[16px]" /> Événements
                     </h4>
-                    <SimpleListItem title="Formation & Innovation" href="/poles/formation" icon="school" />
+                    <SimpleListItem title="Formation & Ateliers" href="/formation/programmes" icon="map" />
                     <SimpleListItem title="Hackathons" href="/evenements/hackathons" icon="terminal" />
-                    <SimpleListItem title="Ateliers" href="/evenements/ateliers" icon="model_training" />
                   </div>
                   <div className="w-px bg-gray-100"></div>
                   <div className="flex-1">
@@ -331,14 +330,11 @@ export default function Navbar() {
               {/* Évènements */}
               <div className="flex flex-col gap-3">
                 <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Évènements</span>
-                <Link href="/poles/formation" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                  <Icon name="school" className="text-gray-400 text-xl" /> Formation & Innovation
+                <Link href="/formation/programmes" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
+                  <Icon name="map" className="text-gray-400 text-xl" /> Vision & Roadmap
                 </Link>
                 <Link href="/evenements/hackathons" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
                   <Icon name="terminal" className="text-gray-400 text-xl" /> Hackathons
-                </Link>
-                <Link href="/evenements/ateliers" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                  <Icon name="model_training" className="text-gray-400 text-xl" /> Ateliers
                 </Link>
                 {projetsLinks.map((link) => (
                   <Link key={link.title} href={link.href} onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">

@@ -47,6 +47,7 @@ const TestimonialCard = ({ testimonial, delay }: { testimonial: Testimonial, del
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const testimonials: Testimonial[] = [
     {
@@ -79,12 +80,6 @@ export default function RegisterPage() {
       
       {/* Left column: sign-up form */}
       <section className="flex-1 flex items-center justify-center p-8 bg-white relative">
-        {/* Lien retour */}
-        <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-gray-500 hover:text-[#357dab] transition-colors">
-          <span className="material-symbols-rounded text-xl">arrow_back</span>
-          <span className="font-medium text-sm">Retour</span>
-        </Link>
-
         <div className="w-full max-w-md mt-12 md:mt-0">
           <div className="flex flex-col items-center mb-8">
              <img src="/logo1.svg" alt="Ghostech Logo" className="h-12 w-auto mb-6" />
@@ -121,6 +116,20 @@ export default function RegisterPage() {
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-[#357dab]">
                       <span className="material-symbols-rounded text-[20px]">
                         {showPassword ? 'visibility_off' : 'visibility'}
+                      </span>
+                    </button>
+                  </div>
+                </GlassInputWrapper>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-[#02073E] mb-1 block">Confirmer le mot de passe</label>
+                <GlassInputWrapper>
+                  <div className="relative">
+                    <input name="confirmPassword" type={showConfirmPassword ? 'text' : 'password'} placeholder="Confirmez le mot de passe" className="w-full bg-transparent text-[#02073E] text-sm p-3.5 pr-12 rounded-2xl focus:outline-none" required />
+                    <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-[#357dab]">
+                      <span className="material-symbols-rounded text-[20px]">
+                        {showConfirmPassword ? 'visibility_off' : 'visibility'}
                       </span>
                     </button>
                   </div>
