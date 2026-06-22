@@ -178,8 +178,8 @@ export default function Home() {
       {/* ============================================================ */}
       {/* NOUVEAU HERO (GHOSTECH DYNAMIQUE & PLUS PETIT) [#f8f9fb] */}
       {/* ============================================================ */}
-      <section className="w-full bg-[#f8f9fb] pt-20 pb-0 border-b border-gray-200 rounded-b-[2.5rem] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
+      <section className="w-full max-w-7xl mx-auto bg-[#3b30e0] pt-20 pb-0 rounded-[2rem] overflow-hidden mt-6 mb-8">
+        <div className="px-4 sm:px-8 relative">
 
           {/* Contenu principal */}
           <div className={`relative w-full flex flex-col md:flex-row items-start justify-between gap-8 pt-6 pb-16 transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
@@ -188,41 +188,41 @@ export default function Home() {
             <div className="w-full md:w-[55%] flex flex-col items-start z-10">
               {/* Breadcrumb */}
               <nav className="flex items-center gap-1.5 text-[13px] text-gray-400 mb-6">
-                <span className="hover:text-[#357dab] cursor-pointer transition-colors">Accueil</span>
-                <span>›</span>
-                <span className="hover:text-[#357dab] cursor-pointer transition-colors">{heroSlides[heroSlideIndex].mockupHeader}</span>
-                <span>›</span>
-                <span className="text-gray-600 font-medium">{heroSlides[heroSlideIndex].highlight}</span>
+                <span className="hover:text-white cursor-pointer transition-colors">Accueil</span>
+                <span className="text-white/60">›</span>
+                <span className="hover:text-white cursor-pointer transition-colors">{heroSlides[heroSlideIndex].mockupHeader}</span>
+                <span className="text-white/60">›</span>
+                <span className="text-white/80 font-medium">{heroSlides[heroSlideIndex].highlight}</span>
               </nav>
 
               {/* Titre */}
-              <h1 className="text-3xl md:text-[40px] lg:text-[48px] font-extrabold text-[#0F2137] leading-[1.1] tracking-tight mb-5 font-b612 uppercase">
+              <h1 className="text-3xl md:text-[40px] lg:text-[48px] font-extrabold text-white leading-[1.1] tracking-tight mb-5 font-b612 uppercase">
                 {heroSlides[heroSlideIndex].highlight}
               </h1>
 
               {/* Badges */}
               <div className="flex items-center gap-4 mb-6">
                 {heroSlides[heroSlideIndex].statsNum && (
-                  <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
-                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                  <span className="flex items-center gap-1.5 text-[13px] font-bold text-white/90">
+                    <svg className="w-4 h-4 text-[#fef08a]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                     {heroSlides[heroSlideIndex].statsNum} {heroSlides[heroSlideIndex].statsText}
                   </span>
                 )}
-                <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
-                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                <span className="flex items-center gap-1.5 text-[13px] font-bold text-white/90">
+                  <svg className="w-4 h-4 text-[#fef08a]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                   {heroSlides[heroSlideIndex].status}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-[15px] text-gray-500 leading-relaxed max-w-[520px] mb-4">
+              <p className="text-[15px] text-white/80 leading-relaxed max-w-[520px] mb-4">
                 {heroSlides[heroSlideIndex].titlePre && <>{heroSlides[heroSlideIndex].titlePre} </>}
                 {heroSlides[heroSlideIndex].titlePost}
                 {' '}{heroSlides[heroSlideIndex].mockupDesc}
               </p>
 
               {/* Lire la suite */}
-              <button className="text-[#357dab] font-semibold text-[14px] hover:underline mb-6 transition-colors">
+              <button className="text-[#fef08a] font-semibold text-[14px] hover:underline mb-6 transition-colors">
                 Lire la suite
               </button>
             </div>
@@ -613,7 +613,7 @@ export default function Home() {
       {/* BANNIÈRE PROMOTIONNELLE STYLE COURSERA */}
       <section className="w-full max-w-7xl px-4 mb-8">
         <div className="relative w-full bg-[#0056D2] rounded-xl overflow-hidden flex flex-row items-stretch h-[240px]">
-          
+
           {/* Formes triangulaires décoratives */}
           <div className="absolute right-[245px] top-0 bottom-0 w-0 h-0 border-l-[95px] border-l-transparent border-t-[240px] border-t-[#f9c100] pointer-events-none" />
           <div className="absolute right-[155px] top-0 bottom-0 w-0 h-0 border-l-[95px] border-l-transparent border-t-[240px] border-t-[#ec407a] pointer-events-none" />
@@ -630,7 +630,7 @@ export default function Home() {
               Le temps joue en votre faveur. Commencez à transformer les minutes en étapes importantes.
             </p>
             <p className="text-white/75 text-sm leading-relaxed max-w-sm mb-4">
-              En seulement sept jours, passez de leçons courtes à des compétences réelles.<br/>
+              En seulement sept jours, passez de leçons courtes à des compétences réelles.<br />
               Prêt à faire en sorte que ce jour compte ?
             </p>
 
