@@ -155,8 +155,8 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // Hide the navbar on the login and register pages
-  if (pathname === "/login" || pathname === "/register") {
+  // Hide the navbar on the login, register, and devarena pages
+  if (pathname === "/login" || pathname === "/register" || pathname.startsWith("/devarena")) {
     return null;
   }
 
@@ -260,6 +260,11 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+
+            {/* DEVARENA (Lien Simple) */}
+            <Link href="/devarena" className="px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
+              DevArena
+            </Link>
 
             <Link href="/apropos" className="px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
               À propos

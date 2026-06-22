@@ -12,7 +12,7 @@ const heroSlides = [
     statsNum: "200+",
     statsText: "Talents formés",
     btnText: "En savoir plus",
-    images: ["/header_photo/h1.avif", "/header_photo/h2.avif", "/header_photo/h3.avif"],
+    images: ["/header_photo/h10.png", "/header_photo/h2.avif", "/header_photo/h3.avif"],
     mockupHeader: "Ghostech Academy",
     mockupTitle: "G-TECH Summit",
     mockupSubtitle: "Développement Web & Mobile",
@@ -176,9 +176,9 @@ export default function Home() {
     <main className="w-full flex flex-col items-center bg-white overflow-hidden text-[#0F2137]">
 
       {/* ============================================================ */}
-      {/* NOUVEAU HERO (GHOSTECH DYNAMIQUE & PLUS PETIT) */}
+      {/* NOUVEAU HERO (GHOSTECH DYNAMIQUE & PLUS PETIT) [#f8f9fb] */}
       {/* ============================================================ */}
-      <section className="w-full bg-[#f8f9fb] pt-20 pb-0 border-b border-gray-200">
+      <section className="w-full bg-[#f8f9fb] pt-20 pb-0 border-b border-gray-200 rounded-b-[2.5rem] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
 
           {/* Contenu principal */}
@@ -227,24 +227,20 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Côté Droit (Images header_photo dynamiques) */}
+            {/* Côté Droit — Image unique */}
             <div className="hidden md:flex w-[40%] justify-end items-center relative min-h-[320px]">
-              {/* Image principale grande */}
-              <div className="absolute right-8 top-2 w-[200px] h-[200px] lg:w-[260px] lg:h-[260px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500">
-                <Image src={heroSlides[heroSlideIndex].images[0]} alt="Ghostech" fill className="object-cover" />
-              </div>
-              {/* Image secondaire */}
-              <div className="absolute right-[180px] lg:right-[220px] top-[40px] lg:top-[50px] w-[140px] h-[140px] lg:w-[170px] lg:h-[170px] rounded-2xl overflow-hidden shadow-lg rotate-[-3deg] transition-all duration-500">
-                <Image src={heroSlides[heroSlideIndex].images[1]} alt="Ghostech" fill className="object-cover" />
-              </div>
-              {/* Image en bas à droite */}
-              <div className="absolute right-[20px] top-[200px] lg:top-[230px] w-[130px] h-[130px] lg:w-[150px] lg:h-[150px] rounded-2xl overflow-hidden shadow-lg rotate-[2deg] transition-all duration-500">
-                <Image src={heroSlides[heroSlideIndex].images[2]} alt="Ghostech" fill className="object-cover" />
+              <div className="relative w-[300px] h-[300px] lg:w-[340px] lg:h-[340px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500">
+                <Image
+                  src={heroSlides[heroSlideIndex].images[0]}
+                  alt="Ghostech"
+                  fill
+                  className="object-cover"
+                />
               </div>
               {/* Points décoratifs */}
               <div className="absolute right-[60px] top-0 w-2 h-2 rounded-full bg-[#357dab]/40"></div>
               <div className="absolute right-[280px] top-[30px] w-1.5 h-1.5 rounded-full bg-[#e49834]/50"></div>
-              <div className="absolute right-[200px] top-[280px] w-2.5 h-2.5 rounded-full bg-[#42C89A]/40"></div>
+              <div className="absolute right-[20px] bottom-[20px] w-2.5 h-2.5 rounded-full bg-[#42C89A]/40"></div>
             </div>
           </div>
 
@@ -609,6 +605,52 @@ export default function Home() {
           </div>
           <div className="flex-1 relative w-full aspect-[4/3] max-w-lg bg-gray-50 rounded-3xl overflow-hidden shadow-xl">
             <Image src="/Galeries/img_1.png" alt="Framework explanation" fill className="object-contain" />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* BANNIÈRE PROMOTIONNELLE STYLE COURSERA */}
+      <section className="w-full max-w-7xl px-4 mb-8">
+        <div className="relative w-full bg-[#0056D2] rounded-xl overflow-hidden flex flex-row items-stretch h-[240px]">
+          
+          {/* Formes triangulaires décoratives */}
+          <div className="absolute right-[245px] top-0 bottom-0 w-0 h-0 border-l-[95px] border-l-transparent border-t-[240px] border-t-[#f9c100] pointer-events-none" />
+          <div className="absolute right-[155px] top-0 bottom-0 w-0 h-0 border-l-[95px] border-l-transparent border-t-[240px] border-t-[#ec407a] pointer-events-none" />
+
+          {/* Contenu texte */}
+          <div className="flex-1 px-8 py-5 z-10 flex flex-col justify-center">
+            {/* Logo Ghostech */}
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-white font-extrabold text-base tracking-tight font-b612">ghostech</span>
+              <span className="bg-white text-[#0056D2] text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">PLUS</span>
+            </div>
+
+            <p className="text-white font-bold text-base leading-snug max-w-md mb-2">
+              Le temps joue en votre faveur. Commencez à transformer les minutes en étapes importantes.
+            </p>
+            <p className="text-white/75 text-sm leading-relaxed max-w-sm mb-4">
+              En seulement sept jours, passez de leçons courtes à des compétences réelles.<br/>
+              Prêt à faire en sorte que ce jour compte ?
+            </p>
+
+            <Link
+              href="/formations"
+              className="inline-block bg-white text-[#0056D2] text-xs font-semibold px-4 py-1.5 rounded border border-white hover:bg-[#0056D2] hover:text-white transition-all duration-200 w-fit"
+            >
+              Économiser
+            </Link>
+          </div>
+
+          {/* Image personne — positionnée dans le coin droit, alignée en bas */}
+          <div className="relative w-[240px] h-[240px] flex-shrink-0 z-10 overflow-hidden">
+            <Image
+              src="/menbre/Maïmouna_Soro.jpeg"
+              alt="Formation Ghostech"
+              fill
+              sizes="120px"
+              className="object-cover  object-top"
+            />
           </div>
         </div>
       </section>

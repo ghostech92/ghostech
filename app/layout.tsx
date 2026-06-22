@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { DM_Sans, B612, Roboto } from "next/font/google";
+import { DM_Sans, B612, Roboto, Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -34,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${dmSans.variable} ${b612.variable} ${roboto.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", dmSans.variable, b612.variable, roboto.variable, "font-sans", geist.variable)}
     >
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
