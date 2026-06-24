@@ -17,10 +17,13 @@ export default function Partenaires() {
           Nos partenaires
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
-          <Image src="/partenaires/3.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
-          <Image src="/partenaires/4.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
-          <Image src="/partenaires/5.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
-          <Image src="/partenaires/6.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt1.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt2.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt3.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt4.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt5.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt6.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
+          <Image src="/partenaires/pt7.svg" alt="Partenaire" width={160} height={60} className="object-contain h-12 w-auto" />
         </div>
       </motion.div>
     </section>

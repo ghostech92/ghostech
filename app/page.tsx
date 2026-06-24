@@ -12,7 +12,7 @@ const heroSlides = [
     statsNum: "200+",
     statsText: "Talents formés",
     btnText: "En savoir plus",
-    images: ["/header_photo/h11.svg", "/header_photo/h2.avif", "/header_photo/h3.avif"],
+    images: ["/header_photo/h1.svg", "/header_photo/h2.avif", "/header_photo/h3.avif"],
     mockupHeader: "Ghostech Academy",
     mockupTitle: "G-TECH Summit",
     mockupSubtitle: "Développement Web & Mobile",
@@ -40,7 +40,7 @@ const heroSlides = [
     statsNum: "50+",
     statsText: "Projets réalisés",
     btnText: "Découvrir",
-    images: ["/header_photo/h4.png", "/header_photo/h5.jpg", "/header_photo/h6.jpg"],
+    images: ["/header_photo/h2.svg"],
     mockupHeader: "Innovation & Technologie",
     mockupTitle: "Digital Creator",
     mockupSubtitle: "IA & Cybersécurité",
@@ -68,7 +68,7 @@ const heroSlides = [
     statsNum: "500+",
     statsText: "Membres actifs",
     btnText: "Rejoindre",
-    images: ["/header_photo/h7.jpg", "/header_photo/h8.jpg", "/header_photo/h9.jpg"],
+    images: ["/header_photo/h3.svg"],
     mockupHeader: "Réseau & Mentorat",
     mockupTitle: "Incubation Projets",
     mockupSubtitle: "Entrepreneuriat Tech",
@@ -181,6 +181,35 @@ export default function Home() {
       <section className="relative w-full max-w-[1400px] mx-auto mt-28 px-4 sm:px-6 mb-12">
         <div className="w-full rounded-[2.5rem] bg-gradient-to-r from-[#F9C1A5] via-[#DECFDB] to-[#96C9F0] pt-10 md:pt-16 pb-0 px-6 sm:px-12 shadow-sm relative overflow-hidden">
 
+          {/* ================= DÉCORATIONS / STICKERS ================= */}
+          {/* Images de décoration personnalisées */}
+
+          {/* Décoration 1 */}
+          <div className="absolute top-[8%] left-[2%] md:left-[5%] w-[90px] h-[60px] md:w-[90px] md:h-[90px] animate-float-slow drop-shadow-lg z-0 opacity-90">
+            <Image src="/decoration/d2.svg" alt="Decoration 1" fill className="object-contain" />
+          </div>
+
+          {/* Décoration 2 */}
+          <div className="absolute bottom-[20%] left-[6%] md:left-[12%] w-[50px] h-[50px] md:w-[80px] md:h-[80px] animate-float-medium drop-shadow-md z-0 opacity-80">
+            <Image src="/decoration/d3.svg" alt="Decoration 2" fill className="object-contain" />
+          </div>
+
+          {/* Décoration 3 */}
+          <div className="absolute top-[15%] right-[25%] md:right-[35%] w-[45px] h-[45px] md:w-[70px] md:h-[70px] animate-float-fast drop-shadow-md z-0 opacity-50">
+            <Image src="/decoration/d4.svg" alt="Decoration 3" fill className="object-contain" />
+          </div>
+
+          {/* Décoration 4 */}
+          <div className="absolute bottom-[40%] right-[35%] md:right-[45%] w-[70px] h-[90px] md:w-[100px] md:h-[100px] animate-spin-slow drop-shadow-xl z-0 opacity-90">
+            <Image src="/decoration/d1.svg" alt="Decoration 4" fill className="object-contain" />
+          </div>
+
+          {/* Confettis colorés subtils (pour garder le côté festif) */}
+          <div className="absolute top-[45%] left-[18%] w-3 h-3 rounded-full bg-[#FF1493] drop-shadow-sm"></div>
+          <div className="absolute bottom-[45%] right-[12%] w-4 h-4 rounded-full bg-[#00BFFF] drop-shadow-sm"></div>
+          <div className="absolute top-[15%] right-[15%] w-2 h-2 rounded-full bg-[#32CD32] drop-shadow-sm"></div>
+          {/* ========================================================= */}
+
           {/* Contenu principal */}
           <div className={`relative w-full flex flex-col md:flex-row items-center justify-between gap-8 pb-8 transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
 
@@ -228,13 +257,13 @@ export default function Home() {
             </div>
 
             {/* Côté Droit — Image unique */}
-            <div className="hidden md:flex w-[40%] justify-end items-center relative min-h-[320px]">
-              <div className="relative w-[300px] h-[300px] lg:w-[340px] lg:h-[340px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500">
+            <div className="hidden md:flex w-[40%] justify-center md:justify-end items-center relative min-h-[400px] lg:min-h-[500px]">
+              <div className="relative w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] transition-all duration-500">
                 <Image
                   src={heroSlides[heroSlideIndex].images[0]}
                   alt="Ghostech"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
               {/* Points décoratifs */}
@@ -519,7 +548,7 @@ export default function Home() {
               { name: "Yaniss Elie Sey", role: "Membre Ghostech", img: "/menbre/Yaniss_Elie_Sey.jpeg" },
               { name: "Brim Ange Flora", role: "Membre Ghostech", img: "/menbre/Brim_Ange_Flora .jpeg" },
               { name: "Convaud Kouassi Othnie", role: "Membre Ghostech", img: "/menbre/CONVAUD_Kouassi_Othnie.jpeg" },
-              { name: "Doukrou Eiffel", role: "Membre Ghostech", img: "/menbre/Doukrou_Eiffel .jpeg" },
+              { name: "Doukrou Eiffel", role: "Membre Ghostech", img: "/menbre/Doukrou_Eiffel.jpeg" },
             ].map((member, i) => (
               <div key={i} className="flex flex-col items-center shrink-0 w-[240px] sm:w-[260px] md:w-[280px] snap-start bg-white rounded-2xl p-4 border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                 <div className="w-full aspect-[4/5] bg-gray-50 rounded-2xl mb-4 relative overflow-hidden">
@@ -612,7 +641,7 @@ export default function Home() {
       {/* ============================================================ */}
       {/* BANNIÈRE PROMOTIONNELLE STYLE COURSERA */}
       <section className="w-full max-w-7xl px-4 mb-8">
-        <div className="relative w-full bg-[#0056D2] rounded-xl overflow-hidden flex flex-row items-stretch h-[240px]">
+        <div className="relative w-full bg-[#022329] rounded-xl overflow-hidden flex flex-row items-stretch h-[240px]">
 
           {/* Formes triangulaires décoratives */}
           <div className="absolute right-[245px] top-0 bottom-0 w-0 h-0 border-l-[95px] border-l-transparent border-t-[240px] border-t-[#f9c100] pointer-events-none" />
@@ -623,29 +652,29 @@ export default function Home() {
             {/* Logo Ghostech */}
             <div className="flex items-center gap-2 mb-2">
               <span className="text-white font-extrabold text-base tracking-tight font-b612">ghostech</span>
-              <span className="bg-white text-[#0056D2] text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">PLUS</span>
+              <span className="bg-[#357dab] text-white hover:bg-teal-700  text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">HACKATHON </span>
             </div>
 
             <p className="text-white font-bold text-base leading-snug max-w-md mb-2">
-              Le temps joue en votre faveur. Commencez à transformer les minutes en étapes importantes.
+              Participez à nos hackathons pour travailler en équipe, relever des défis réels <br />
             </p>
             <p className="text-white/75 text-sm leading-relaxed max-w-sm mb-4">
-              En seulement sept jours, passez de leçons courtes à des compétences réelles.<br />
+              connecter avec des passionnés de la tech et décrocher des distinctions exclusives..<br />
               Prêt à faire en sorte que ce jour compte ?
             </p>
 
             <Link
-              href="/formations"
-              className="inline-block bg-white text-[#0056D2] text-xs font-semibold px-4 py-1.5 rounded border border-white hover:bg-[#0056D2] hover:text-white transition-all duration-200 w-fit"
+              href="/hackathon"
+              className="inline-block bg-[#357dab] text-white text-xs font-semibold px-4 py-1.5 rounded border border-white hover:bg-teal-700 hover:text-white transition-all duration-200 w-fit"
             >
-              Économiser
+              Participer
             </Link>
           </div>
 
           {/* Image personne — positionnée dans le coin droit, alignée en bas */}
           <div className="relative w-[240px] h-[240px] flex-shrink-0 z-10 overflow-hidden">
             <Image
-              src="/menbre/Maïmouna_Soro.jpeg"
+              src="/header_photo/h2.svg"
               alt="Formation Ghostech"
               fill
               sizes="120px"
@@ -875,24 +904,15 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-12 items-center justify-items-center">
           {[
-            { name: "CPNTIC", src: "/logos/cpntic.png" },
-            { name: "Coopération Allemande", src: "/logos/cooperation-allemande.png" },
-            { name: "Invest for Jobs", src: "/logos/invest-for-jobs.png" },
-            { name: "GIZ", src: "/partenaires/6.svg" },
-            { name: "KfW", src: "/partenaires/6.svg" },
-            { name: "AWS", src: "/partenaires/6.svg" },
-            { name: "Fondation C'est vous l'Avenir", src: "/logos/fondation-avenir.png" },
-            { name: "Digital Africa", src: "/logos/digital-africa.png" },
-            { name: "Agence Emploi Jeunes", src: "/logos/emploi-jeunes.png" },
-            { name: "Vivendi Create Joy", src: "/logos/vivendi.png" },
-            { name: "CIDFOR", src: "/logos/cidfor.png" },
-            { name: "Ministère de la Promotion de la Jeunesse", src: "/logos/ministere-jeunesse.png" },
-            { name: "Ministère de l'Europe et des Affaires Étrangères", src: "/logos/ministere-europe.png" },
-            { name: "AUF", src: "/partenaires/6.svg" },
-            { name: "Meta", src: "/partenaires/6.svg" },
-            { name: "MPME", src: "/partenaires/6.svg" },
-            { name: "MTN", src: "/partenaires/6.svg" },
-            { name: "Pro-Kids", src: "/partenaires/6.svg" },
+            { name: "CPNTIC", src: "/partenaires/pt1.svg" },
+            { name: "Coopération Allemande", src: "/partenaires/pt2.sv,g" },
+            { name: "Invest for Jobs", src: "/partenaires/pt3.svg" },
+            { name: "GIZ", src: "/partenaires/pt4.svg" },
+            { name: "KfW", src: "/partenaires/pt5.svg" },
+            { name: "AWS", src: "/partenaires/pt6.svg" },
+            { name: "Fondation C'est vous l'Avenir", src: "/partenaires/pt7.svg" },
+            { name: "Digital Africa", src: "/partenaires/pt8.svg" },
+
           ].map((partner, index) => (
             <div key={index} className="w-full h-14 flex items-center justify-center p-1 transition duration-300 hover:scale-110 grayscale hover:grayscale-0">
               <img src={partner.src} alt={`Logo ${partner.name}`} className="max-w-full max-h-full object-contain" loading="lazy" />

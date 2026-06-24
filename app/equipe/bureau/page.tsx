@@ -56,7 +56,7 @@ export default function BureauEquipe() {
       role: "Trésorier",
       department: "Finances",
       bio: "Gère les ressources financières et veille au bon fonctionnement budgétaire des activités.",
-      avatar: "/menbre/Doukrou_Eiffel .jpeg",
+      avatar: "/menbre/Doukrou_Eiffel.png",
       linkedin: "#",
       email: "tresorerie@ghostech.ci",
       phone: "+225 00 00 00 00 05"
@@ -68,7 +68,7 @@ export default function BureauEquipe() {
 
       {/* HERO SECTION */}
       <section className="relative w-full bg-[#002C33] pt-40 pb-28 px-4 sm:px-8 lg:px-16 overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 z-0 opacity-40 pointer-events-none"
           style={{
             background: "radial-gradient(circle at 20% 30%, #357dab 0%, transparent 70%)"
@@ -76,7 +76,7 @@ export default function BureauEquipe() {
         />
 
         <div className="relative z-10 max-w-[1050px] mx-auto text-center flex flex-col items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -85,7 +85,7 @@ export default function BureauEquipe() {
             L'Équipe Dirigeante
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -94,7 +94,7 @@ export default function BureauEquipe() {
             Bureau Exécutif
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -166,7 +166,7 @@ export default function BureauEquipe() {
           ))}
         </div>
 
-        <Partenaires/>
+        <Partenaires />
 
         {/* APPEL À L'ACTION INTERNE */}
         <div className="bg-white rounded-2xl p-8 max-w-3xl mx-auto text-center border border-gray-100 shadow-sm mt-16">

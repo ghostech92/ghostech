@@ -40,7 +40,7 @@ export default function MembresEquipe() {
       category: "dev",
       skills: ["Développement", "Innovation", "Web"],
       description: "Spécialiste du développement et de l'innovation, Eiffel est toujours à la recherche des dernières technologies pour optimiser nos outils.",
-      avatar: "/menbre/Doukrou_Eiffel .jpeg"
+      avatar: "/menbre/Doukrou_Eiffel.png"
     },
     {
       id: 5,
@@ -74,8 +74,8 @@ export default function MembresEquipe() {
       name: "Jérémie Harding",
       role: "Membre Ghostech",
       category: "dev",
-      skills: ["Développement", "Innovation", "Cloud"],
-      description: "Développeur créatif, Jérémie aime relever de nouveaux défis techniques en proposant des architectures innovantes.",
+      skills: ["Développement", "IA", "Cloud"],
+      description: "Développeur créatif, Harding aime relever de nouveaux défis techniques en proposant des architectures innovantes.",
       avatar: "/menbre/JÉRÉMIE_HARDING.jpeg"
     },
     {
@@ -104,14 +104,41 @@ export default function MembresEquipe() {
       skills: ["Tech", "Innovation", "Systèmes"],
       description: "Technophile et développeur passionné, Yaniss est constamment en veille sur les outils de pointe pour accélérer notre productivité.",
       avatar: "/menbre/Yaniss_Elie_Sey.jpeg"
-    }
+    },
+        {
+      id: 12,
+      name: "Bilson Emmanuel",
+      role: "Membre Ghostech",
+      category: "dev",
+      skills: ["Reseau", "Cybersecurite"],
+      description: "Reseau et Cybersecurite rien ne peut echaper a la vigilance de Bilson Emmanuel .",
+      avatar: "/menbre/Bilson.jpeg"
+    },
+    {
+      id: 13,
+      name: "AYAHOUE Mawuflimi Élie"  ,
+      role: "Membre Ghostech",
+      category: "design",
+      skills: ["Communication Digitale", "Infographie"],
+      description: "Elie est un jeune passionné de design et de communication digitale, il s'intéresse particulièrement à la création de contenus visuels, à l'identité graphique et à la communication digitale .",
+      avatar: "/menbre/AYAHOUE_Mawuflimi_Élie.png"
+    },
+    {
+      id: 14,
+      name: "Assoumou Marie Josée",
+      role: "Membre Ghostech",
+      category: "design",
+      skills: ["Communication Digitale", "Infographie"],
+      description: "Assoumou Marie Josée est une jeune passionnée de design et de communication digitale, elle s'intéresse particulièrement à la création de contenus visuels, à l'identité graphique et à la communication digitale .",
+      avatar: "/menbre/Assoumou_Marie_Josée.png"
+    },
   ];
 
   const [activeMember, setActiveMember] = useState(membres[0]);
 
   return (
     <main className="w-full min-h-screen bg-[#1c1c1c] pt-20 text-white flex flex-col items-center font-dm-sans">
-      
+
       {/* HEADER SECTION (EXACTLY LIKE IMAGE) */}
       <div className="w-full flex flex-col lg:flex-row justify-between items-start pt-20 pb-20 px-6 md:px-12 max-w-[1600px] mx-auto gap-10">
         <div className="shrink-0">
@@ -133,12 +160,12 @@ export default function MembresEquipe() {
 
       {/* TWO-COLUMN LAYOUT */}
       <section className="w-full max-w-[1600px] px-6 md:px-12 pb-48 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16">
-        
+
         {/* LEFT: INFO BOX */}
         <div className="w-full lg:w-[350px] xl:w-[400px] shrink-0 lg:sticky top-24">
           <div className="aspect-square border border-white/50 p-6 flex flex-col justify-between relative overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={activeMember?.id}
                 initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -153,18 +180,18 @@ export default function MembresEquipe() {
                   </div>
                   {/* Thumbnail in corner */}
                   <div className="w-[70px] h-[70px] shrink-0 overflow-hidden bg-[#444] ml-3">
-                     <img src={activeMember?.avatar} alt={activeMember?.name} className="w-full h-full object-cover" />
+                    <img src={activeMember?.avatar} alt={activeMember?.name} className="w-full h-full object-cover" />
                   </div>
                 </div>
-                
+
                 {/* Description */}
                 <div className="mt-6 text-[14px] text-gray-400 font-light leading-relaxed pr-4">
                   {activeMember?.description}
                 </div>
-                
+
                 <div className="text-[13px] text-white uppercase tracking-widest mt-auto pt-6 leading-relaxed">
-                  MADE IN GHOSTECH 2026<br/>
-                  INNOVATION INTELLIGENCE<br/>
+                  MADE IN GHOSTECH 2026<br />
+                  INNOVATION INTELLIGENCE<br />
                   TECH CREATIVE
                 </div>
               </motion.div>
@@ -188,11 +215,10 @@ export default function MembresEquipe() {
                 <img
                   src={membre.avatar}
                   alt={membre.name}
-                  className={`w-full h-full object-cover transition-all duration-[600ms] ease-out ${
-                    activeMember?.id === membre.id 
-                      ? 'grayscale-0 opacity-100 scale-105' 
+                  className={`w-full h-full object-cover transition-all duration-[600ms] ease-out ${activeMember?.id === membre.id
+                      ? 'grayscale-0 opacity-100 scale-105'
                       : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 scale-100'
-                  }`}
+                    }`}
                 />
               </motion.div>
             ))}

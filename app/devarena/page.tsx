@@ -5,54 +5,20 @@ import Image from "next/image";
 import ScrollVelocity from "@/components/ScrollVelocity";
 export default function DevArenaPage() {
   return (
-    <div className="min-h-screen bg-[#05060A] text-white font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F4F4F6] text-gray-900 font-sans overflow-x-hidden">
 
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(at_center,#1A56DB_0%,transparent_60%)] opacity-40" />
-        <div className="absolute inset-0 bg-[url('/heroArena/hero.png')] bg-cover bg-center opacity-50" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 border border-white/10 rounded-full mb-8 backdrop-blur-xl">
-            <span className="text-amber-400 text-xl">⚔️</span>
-            <span className="uppercase tracking-[4px] text-sm font-mono">Ghostech Internal Competition</span>
-          </div>
-
-          <h1 className="text-7xl md:text-[92px] font-bold tracking-tighter leading-none mb-6">
-            RÉVÈLE TON<br />
-            <span className="bg-gradient-to-r from-amber-300 via-blue-400 to-purple-500 bg-clip-text text-transparent">TALENT TECH</span>
+      {/* SIMPLE HEADER & STATS BAR */}
+      <div className="pt-24 pb-8 bg-white/80 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-6 text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+            Bienvenue dans l'<span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Arène</span>
           </h1>
-
-          <p className="max-w-2xl mx-auto text-2xl text-white/70 mb-12">
-            Compétition en équipe • 100% pratique • Jugée par le bureau exécutif
+          <p className="text-xl text-gray-600">
+            Le tableau de bord central de la compétition interne de Ghostech.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/devarena/confrontations"
-              className="group px-10 py-6 bg-white text-black font-semibold text-xl rounded-3xl hover:bg-amber-400 hover:scale-105 transition-all flex items-center gap-4"
-            >
-              Voir les Confrontations
-              <span className="text-2xl group-hover:translate-x-2 transition">→</span>
-            </Link>
-            <Link
-              href="/devarena/inscription"
-              className="px-10 py-6 border-2 border-white/60 hover:border-white font-medium text-xl rounded-3xl transition-all"
-            >
-              Rejoindre l’Arène
-            </Link>
-          </div>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/60 text-sm tracking-widest flex flex-col items-center">
-          SCROLL POUR DÉCOUVRIR
-          <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/40 to-transparent mt-3" />
-        </div>
-      </section>
-
-      {/* STATS BAR */}
-      <div className="border-y border-white/10 py-8 bg-black/60">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-12">
           {[
             { number: "150+", label: "Développeurs" },
             { number: "28", label: "Projets livrés" },
@@ -60,8 +26,8 @@ export default function DevArenaPage() {
             { number: "100%", label: "Pratique" },
           ].map((stat, i) => (
             <div key={i}>
-              <div className="text-5xl font-mono font-bold text-amber-400">{stat.number}</div>
-              <div className="text-white/60 mt-1">{stat.label}</div>
+              <div className="text-4xl md:text-5xl font-mono font-bold text-amber-400">{stat.number}</div>
+              <div className="text-white/60 mt-1 text-gray-500">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -71,18 +37,18 @@ export default function DevArenaPage() {
       <section className="max-w-7xl mx-auto px-6 py-24" id="regles">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold tracking-tighter">Le Fonctionnement</h2>
-          <p className="text-white/60 mt-3 text-lg">Une arène conçue pour exceller</p>
+          <p className="text-gray-500 mt-3 text-lg">Une arène conçue pour exceller</p>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8">
           <div className="lg:col-span-7 space-y-8">
             {/* Card 1 */}
-            <div className="bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl p-10 hover:border-amber-400/30 transition-all group">
+            <div className="bg-white border border-gray-200 shadow-sm backdrop-blur-2xl rounded-3xl p-10 hover:border-amber-400/50 transition-all group">
               <div className="flex gap-6">
                 <div className="text-6xl">⚡</div>
                 <div>
                   <h3 className="text-3xl font-light mb-4">Fonctionnement Général</h3>
-                  <ul className="space-y-4 text-lg text-white/80">
+                  <ul className="space-y-4 text-lg text-gray-700">
                     <li>• 3 vagues de plusieurs semaines</li>
                     <li>• Duos formés par tirage au sort</li>
                     <li>• Projets présentés devant le jury exécutif</li>
@@ -92,12 +58,12 @@ export default function DevArenaPage() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl p-10 hover:border-amber-400/30 transition-all group">
+            <div className="bg-white border border-gray-200 shadow-sm backdrop-blur-2xl rounded-3xl p-10 hover:border-amber-400/50 transition-all group">
               <div className="flex gap-6">
                 <div className="text-6xl">📅</div>
                 <div>
                   <h3 className="text-3xl font-light mb-4">Déroulement Hebdomadaire</h3>
-                  <ul className="space-y-4 text-lg text-white/80">
+                  <ul className="space-y-4 text-lg text-gray-700">
                     <li>• Thème annoncé chaque lundi</li>
                     <li>• Livraison avant samedi 20h00</li>
                     <li>• Démonstration live + Q&R</li>
@@ -109,10 +75,10 @@ export default function DevArenaPage() {
 
           {/* Évaluation Card */}
           <div className="lg:col-span-5">
-            <div className="bg-gradient-to-br from-[#1A1A1A] to-black border border-amber-400/30 rounded-3xl p-10 h-full">
+            <div className="bg-gradient-to-br from-gray-50 to-white border border-amber-400/30 rounded-3xl p-10 h-full shadow-sm">
               <div className="flex items-center gap-4 mb-8">
                 <span className="text-5xl">🏆</span>
-                <h3 className="text-3xl font-light">Barème d’Évaluation</h3>
+                <h3 className="text-3xl font-light text-gray-800">Barème d'Évaluation</h3>
               </div>
               <div className="space-y-6">
                 {[
@@ -121,8 +87,8 @@ export default function DevArenaPage() {
                   ["Fonctionnalités & Technique", "15 pts"],
                   ["Présentation & Démo", "15 pts"],
                 ].map(([label, pts], i) => (
-                  <div key={i} className="flex justify-between py-3 border-b border-white/10 last:border-0">
-                    <span className="text-white/80">{label}</span>
+                  <div key={i} className="flex justify-between py-3 border-b border-gray-200 last:border-0">
+                    <span className="text-gray-700">{label}</span>
                     <span className="font-mono text-amber-400 font-medium">{pts}</span>
                   </div>
                 ))}
@@ -133,9 +99,9 @@ export default function DevArenaPage() {
       </section>
 
       {/* VAGUES TIMELINE + CARDS */}
-      <section id="vagues" className="py-24 bg-black/70">
+      <section id="vagues" className="py-24 bg-white/60 border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl font-bold tracking-tighter text-center mb-16">Les Vagues en Cours</h2>
+          <h2 className="text-5xl font-bold tracking-tighter text-center mb-16 text-gray-900">Les Vagues en Cours</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -198,7 +164,7 @@ export default function DevArenaPage() {
       </section>
 
       {/* CTA FINAL + IMAGE */}
-      <section className="py-28 border-t border-white/10">
+      <section className="py-28 border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="relative rounded-3xl overflow-hidden mb-12">
             <Image
@@ -211,7 +177,7 @@ export default function DevArenaPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
             <div className="absolute bottom-12 left-12 right-12 text-left">
               <h2 className="text-5xl font-bold tracking-tighter mb-4">Prêt à entrer dans l’Arène ?</h2>
-              <p className="text-xl text-white/70 max-w-md">Rejoins les meilleurs développeurs de Ghostech et prouve ton excellence.</p>
+              <p className="text-xl text-gray-300 max-w-md">Rejoins les meilleurs développeurs de Ghostech et prouve ton excellence.</p>
             </div>
           </div>
 
@@ -224,7 +190,7 @@ export default function DevArenaPage() {
             </Link>
             <Link
               href="/devarena/reglement"
-              className="px-14 py-7 border border-white/40 hover:bg-white/5 rounded-3xl text-xl transition-all"
+              className="px-14 py-7 border border-gray-300 hover:bg-gray-100 rounded-3xl text-xl text-gray-800 transition-all"
             >
               Consulter le règlement complet
             </Link>
@@ -232,9 +198,6 @@ export default function DevArenaPage() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-12 text-center text-white/50">
-        © 2026 Ghostech — DevArena. Tous droits réservés.
-      </footer>
     </div>
   );
 }

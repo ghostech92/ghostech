@@ -7,8 +7,12 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
   const pathname = usePathname();
 
-  // Hide the footer on the login and register pages
-  if (pathname === "/login" || pathname === "/register") {
+  // Hide the footer on the login, register, and devarena pages
+  if (
+    pathname === "/login" || 
+    pathname === "/register" || 
+    pathname.startsWith("/devarena")
+  ) {
     return null;
   }
 

@@ -25,22 +25,22 @@ const confrontations = [
 
 export default function DevArenaConfrontations() {
   return (
-    <div className="min-h-screen bg-[#05060A] text-white font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F4F4F6] text-gray-900 font-sans overflow-x-hidden">
       {/* Navbar */}
       {/* <NavbarArena /> */} {/* Décommente si tu veux l'intégrer */}
 
-      {/* HERO SECTION */}
-      <section className="relative pt-28 pb-20 bg-gradient-to-b from-[#05060A] to-black border-b border-white/10">
+      {/* SIMPLE HEADER */}
+      <section className="pt-24 pb-12 bg-white/80 border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-3 px-5 py-2 bg-white/5 border border-white/10 rounded-full mb-6 backdrop-blur-xl">
-            <span className="text-3xl">⚔️</span>
-            <span className="uppercase tracking-[3px] text-sm font-mono text-amber-400">Live Arena</span>
+          <div className="inline-flex items-center gap-3 px-5 py-2 bg-gray-100 border border-gray-200 rounded-full mb-6">
+            <span className="text-xl">⚔️</span>
+            <span className="uppercase tracking-[3px] text-xs font-mono text-amber-400">Live Arena</span>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold tracking-tighter mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
             Confrontations
           </h1>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Chaque samedi à 20h00, les duos s’affrontent en direct.<br />
             Rejoins le combat et soutiens tes favoris.
           </p>
@@ -51,14 +51,14 @@ export default function DevArenaConfrontations() {
       <section className="max-w-5xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-4xl font-light tracking-tight">Matchs à venir & passés</h2>
-          <div className="text-sm text-white/50">Saison 2026</div>
+          <div className="text-sm text-gray-500">Saison 2026</div>
         </div>
 
         <div className="space-y-8">
           {confrontations.map((match) => (
             <div 
               key={match.id} 
-              className="bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl p-8 md:p-10 hover:border-amber-400/30 transition-all group relative overflow-hidden"
+              className="bg-white border border-gray-200 shadow-sm rounded-3xl p-8 md:p-10 hover:border-amber-400/50 transition-all group relative overflow-hidden"
             >
               {/* Background subtle accent */}
               <div className="absolute inset-0 bg-gradient-to-r from-amber-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-all" />
@@ -79,8 +79,8 @@ export default function DevArenaConfrontations() {
 
               {/* Date & Theme */}
               <div className="mb-10">
-                <p className="font-mono text-sm text-white/50 tracking-widest mb-2">{match.date}</p>
-                <h3 className="text-2xl md:text-3xl font-light text-white">
+                <p className="font-mono text-sm text-gray-400 tracking-widest mb-2">{match.date}</p>
+                <h3 className="text-2xl md:text-3xl font-light text-gray-900">
                   {match.theme}
                 </h3>
               </div>
@@ -98,8 +98,8 @@ export default function DevArenaConfrontations() {
                   )}
                   <h4 className="font-bold text-xl mb-4">{match.teamA.name}</h4>
                   <div className="flex justify-center gap-3 text-sm">
-                    <div className="bg-white/10 px-5 py-2 rounded-full">{match.teamA.member1}</div>
-                    <div className="bg-white/10 px-5 py-2 rounded-full">{match.teamA.member2}</div>
+                    <div className="bg-gray-100 px-5 py-2 rounded-full">{match.teamA.member1}</div>
+                    <div className="bg-gray-100 px-5 py-2 rounded-full">{match.teamA.member2}</div>
                   </div>
                 </div>
 
@@ -119,8 +119,8 @@ export default function DevArenaConfrontations() {
                   )}
                   <h4 className="font-bold text-xl mb-4">{match.teamB.name}</h4>
                   <div className="flex justify-center gap-3 text-sm">
-                    <div className="bg-white/10 px-5 py-2 rounded-full">{match.teamB.member1}</div>
-                    <div className="bg-white/10 px-5 py-2 rounded-full">{match.teamB.member2}</div>
+                    <div className="bg-gray-100 px-5 py-2 rounded-full">{match.teamB.member1}</div>
+                    <div className="bg-gray-100 px-5 py-2 rounded-full">{match.teamB.member2}</div>
                   </div>
                 </div>
               </div>
@@ -147,12 +147,12 @@ export default function DevArenaConfrontations() {
       </section>
 
       {/* EXTRA SECTION - Prochain match highlight */}
-      <section className="border-t border-white/10 py-20 bg-black/60">
+      <section className="border-t border-gray-200 py-20 bg-white/60">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="uppercase tracking-widest text-amber-400 text-sm mb-4">Prochain combat</p>
-          <h3 className="text-4xl font-light mb-8">Samedi 27 Juin 2026 • 20h00</h3>
+          <h3 className="text-4xl font-light mb-8 text-gray-900">Samedi 27 Juin 2026 • 20h00</h3>
           
-          <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 rounded-3xl px-8 py-4">
+          <div className="inline-flex items-center gap-4 bg-white border border-gray-200 shadow-sm rounded-3xl px-8 py-4">
             <span>Duo Alpha</span>
             <span className="text-2xl text-amber-400">VS</span>
             <span>Duo Beta</span>
@@ -160,16 +160,13 @@ export default function DevArenaConfrontations() {
 
           <Link
             href="#"
-            className="mt-10 inline-block px-10 py-4 bg-white text-black rounded-2xl font-semibold hover:bg-amber-400 transition-all"
+            className="mt-10 inline-block px-10 py-4 bg-amber-400 text-black rounded-2xl font-semibold hover:bg-amber-500 transition-all"
           >
             Rejoindre le live
           </Link>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-12 text-center text-white/50 text-sm">
-        © 2026 Ghostech — DevArena • Confrontations
-      </footer>
     </div>
   );
 }
