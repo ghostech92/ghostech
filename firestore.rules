@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ----------------------------------------------------------------------
+    // FONCTIONS REUTILISABLES (Helpers)
+    // ----------------------------------------------------------------------
+    
+    // Vérifie si l'utilisateur est connecté
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Vérifie si l'utilisateur agit sur son propre document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Vérifie si l'utilisateur a un rôle d'administrateur, d'organisateur ou de jury
+    // On va lire le document de l'utilisateur dans la collection "users"
+    function isAdminOrJury() {
+      return isAuthenticated() && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'organisateur', 'jury'];
+    }
+
+    function isStrictAdmin() {
+      return isAuthenticated() && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'organisateur'];
+    }
+
+
+    // ----------------------------------------------------------------------
+    // REGLES PAR COLLECTION
+    // ----------------------------------------------------------------------
+
+    // 1. COLLECTION "users" (Profils utilisateurs)
+    match /users/{userId} {
+      // Tout le monde (même non connecté) peut voir les profils (utile pour le classement)
+      allow read: if true;
+      
+      // Seul le propriétaire peut créer ou modifier son profil.
+      // Exception: un admin peut modifier le profil d'un autre (ex: pour donner un badge)
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId) || isAdminOrJury();
+      allow delete: if isStrictAdmin();
+    }
+
+    // 2. COLLECTION "projects" (Projets soumis)
+    match /projects/{projectId} {
+      // Tout le monde peut voir les projets
+      allow read: if true;
+      
+      // Tout utilisateur connecté peut créer un projet
+      allow create: if isAuthenticated();
+      
+      // Seul l'auteur du projet ou un admin peut le modifier/supprimer
+      allow update, delete: if isStrictAdmin() || (isAuthenticated() && resource.data.creatorUid == request.auth.uid);
+    }
+
+    // 3. COLLECTION "formations" & "hackathons" (Contenu éducatif/Event)
+    match /formations/{formationId} {
+      allow read: if true;
+      allow write: if isStrictAdmin();
+    }
+    match /hackathons/{hackathonId} {
+      allow read: if true;
+      allow write: if isStrictAdmin();
+    }
+
+    // 4. COLLECTION "arena_participants" (Participants à la DevArena)
+    match /arena_participants/{participantId} {
+      allow read: if true;
+      // L'utilisateur peut s'inscrire lui-même à l'Arena
+      allow create: if isOwner(participantId) || isStrictAdmin();
+      // Seuls les jurys ou les organisateurs peuvent modifier les points d'un participant
+      allow update: if isAdminOrJury() || (isOwner(participantId) && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['points', 'level']));
+      allow delete: if isStrictAdmin();
+    }
+
+    // 5. COLLECTION "arena_duos" & "arena_waves" (Gestion des épreuves DevArena)
+    match /arena_duos/{duoId} {
+      allow read: if true;
+      allow write: if isAdminOrJury();
+    }
+    match /arena_waves/{waveId} {
+      allow read: if true;
+      allow write: if isStrictAdmin();
+    }
+
+  }
+}
