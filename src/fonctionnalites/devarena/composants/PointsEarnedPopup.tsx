@@ -72,8 +72,8 @@ export default function PointsEarnedPopup() {
         // Listen to the user document in real-time
         const unsubscribeSnapshot = userService.subscribeToUser(currentUser.uid, (data) => {
           if (data) {
-            const currentPoints = typeof data.points === "number" ? data.points : 0;
-            const pointsLastSeen = typeof data.pointsLastSeen === "number" ? data.pointsLastSeen : null;
+            const currentPoints = typeof (data as any).points === "number" ? (data as any).points : 0;
+            const pointsLastSeen = typeof (data as any).pointsLastSeen === "number" ? (data as any).pointsLastSeen : null;
             
             if (pointsLastSeen !== null) {
               if (currentPoints > pointsLastSeen) {
