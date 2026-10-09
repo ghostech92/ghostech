@@ -49,6 +49,10 @@ export const metadata: Metadata = {
   creator: "Ghostech",
   publisher: "Ghostech Afrique",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
   alternates: {
     canonical: SITE_URL,
   },
@@ -106,7 +110,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Ghostech Afrique",
     url: SITE_URL,
-    logo: `${SITE_URL}/logo1_1.svg`,
+    logo: `${SITE_URL}/logo.svg`,
     description: "Organisation d'innovation technologique, formations et hackathons en Afrique.",
     sameAs: [
       "https://lnkd.in/edXVXbH8",
