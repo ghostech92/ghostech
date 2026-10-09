@@ -19,13 +19,19 @@ export default function HeroCarousel() {
         
         {/* ================= IMAGE DE FOND / PERSONNAGE ================= */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src={hero.image}
-            alt="La technologie au service des talents africains"
-            fill
-            priority
-            className="object-cover object-center"
-          />
+          <picture className="absolute inset-0">
+            <source
+              media="(max-width: 639px)"
+              srcSet="/header_photo/4k_mobile.png"
+            />
+            <Image
+              src={hero.image}
+              alt="La technologie au service des talents africains"
+              fill
+              priority
+              className="object-cover object-center"
+            />
+          </picture>
           {/* Dégradé sombre pour assurer la lisibilité des textes */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-black/60 pointer-events-none"></div>
         </div>
