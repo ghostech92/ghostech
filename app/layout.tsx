@@ -4,7 +4,7 @@ import "./globals.css";
 import ConditionalLayout from "@/src/composants/mise-en-page/ConditionalLayout";
 import { cn } from "@/src/utilitaires/cn";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
