@@ -1,35 +1,27 @@
 import React from "react";
+import { UserProfile } from "../profil.types";
 
 interface ProfileHeaderProps {
-  profile: any;
+  profile: UserProfile;
+  email?: string;
   isEditing: boolean;
-  setIsEditing: (val: boolean) => void;
+  setIsEditing: (value: boolean) => void;
   saving: boolean;
   handleSaveProfile: () => void;
   handleSignOut: () => void;
   editName: string;
-  setEditName: (val: string) => void;
+  setEditName: (value: string) => void;
   editBio: string;
-  setEditBio: (val: string) => void;
+  setEditBio: (value: string) => void;
   editLocation: string;
-  setEditLocation: (val: string) => void;
-  editSkills: string;
-  setEditSkills: (val: string) => void;
-  editGithub: string;
-  setEditGithub: (val: string) => void;
-  editLinkedin: string;
-  setEditLinkedin: (val: string) => void;
-  editWebsite: string;
-  setEditWebsite: (val: string) => void;
+  setEditLocation: (value: string) => void;
   avatarPreview: string | null;
-  coverPreview: string | null;
-  handleAvatarSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleCoverSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleBadgeClick: (e: React.MouseEvent) => void;
+  handleAvatarSelect: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function ProfileHeader({
   profile,
+  email,
   isEditing,
   setIsEditing,
   saving,
@@ -41,220 +33,111 @@ export default function ProfileHeader({
   setEditBio,
   editLocation,
   setEditLocation,
-  editSkills,
-  setEditSkills,
-  editGithub,
-  setEditGithub,
-  editLinkedin,
-  setEditLinkedin,
-  editWebsite,
-  setEditWebsite,
   avatarPreview,
-  coverPreview,
   handleAvatarSelect,
-  handleCoverSelect,
-  handleBadgeClick
 }: ProfileHeaderProps) {
   const displayAvatar = avatarPreview || profile.avatarUrl;
-  const displayCover = coverPreview || profile.coverUrl;
+  const displayedEmail = email || profile.email || "Email non renseigné";
 
   return (
-    <div className="duo-card p-0 overflow-hidden mb-8 relative">
-      {/* Cover Image */}
-      <div className="h-40 md:h-56 bg-[#ddf4ff] relative overflow-hidden group">
-        {displayCover ? (
-          <img src={displayCover} alt="Cover" className="w-full h-full object-cover" />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1cb0f6] to-[#84d8ff] opacity-80" />
-        )}
-        
-        {/* Overlay Patterns */}
-        <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(#fff 2px, transparent 2px)', backgroundSize: '30px 30px' }} />
-        
-        {isEditing && (
-          <label className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-slate-800 p-2 rounded-xl cursor-pointer shadow-sm border-2 border-transparent hover:border-[#1cb0f6] transition backdrop-blur-sm">
-            <span className="material-symbols-rounded text-[18px]">edit</span>
-            <input type="file" accept="image/*" className="hidden" onChange={handleCoverSelect} />
-          </label>
-        )}
-      </div>
-
-      <div className="px-6 md:px-10 pb-8 relative">
-        {/* Avatar & Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 -mt-16 md:-mt-20 relative z-10">
-          
-          {/* Avatar + Main Info */}
-          <div className="flex flex-col md:flex-row md:items-end gap-6">
-            <div className="relative inline-block w-32 h-32 md:w-40 md:h-40">
-              <div className="w-full h-full bg-white rounded-3xl p-2 border-2 border-[#e5e5e5] shadow-sm transform rotate-[-3deg] hover:rotate-0 transition-transform duration-300">
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-[#f7f7f7] border border-[#e5e5e5]">
-                  {displayAvatar ? (
-                    <img src={displayAvatar} alt={profile.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1cb0f6] to-[#84d8ff] text-white text-5xl font-black">
-                      {profile.name?.charAt(0) || "U"}
-                    </div>
-                  )}
-                </div>
-              </div>
-              {isEditing && (
-                <label className="absolute bottom-0 right-0 bg-white hover:bg-slate-50 text-[#1cb0f6] p-2.5 rounded-full cursor-pointer shadow-sm border-2 border-[#e5e5e5] hover:border-[#1cb0f6] transition z-10">
-                  <span className="material-symbols-rounded text-[20px]">photo_camera</span>
-                  <input type="file" accept="image/*" className="hidden" onChange={handleAvatarSelect} />
-                </label>
-              )}
-              {/* Badges Floating */}
-              <div className="absolute -bottom-2 -left-4 bg-white rounded-2xl p-1.5 shadow-sm border-2 border-[#e5e5e5] flex gap-1 transform rotate-[5deg]">
-                <div className="w-8 h-8 rounded-xl bg-[#fff0e5] flex items-center justify-center cursor-pointer hover:scale-110 transition" onClick={handleBadgeClick} title="Pionnier DevArena">
-                  <span className="text-lg">🔥</span>
-                </div>
-                <div className="w-8 h-8 rounded-xl bg-[#e5fcfb] flex items-center justify-center cursor-pointer hover:scale-110 transition" onClick={handleBadgeClick} title="Codeur d'Élite">
-                  <span className="text-lg">💻</span>
-                </div>
-              </div>
+    <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <aside className="duo-card flex flex-col items-center text-center">
+        <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-[#3c3c3c] bg-[#f7f7f7]">
+          {displayAvatar ? (
+            <img src={displayAvatar} alt={profile.name || "Photo de profil"} className="h-full w-full object-cover" />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-[#ddf4ff] text-4xl font-black text-[#1cb0f6]">
+              {profile.name?.charAt(0) || "U"}
             </div>
+          )}
+          {isEditing && (
+            <label className="absolute bottom-1 right-1 cursor-pointer rounded-full bg-[#ff7a00] px-2 py-1 text-xs font-bold text-white">
+              Modifier
+              <input type="file" accept="image/*" className="hidden" onChange={handleAvatarSelect} />
+            </label>
+          )}
+        </div>
 
-            <div className="pb-2">
-              <h1 className="text-3xl md:text-[40px] font-black text-[#3c3c3c] tracking-tight leading-none mb-2">
-                {profile.name || "Utilisateur"}
-              </h1>
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-1.5 text-[#afb5c0] font-bold text-[13px] uppercase tracking-wide">
-                  <span className="material-symbols-rounded text-[18px]">location_on</span>
-                  {profile.location || "Abidjan, CI"}
-                </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-[#e5e5e5]"></div>
-                <div className="flex items-center gap-1.5 text-[#1cb0f6] font-bold text-[13px] uppercase tracking-wide bg-[#ddf4ff] px-3 py-1 rounded-lg">
-                  <span className="material-symbols-rounded text-[16px]">military_tech</span>
-                  Niveau 12
-                </div>
-              </div>
-            </div>
-          </div>
+        <h1 className="mt-5 text-xl font-black text-[#1f2937]">{profile.name || "Utilisateur"}</h1>
+        <p className="mt-1 break-all text-sm text-[#6b7280]">{displayedEmail}</p>
+        <div className="mt-5 h-2 w-full rounded-full bg-[#e5e7eb]">
+          <div className="h-2 w-full rounded-full bg-[#23a636]" />
+        </div>
+        <p className="mt-2 text-xs text-[#777777]">Profil complété</p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 pb-2">
-            {isEditing ? (
-              <>
-                <button onClick={() => setIsEditing(false)} className="duo-btn duo-btn-gray">
-                  Annuler
-                </button>
-                <button onClick={handleSaveProfile} disabled={saving} className="duo-btn duo-btn-green">
-                  {saving ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Enregistrement...
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-rounded text-[18px]">save</span>
-                      Sauvegarder
-                    </div>
-                  )}
-                </button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => setIsEditing(true)} className="duo-btn duo-btn-blue">
-                  <span className="material-symbols-rounded text-[18px] mr-2">edit</span>
-                  Éditer le profil
-                </button>
-                <button className="duo-btn duo-btn-gray w-11 h-11 !p-0" title="Partager le profil">
-                  <span className="material-symbols-rounded text-[20px]">share</span>
-                </button>
-              </>
-            )}
-            <button onClick={handleSignOut} className="duo-btn duo-btn-rose" title="Se déconnecter">
-              <span className="material-symbols-rounded text-[18px]">logout</span>
+        <div className="mt-5 flex w-full flex-col gap-3">
+          {!isEditing && (
+            <button onClick={() => setIsEditing(true)} className="duo-btn duo-btn-gray w-full">
+              Modifier mon profil
             </button>
+          )}
+          <button onClick={handleSignOut} className="duo-btn duo-btn-rose w-full">
+            Se déconnecter
+          </button>
+        </div>
+      </aside>
+
+      <section className="space-y-6">
+        <div className="duo-card p-0">
+          <div className="flex items-center justify-between border-b-2 border-[#1f1f1f] px-5 py-3">
+            <h2 className="font-black text-[#1f2937]">Identité et contact</h2>
+            <span className="rounded bg-[#1f1f1f] px-2 py-1 text-xs font-bold text-white">Profil</span>
+          </div>
+          <div className="grid gap-4 px-5 py-5 sm:grid-cols-2">
+            <InfoRow label="Nom complet" value={profile.name || "Non renseigné"} />
+            <InfoRow label="Email" value={displayedEmail} />
+            <InfoRow label="Localisation" value={profile.location || "Non renseignée"} />
           </div>
         </div>
 
-        {/* Editing Form Inline (Only basic info, experiences in their tab) */}
-        {isEditing && (
-          <div className="mt-8 bg-[#f7f7f7] border-2 border-[#e5e5e5] rounded-2xl p-6">
-            <h3 className="font-extrabold text-[15px] uppercase tracking-wider text-[#afb5c0] mb-4 flex items-center gap-2">
-              <span className="material-symbols-rounded text-[20px]">person</span>
-              Informations de base
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-xs font-black text-[#777777] uppercase mb-1.5 ml-1">Nom d&apos;affichage</label>
-                <input
-                  type="text"
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                  className="w-full text-sm font-bold px-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                />
+        <div className="duo-card p-0">
+          <div className="flex items-center justify-between border-b-2 border-[#1f1f1f] px-5 py-3">
+            <h2 className="font-black text-[#1f2937]">Détails du profil</h2>
+            {isEditing && (
+              <div className="flex gap-2">
+                <button onClick={() => setIsEditing(false)} className="duo-btn duo-btn-gray !px-3 !py-1.5 text-xs">
+                  Annuler
+                </button>
+                <button onClick={handleSaveProfile} disabled={saving} className="duo-btn duo-btn-green !px-3 !py-1.5 text-xs">
+                  {saving ? "Enregistrement..." : "Sauvegarder"}
+                </button>
               </div>
-              <div>
-                <label className="block text-xs font-black text-[#777777] uppercase mb-1.5 ml-1">Localisation</label>
-                <input
-                  type="text"
-                  value={editLocation}
-                  onChange={(e) => setEditLocation(e.target.value)}
-                  className="w-full text-sm font-bold px-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-xs font-black text-[#777777] uppercase mb-1.5 ml-1">Bio Courte</label>
-                <textarea
-                  rows={3}
-                  value={editBio}
-                  onChange={(e) => setEditBio(e.target.value)}
-                  className="w-full text-sm font-bold px-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition resize-none"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-xs font-black text-[#777777] uppercase mb-1.5 ml-1">Compétences clés (séparées par des virgules)</label>
-                <input
-                  type="text"
-                  value={editSkills}
-                  onChange={(e) => setEditSkills(e.target.value)}
-                  className="w-full text-sm font-bold px-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                  placeholder="React, Node.js, Design UI..."
-                />
-              </div>
-              {/* Social Links */}
-              <div className="md:col-span-2 mt-2">
-                <h4 className="text-xs font-black text-[#afb5c0] uppercase tracking-wider mb-3">Liens & Réseaux</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">GH</span>
-                    <input
-                      type="url"
-                      placeholder="GitHub URL"
-                      value={editGithub}
-                      onChange={(e) => setEditGithub(e.target.value)}
-                      className="w-full text-sm font-bold pl-12 pr-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                    />
-                  </div>
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">IN</span>
-                    <input
-                      type="url"
-                      placeholder="LinkedIn URL"
-                      value={editLinkedin}
-                      onChange={(e) => setEditLinkedin(e.target.value)}
-                      className="w-full text-sm font-bold pl-12 pr-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                    />
-                  </div>
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">WWW</span>
-                    <input
-                      type="url"
-                      placeholder="Site Web"
-                      value={editWebsite}
-                      onChange={(e) => setEditWebsite(e.target.value)}
-                      className="w-full text-sm font-bold pl-14 pr-4 py-3 bg-white border-2 border-[#e5e5e5] rounded-xl focus:outline-none focus:border-[#1cb0f6] transition"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
-        )}
-      </div>
+
+          {isEditing ? (
+            <div className="grid gap-4 px-5 py-5">
+              <label className="text-sm font-bold">
+                Nom complet
+                <input value={editName} onChange={(event) => setEditName(event.target.value)} className="profile-field" />
+              </label>
+              <label className="text-sm font-bold">
+                Lieu de résidence
+                <input value={editLocation} onChange={(event) => setEditLocation(event.target.value)} className="profile-field" />
+              </label>
+              <label className="text-sm font-bold">
+                Bio
+                <textarea value={editBio} onChange={(event) => setEditBio(event.target.value)} className="profile-field min-h-32 resize-y" />
+              </label>
+            </div>
+          ) : (
+            <div className="space-y-4 px-5 py-5">
+              <InfoRow label="Nom complet" value={profile.name || "Non renseigné"} />
+              <InfoRow label="Lieu de résidence" value={profile.location || "Non renseigné"} />
+              <InfoRow label="Bio" value={profile.bio || "Aucune biographie renseignée."} multiline />
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function InfoRow({ label, value, multiline = false }: { label: string; value: string; multiline?: boolean }) {
+  return (
+    <div className={multiline ? "sm:col-span-2" : ""}>
+      <dt className="text-sm font-black text-[#374151]">{label}</dt>
+      <dd className={`mt-1 text-sm text-[#4b5563] ${multiline ? "whitespace-pre-wrap leading-relaxed" : ""}`}>{value}</dd>
     </div>
   );
 }
