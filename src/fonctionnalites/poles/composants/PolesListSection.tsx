@@ -16,22 +16,22 @@ export default function PolesListSection() {
       : polesGhostech.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="poles" className="w-full bg-white py-24 relative overflow-hidden flex flex-col items-center my-12">
-      <div className="w-full max-w-6xl px-4 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16">
+    <section id="poles" className="w-full bg-white py-12 sm:py-20 relative overflow-hidden flex flex-col items-center my-4 sm:my-8">
+      <div className="w-full max-w-6xl px-4 sm:px-6 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 sm:mb-14">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-1 h-6 bg-[#357dab] rounded-full"></span>
+              <span className="w-1.5 h-5 bg-[#357dab] rounded-full"></span>
               <span className="text-xs uppercase tracking-wider font-bold text-gray-400">
                 Cartographie des pôles
               </span>
             </div>
-            <h2 className="text-3xl font-bold text-[#022329]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#022329] tracking-tight">
               Nos Départements Spécialisés
             </h2>
           </div>
 
-          <div className="flex flex-wrap gap-2 bg-slate-50 p-1.5 rounded-2xl border border-gray-100 shadow-xs">
+          <div className="flex overflow-x-auto max-w-full pb-1 gap-2 bg-slate-50 p-1.5 rounded-2xl border border-gray-100 shadow-xs [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {[
               { id: "tous", label: "Tous les pôles" },
               { id: "technique", label: "Tech & Ingénierie" },
@@ -41,7 +41,7 @@ export default function PolesListSection() {
               <button
                 key={btn.id}
                 onClick={() => setActiveCategory(btn.id as any)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${activeCategory === btn.id
+                className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${activeCategory === btn.id
                   ? "bg-[#022329] text-white shadow-sm"
                   : "bg-transparent text-gray-500 hover:text-[#022329]"
                   }`}

@@ -64,7 +64,7 @@ export default function DevArenaDuo() {
   const sortedDuos = [...duos].sort((a, b) => parseDateToMs(a.date) - parseDateToMs(b.date));
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex justify-center pb-20">
+    <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex justify-center pb-20">
       <main className="p-4 lg:p-8 space-y-8 max-w-[1000px] w-full mx-auto pt-20">
 
         {/* Playful Header Banner */}

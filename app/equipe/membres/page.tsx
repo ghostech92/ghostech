@@ -42,7 +42,7 @@ export default function MembresEquipe() {
   }, []);
 
   return (
-    <main className="w-full min-h-screen bg-[#1c1c1c] pt-20 text-white flex flex-col items-center font-dm-sans">
+    <main className="w-full min-h-dvh bg-[#1c1c1c] pt-20 text-white flex flex-col items-center font-dm-sans">
 
       {/* HEADER SECTION (EXACTLY LIKE IMAGE) */}
       <div className="w-full flex flex-col lg:flex-row justify-between items-start pt-20 pb-20 px-6 md:px-12 max-w-[1600px] mx-auto gap-10">
@@ -64,11 +64,11 @@ export default function MembresEquipe() {
       </div>
 
       {/* TWO-COLUMN LAYOUT */}
-      <section className="w-full max-w-[1600px] px-6 md:px-12 pb-48 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16">
+      <section className="w-full max-w-[1600px] px-6 md:px-12 pb-16 sm:pb-24 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16">
 
         {/* LEFT: INFO BOX */}
         <div className="w-full lg:w-[350px] xl:w-[400px] shrink-0 lg:sticky top-24">
-          <div className="aspect-square border border-white/50 p-6 flex flex-col justify-between relative overflow-hidden">
+          <div className="aspect-auto sm:aspect-square min-h-[290px] border border-white/50 p-6 flex flex-col justify-between relative overflow-hidden rounded-xl sm:rounded-none">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeMember?.id}
@@ -80,21 +80,21 @@ export default function MembresEquipe() {
               >
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="text-[22px] font-normal text-white mb-0 leading-tight tracking-tight">{activeMember?.name}</h4>
-                    <p className="text-[15px] text-gray-300 mt-1">{activeMember?.role}</p>
+                    <h4 className="text-[20px] sm:text-[22px] font-normal text-white mb-0 leading-tight tracking-tight">{activeMember?.name}</h4>
+                    <p className="text-[14px] sm:text-[15px] text-gray-300 mt-1">{activeMember?.role}</p>
                   </div>
                   {/* Thumbnail in corner */}
-                  <div className="w-[70px] h-[70px] shrink-0 overflow-hidden bg-[#444] ml-3">
+                  <div className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] shrink-0 overflow-hidden bg-[#444] ml-3 rounded-md">
                     <img src={activeMember?.avatar} alt={activeMember?.name} className="w-full h-full object-cover" />
                   </div>
                 </div>
 
                 {/* Description */}
-                <div className="mt-6 text-[14px] text-gray-400 font-light leading-relaxed pr-4">
+                <div className="mt-4 sm:mt-6 text-[13px] sm:text-[14px] text-gray-400 font-light leading-relaxed pr-2">
                   {activeMember?.description}
                 </div>
 
-                <div className="text-[13px] text-white uppercase tracking-widest mt-auto pt-6 leading-relaxed">
+                <div className="text-[12px] sm:text-[13px] text-white uppercase tracking-widest mt-auto pt-4 sm:pt-6 leading-relaxed">
                   MADE IN GHOSTECH 2026<br />
                   INNOVATION INTELLIGENCE<br />
                   TECH CREATIVE
@@ -105,8 +105,8 @@ export default function MembresEquipe() {
         </div>
 
         {/* RIGHT: PHOTOS GRID */}
-        <div className="w-full flex-1 h-[500px] lg:h-[650px] xl:h-[750px] overflow-y-auto pr-2 lg:pr-4 pb-8 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40">
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
+        <div className="w-full flex-1 h-[450px] sm:h-[500px] lg:h-[650px] xl:h-[750px] overflow-y-auto pr-2 lg:pr-4 pb-8 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/40">
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
             {allMembers.map((membre, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -115,13 +115,17 @@ export default function MembresEquipe() {
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
                 key={membre.id}
                 onMouseEnter={() => setActiveMember(membre)}
-                className="aspect-square relative overflow-hidden bg-[#444] cursor-pointer"
+                onClick={() => setActiveMember(membre)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Voir profil de ${membre.name}`}
+                className="aspect-square relative overflow-hidden bg-[#444] cursor-pointer rounded-lg sm:rounded-none focus:outline-none focus:ring-2 focus:ring-[#fd800a]"
               >
                 <img
                   src={membre.avatar}
                   alt={membre.name}
                   className={`w-full h-full object-cover transition-all duration-[600ms] ease-out ${activeMember?.id === membre.id
-                      ? 'grayscale-0 opacity-100 scale-105'
+                      ? 'grayscale-0 opacity-100 scale-105 ring-2 ring-[#fd800a]'
                       : 'grayscale opacity-60 hover:grayscale-0 hover:opacity-100 scale-100'
                     }`}
                 />

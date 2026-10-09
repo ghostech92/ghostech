@@ -1,180 +1,169 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import Link from "next/link";
 import { HERO_SLIDES } from "@/src/fonctionnalites/accueil/donnees/hero-slides";
-import { useCarouselAuto } from "@/src/fonctionnalites/accueil/hooks/useCarouselAuto";
-import { useCountdown } from "@/src/fonctionnalites/accueil/hooks/useCountdown";
+import { ArrowRight, Monitor, Cloud, Code, ShieldCheck, X } from "lucide-react";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 /**
- * HeroCarousel — Section hero principale de la page d'accueil.
- * Intègre le carrousel de slides + la barre d'événements + le countdown.
+ * HeroSection — Section hero principale de la page d'accueil.
+ * Reproduit fidèlement la disposition de la maquette (éléments gauche et droite bien ancrés).
  */
 export default function HeroCarousel() {
-  const { slideIndex, isFading, changeSlide } = useCarouselAuto(HERO_SLIDES.length, 6000, 300);
-  const countdown = useCountdown("2026-08-14T00:00:00");
-
-  // Préchargement des images
-  useEffect(() => {
-    HERO_SLIDES.forEach((slide) => {
-      const img = new window.Image();
-      img.src = slide.image;
-    });
-  }, []);
+  const hero = { ...HERO_SLIDES[0], image: "/header_photo/4KK.png" };
 
   return (
-    <section className="relative w-full max-w-[1400px] mx-auto mt-28 px-4 sm:px-6 mb-12">
-      <div className="w-full rounded-[2.5rem] bg-gradient-to-r from-[#F9C1A5] via-[#DECFDB] to-[#96C9F0] pt-10 md:pt-16 pb-0 px-6 sm:px-12 shadow-sm relative overflow-hidden">
-
-        {/* ================= DÉCORATIONS / STICKERS ================= */}
-        <div className="absolute top-[8%] left-[2%] md:left-[5%] w-[90px] h-[60px] md:w-[90px] md:h-[90px] animate-float-slow drop-shadow-lg z-0 opacity-90">
-          <Image src="/decoration/d2.svg" alt="Decoration 1" fill className="object-contain" />
+    <section className="relative w-full mx-auto mt-0 px-0 mb-0">
+      <div className="relative isolate w-full overflow-hidden rounded-none border-0 border-white bg-[#24170f] px-4 pt-12 pb-10 sm:rounded-[2.5rem] sm:border-[18px] sm:px-12 md:pt-16 md:pb-14">
+        
+        {/* ================= IMAGE DE FOND / PERSONNAGE ================= */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={hero.image}
+            alt="La technologie au service des talents africains"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          {/* Dégradé sombre pour assurer la lisibilité des textes */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-black/60 pointer-events-none"></div>
         </div>
-        <div className="absolute bottom-[20%] left-[6%] md:left-[12%] w-[50px] h-[50px] md:w-[80px] md:h-[80px] animate-float-medium drop-shadow-md z-0 opacity-80">
-          <Image src="/decoration/d3.svg" alt="Decoration 2" fill className="object-contain" />
-        </div>
-        <div className="absolute top-[15%] right-[25%] md:right-[35%] w-[45px] h-[45px] md:w-[70px] md:h-[70px] animate-float-fast drop-shadow-md z-0 opacity-50">
-          <Image src="/decoration/d4.svg" alt="Decoration 3" fill className="object-contain" />
-        </div>
-        <div className="absolute bottom-[40%] right-[35%] md:right-[45%] w-[70px] h-[90px] md:w-[100px] md:h-[100px] animate-spin-slow drop-shadow-xl z-0 opacity-90">
-          <Image src="/decoration/d1.svg" alt="Decoration 4" fill className="object-contain" />
-        </div>
 
-        {/* Confettis colorés subtils */}
-        <div className="absolute top-[45%] left-[18%] w-3 h-3 rounded-full bg-[#FF1493] drop-shadow-sm"></div>
-        <div className="absolute bottom-[45%] right-[12%] w-4 h-4 rounded-full bg-[#00BFFF] drop-shadow-sm"></div>
-        <div className="absolute top-[15%] right-[15%] w-2 h-2 rounded-full bg-[#32CD32] drop-shadow-sm"></div>
 
-        {/* Contenu principal */}
-        <div className={`relative w-full flex flex-col md:flex-row items-center justify-between gap-8 pb-8 transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
 
-          {/* Côté Gauche (Texte) */}
-          <div className="w-full md:w-[55%] flex flex-col items-start z-10">
-            <nav className="flex items-center gap-1.5 text-[13px] text-gray-400 mb-6">
-              <span className="hover:text-[#357dab] cursor-pointer transition-colors">Accueil</span>
-              <span className="text-[#0F2137]/60">›</span>
-              <span className="hover:text-[#357dab] cursor-pointer transition-colors">{HERO_SLIDES[slideIndex].mockupHeader}</span>
-              <span className="text-[#0F2137]/60">›</span>
-              <span className="text-[#0F2137]/80 font-medium">{HERO_SLIDES[slideIndex].highlight}</span>
-            </nav>
+        {/* ================= CONTENU PRINCIPAL ================= */}
+        <div className="relative z-10 w-full flex flex-col lg:flex-row items-end justify-between gap-8 pt-16 sm:pt-20 md:pt-24 pb-4 min-h-[460px] lg:min-h-[520px]">
 
-            <h1 className="text-3xl md:text-[40px] lg:text-[48px] font-extrabold text-[#0F2137] leading-[1.1] tracking-tight mb-5 font-b612 uppercase">
-              {HERO_SLIDES[slideIndex].highlight}
+          {/* Côté Gauche : Titre, description et bouton (Style Éditorial Grand Journal) */}
+          <div className="w-full lg:w-[50%] flex flex-col items-start justify-end z-10">
+
+            {/* Badge GHOSTECH · IDENTITÉ GLOBALE */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#fd800a] text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.18em] mb-3 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#fd800a] animate-pulse"></span>
+              <span>GHOSTECH · IDENTITÉ GLOBALE</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-3 font-b612">
+              Construire.{" "}
+              <span className="text-white">Impacter.</span>{" "}
+              <span className="text-[#fd800a]">Conquérir.</span>
             </h1>
 
-            <div className="flex items-center gap-4 mb-6">
-              {HERO_SLIDES[slideIndex].statsNum && (
-                <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
-                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                  {HERO_SLIDES[slideIndex].statsNum} {HERO_SLIDES[slideIndex].statsText}
-                </span>
-              )}
-              <span className="flex items-center gap-1.5 text-[13px] font-bold text-[#357dab]">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                {HERO_SLIDES[slideIndex].status}
-              </span>
-            </div>
-
-            <p className="text-[15px] text-[#0F2137]/70 leading-relaxed max-w-[520px] mb-4">
-              {HERO_SLIDES[slideIndex].titlePre && <>{HERO_SLIDES[slideIndex].titlePre} </>}
-              {HERO_SLIDES[slideIndex].titlePost}
-              {' '}{HERO_SLIDES[slideIndex].mockupDesc}
+            <p className="text-xs sm:text-sm md:text-base font-normal text-white/90 leading-relaxed mb-5 max-w-[520px]">
+              La tech, pour tous, en Afrique. Développer les talents, construire des solutions concrètes et façonner l'avenir numérique du continent.
             </p>
 
-            <button className="text-[#357dab] font-semibold text-[14px] hover:underline mb-6 transition-colors">
-              Lire la suite
-            </button>
-          </div>
-
-          {/* Côté Droit — Image unique */}
-          <div className="hidden md:flex w-[40%] justify-center md:justify-end items-center relative min-h-[400px] lg:min-h-[500px]">
-            <div className="relative w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] transition-all duration-500">
-              <Image
-                src={HERO_SLIDES[slideIndex].image}
-                alt="Ghostech"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
-            <div className="absolute right-[60px] top-0 w-2 h-2 rounded-full bg-[#357dab]/40"></div>
-            <div className="absolute right-[280px] top-[30px] w-1.5 h-1.5 rounded-full bg-[#e49834]/50"></div>
-            <div className="absolute right-[20px] bottom-[20px] w-2.5 h-2.5 rounded-full bg-[#42C89A]/40"></div>
-          </div>
-        </div>
-
-        {/* Barre d'événements en bas du hero */}
-        <div className="w-full bg-white rounded-t-2xl border border-gray-200 border-b-0 shadow-lg px-4 md:px-6 py-5 -mb-[1px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 md:divide-x md:divide-gray-200">
-            {/* Formations */}
-            <div className="flex items-center gap-4 px-4 md:px-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#357dab] to-[#1f4d6e] flex items-center justify-center shrink-0">
-                <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
-              </div>
-              <div>
-                <h4 className="text-[16px] font-bold text-[#0F2137] leading-tight">Formations</h4>
-                <div className="flex items-center gap-1.5 text-[12px] text-gray-400 font-medium">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  À VENIR
+            <div className="flex flex-wrap items-center gap-3">
+              <button className="flex items-center gap-2 bg-white hover:bg-zinc-100 text-[#24170f] rounded-full px-4 py-2 font-bold text-xs sm:text-sm transition-all shadow-lg group cursor-pointer">
+                <span>Charte d’identité institutionnelle</span>
+                <div className="w-5 h-5 rounded-full bg-[#fd800a] text-white flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                  <ArrowRight className="w-3 h-3" />
                 </div>
-              </div>
-            </div>
-
-            {/* G-TECH Summit */}
-            <div className="flex items-center gap-4 px-4 md:px-6">
-              <div className="w-10 h-10 rounded-xl bg-[#357dab] flex items-center justify-center shrink-0">
-                <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>emoji_events</span>
-              </div>
-              <div>
-                <h4 className="text-[16px] font-bold text-[#0F2137] leading-tight">G-TECH Summit</h4>
-                <p className="text-[12px] font-bold text-[#357dab]">21-22 Août 2026</p>
-                <p className="text-[11px] text-gray-400">Abidjan, Côte d&apos;Ivoire</p>
-              </div>
-            </div>
-
-            {/* Digital Creator + Countdown */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 px-4 md:px-6 py-2 md:py-0">
-              <div className="flex items-center gap-4 flex-1 min-w-[200px]">
-                <div className="w-10 h-10 rounded-xl bg-[#0F2137] flex items-center justify-center shrink-0">
-                  <span className="material-symbols-rounded text-white text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>videocam</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-[15px] font-bold text-[#0F2137] leading-tight mb-1">Digital Creator</h4>
-                  <div className="flex items-center gap-1.5">
-                    {[
-                      { value: countdown.days, label: "J" },
-                      { value: countdown.hours, label: "H" },
-                      { value: countdown.minutes, label: "M" },
-                      { value: countdown.seconds, label: "S" },
-                    ].map((item, i) => (
-                      <div key={i} className="bg-[#0F2137] text-white rounded px-2 py-1 flex items-center gap-0.5 min-w-[36px] sm:min-w-[40px] justify-center">
-                        <span className="text-[14px] font-bold font-b612 leading-none">{String(item.value).padStart(2, "0")}</span>
-                        <span className="text-[8px] uppercase text-gray-400">{item.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <button className="bg-[#357dab] text-white px-4 py-2 rounded-lg font-bold text-[12px] hover:bg-[#2a6590] transition-all shadow-sm whitespace-nowrap shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                Je m&apos;inscris
               </button>
             </div>
+
+            {/* Réseaux Sociaux */}
+            <div className="flex items-center gap-2 mt-4">
+              <a href="https://facebook.com" aria-label="Facebook" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-zinc-900 flex items-center justify-center shadow transition-colors">
+                <FaFacebookF className="w-3.5 h-3.5" />
+              </a>
+              <a href="https://instagram.com" aria-label="Instagram" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-zinc-900 flex items-center justify-center shadow transition-colors">
+                <FaInstagram className="w-3.5 h-3.5" />
+              </a>
+              <a href="https://x.com" aria-label="X (Twitter)" className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-zinc-900 flex items-center justify-center shadow transition-colors">
+                <X className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Côté Droit : Services et Carte "Construire ensemble" */}
+          <div className="w-full lg:w-[48%] flex flex-col items-start lg:items-end justify-end gap-5 z-10 lg:self-stretch">
+            
+            {/* "Choisissez votre service" + Icônes */}
+            <div className="flex flex-col items-start lg:items-end w-full">
+              <span className="text-white text-xs sm:text-sm font-bold mb-2.5 drop-shadow-md">
+                GHOSTECH · 7 Pôles d'Excellence
+              </span>
+              <div className="grid grid-cols-4 gap-2 sm:gap-3 w-full max-w-md">
+                <div className="flex flex-col items-center gap-1 text-center">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white backdrop-blur-md transition-colors cursor-pointer shadow-md">
+                    <Monitor className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] text-white/90 font-medium drop-shadow leading-tight">Web &amp; Mobile</span>
+                </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white backdrop-blur-md transition-colors cursor-pointer shadow-md">
+                    <Cloud className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] text-white/90 font-medium drop-shadow leading-tight">Cyber-sécurité</span>
+                </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white backdrop-blur-md transition-colors cursor-pointer shadow-md">
+                    <Code className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] text-white/90 font-medium drop-shadow leading-tight">Réseaux &amp; Télécoms</span>
+                </div>
+                <div className="flex flex-col items-center gap-1 text-center">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-[#fd800a] hover:brightness-90 flex items-center justify-center text-white shadow-lg transition-all cursor-pointer">
+                    <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] text-white/90 font-medium drop-shadow leading-tight">IA &amp; Robotique</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Carte "Construire ensemble" */}
+            <div className="self-stretch lg:self-end bg-white rounded-2xl p-4 sm:p-5 flex flex-row items-center justify-between gap-3 w-full max-w-full sm:max-w-[380px] text-zinc-900 shadow-2xl relative overflow-hidden sm:overflow-visible">
+              
+              {/* Côté Gauche : Titre, description et bouton */}
+              <div className="flex flex-col items-start z-10 w-[68%] sm:w-[65%]">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#fd800a]">Impact Collectif</span>
+                <h4 className="font-extrabold text-sm sm:text-base text-zinc-900 tracking-tight leading-snug">
+                  Construire ensemble
+                </h4>
+                <p className="text-[10px] sm:text-[11px] text-zinc-500 leading-snug mt-1 mb-3">
+                  Former, connecter et accompagner les talents pour transformer les idées en solutions à fort impact.
+                </p>
+
+                <Link
+                  href="/equipe/rejoindre"
+                  className="w-fit flex items-center gap-2 bg-[#fd800a] hover:bg-[#e56f00] text-white rounded-full py-1.5 px-3 font-bold text-[10px] sm:text-xs transition-all shadow-md group cursor-pointer"
+                >
+                  <span className="whitespace-nowrap">Créer de l’impact</span>
+                  <div className="w-4 h-4 rounded-full bg-white text-[#fd800a] flex items-center justify-center group-hover:translate-x-1 transition-transform shrink-0">
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </div>
+                </Link>
+              </div>
+
+              {/* Avatar à droite */}
+              <div className="absolute -bottom-2 sm:-bottom-4 -right-4 sm:-right-8 z-20 h-44 w-44 sm:h-56 sm:w-56 pointer-events-none">
+                <Image 
+                  src="/header_photo/h.png" 
+                  alt="Talent technologique Ghostech" 
+                  fill 
+                  sizes="(max-width: 640px) 176px, 224px"
+                  className="object-contain object-bottom"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ================= INDICATEUR DE DÉFILEMENT BAS ================= */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20">
+          <div className="w-7 h-9 rounded-full border-2 border-white/40 flex items-start justify-center p-1">
+            <div className="w-1.5 h-2.5 bg-white rounded-full animate-bounce"></div>
           </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center items-center gap-2.5 mt-8 mb-4">
-          {HERO_SLIDES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => changeSlide(i)}
-              className={`transition-all duration-300 rounded-full ${i === slideIndex ? `w-8 h-2 ${HERO_SLIDES[slideIndex].colors.dotsActive}` : "w-2 h-2 bg-gray-300 hover:bg-gray-400"}`}
-              aria-label={`Aller à la diapositive ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

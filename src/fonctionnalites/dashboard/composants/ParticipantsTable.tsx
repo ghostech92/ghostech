@@ -17,7 +17,7 @@ export default function ParticipantsTable({
   removeParticipant
 }: ParticipantsTableProps) {
   return (
-    <div className="overflow-x-auto">
+    <div className="responsive-table">
       <table className="w-full text-left text-sm text-slate-500">
         <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-100">
           <tr>

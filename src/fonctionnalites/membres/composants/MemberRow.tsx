@@ -1,15 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Edit2, Trash2, MoreVertical } from "lucide-react";
+import { Ban, CheckCircle2, Edit2, MoreVertical, Trash2 } from "lucide-react";
 import { UserProfile } from "@/src/types/user.types";
 
 interface MemberRowProps {
   member: UserProfile;
   index: number;
   onUpdateSelect: (userId: string, field: string, value: string) => void;
+  onView: (member: UserProfile) => void;
+  onToggleStatus: (member: UserProfile) => void;
 }
 
-export default function MemberRow({ member, index, onUpdateSelect }: MemberRowProps) {
+export default function MemberRow({ member, index, onUpdateSelect, onView, onToggleStatus }: MemberRowProps) {
   const avatar = member.photoURL || member.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name || "User")}&background=E2E8F0&color=0F172A`;
   const status = member.status || 'Actif';
   
@@ -30,20 +32,20 @@ export default function MemberRow({ member, index, onUpdateSelect }: MemberRowPr
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors"
+      className="border-b border-white/10 hover:bg-white/[0.03] transition-colors"
     >
       <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3">
         <img src={avatar} alt={member.name || "User"} className="w-9 h-9 rounded-full object-cover border border-slate-200" />
         <div>
-          <div className="font-bold text-slate-800">{member.name || "Utilisateur Anonyme"}</div>
-          <div className="text-xs text-slate-400">{member.email || "Non renseigné"}</div>
+          <div className="font-bold text-stone-200">{member.name || "Utilisateur Anonyme"}</div>
+            <div className="text-xs text-stone-500">{member.email || "Non renseigné"}</div>
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <select
           value={member.role || "utilisateur"}
           onChange={(e) => onUpdateSelect(member.id!, "role", e.target.value)}
-          className="bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-md text-xs font-bold border border-indigo-100 focus:outline-none focus:border-indigo-300 cursor-pointer appearance-none"
+          className="bg-white/[0.06] text-[#fd800a] px-2.5 py-1 rounded-md text-xs font-bold border border-white/10 focus:outline-none focus:border-[#fd800a] cursor-pointer appearance-none"
         >
           <option value="utilisateur" className="bg-white text-slate-800">Utilisateur</option>
           <option value="membre" className="bg-white text-slate-800">Membre</option>
@@ -70,13 +72,37 @@ export default function MemberRow({ member, index, onUpdateSelect }: MemberRowPr
           </select>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-slate-500">{joinedDate}</td>
+      <td className="px-6 py-4 whitespace-nowrap text-stone-500">{joinedDate}</td>
       <td className="px-6 py-4 text-right whitespace-nowrap">
         <div className="flex items-center justify-end gap-2">
-          <button className="p-1.5 text-slate-400 hover:text-teal-600 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors">
+          <button
+            type="button"
+            onClick={() => onView(member)}
+            aria-label={`Voir le profil de ${member.name || "cet utilisateur"}`}
+            className="p-1.5 text-slate-400 hover:text-teal-600 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors"
+          >
             <Edit2 size={16} />
           </button>
-          <button className="p-1.5 text-slate-400 hover:text-rose-600 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors">
+          <button
+            type="button"
+            onClick={() => onToggleStatus(member)}
+            aria-label={status === "Actif" ? `Suspendre ${member.name || "cet utilisateur"}` : `Réactiver ${member.name || "cet utilisateur"}`}
+            title={status === "Actif" ? "Mettre en pause" : "Réactiver"}
+            className={`rounded-lg bg-slate-50 p-1.5 transition-colors hover:bg-slate-100 ${
+              status === "Actif"
+                ? "text-slate-400 hover:text-amber-600"
+                : "text-amber-500 hover:text-emerald-600"
+            }`}
+          >
+            {status === "Actif" ? <Ban size={16} /> : <CheckCircle2 size={16} />}
+          </button>
+          <button
+            type="button"
+            aria-label="Supprimer le membre"
+            title="Suppression indisponible"
+            disabled
+            className="cursor-not-allowed rounded-lg bg-slate-50 p-1.5 text-slate-300"
+          >
             <Trash2 size={16} />
           </button>
           <button className="p-1.5 text-slate-400 hover:text-slate-700 transition-colors">

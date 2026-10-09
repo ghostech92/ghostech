@@ -17,7 +17,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F7F7F7] flex flex-col items-center justify-center pt-28 pb-80">
+      <div className="min-h-dvh bg-[#F7F7F7] flex flex-col items-center justify-center pt-28 pb-80">
         <div className="w-12 h-12 border-4 border-[#1cb0f6] border-t-transparent rounded-full animate-spin mb-4"></div>
         <p className="text-gray-500 font-bold text-sm">Chargement du projet...</p>
       </div>
@@ -26,7 +26,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#F7F7F7] flex items-center justify-center p-6 text-center pt-28 pb-80">
+      <div className="min-h-dvh bg-[#F7F7F7] flex items-center justify-center p-6 text-center pt-28 pb-80">
         <div className="bg-white p-8 rounded-3xl border-2 border-[#e5e5e5] border-b-6 max-w-md w-full">
           <span className="text-5xl mb-4 block">🔍</span>
           <h2 className="text-xl font-black text-[#3c3c3c] mb-2 font-sans uppercase tracking-tight">
@@ -52,7 +52,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
     : [project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop"];
 
   return (
-    <div className="w-full min-h-screen bg-[#F7F7F7] text-[#3c3c3c] font-sans antialiased pt-28 md:pt-32 pb-80">
+    <div className="w-full min-h-dvh bg-[#F7F7F7] text-[#3c3c3c] font-sans antialiased pt-28 md:pt-32 pb-80">
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
         .duo-font { font-family: 'Nunito', sans-serif; }

@@ -7,7 +7,7 @@ export default function ProjetsPage() {
   const { projects, activeFilter, setActiveFilter, loading, filteredProjects } = useProjects();
 
   return (
-    <div className="w-full min-h-screen bg-[#F4F6FA] text-[#1A2332] font-sans flex justify-center">
+    <div className="w-full min-h-dvh bg-[#F4F6FA] text-[#1A2332] font-sans flex justify-center">
       <main className="p-4 lg:p-8 space-y-6 max-w-[1400px] w-full mx-auto pt-20">
 
         {/* HERO */}

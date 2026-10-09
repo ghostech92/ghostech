@@ -18,7 +18,7 @@ export default function HackathonsTab({ manager }: { manager: ReturnType<typeof 
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
             key={hack.id}
-            className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
+            className="bg-[#1b1c1a] rounded-2xl border border-white/10 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
           >
             <div className="h-40 relative overflow-hidden bg-slate-100">
               <img
@@ -34,14 +34,14 @@ export default function HackathonsTab({ manager }: { manager: ReturnType<typeof 
             </div>
 
             <div className="p-5 flex-1 flex flex-col">
-              <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-1">
+              <h3 className="text-lg font-bold text-white mb-2 line-clamp-1">
                 {hack.title}
               </h3>
-              <p className="text-slate-500 text-xs line-clamp-2 mb-4">
+              <p className="text-stone-500 text-xs line-clamp-2 mb-4">
                 {hack.theme}
               </p>
 
-              <div className="space-y-2 mb-6 text-xs text-slate-600">
+              <div className="space-y-2 mb-6 text-xs text-stone-400">
                 <div className="flex items-center gap-2">
                   <Clock size={12} className="text-teal-600 shrink-0" />
                   <span>{hack.date}</span>
@@ -60,7 +60,7 @@ export default function HackathonsTab({ manager }: { manager: ReturnType<typeof 
                 </div>
               </div>
 
-              <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="mt-auto pt-4 border-t border-white/10 flex items-center justify-between">
                 <span className="text-[10px] bg-slate-50 text-slate-400 px-2 py-1 rounded border border-slate-200">
                   ID: {hack.id}
                 </span>

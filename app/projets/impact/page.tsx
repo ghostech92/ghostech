@@ -52,28 +52,28 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 
 export default function ImpactPage() {
   return (
-    <main className="w-full min-h-screen bg-white text-[#1E293B] flex flex-col items-center antialiased pb-20 relative overflow-hidden">
+    <main className="w-full min-h-dvh bg-white text-[#1E293B] flex flex-col items-center antialiased pb-20 relative overflow-hidden">
       
       {/* 1. HERO SECTION (Split Editorial Style) */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-36 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-24 sm:pt-32 pb-12 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-6">
           <span className="text-[#357dab] text-xs font-black uppercase tracking-widest">
             Mesures d'Impact 2025/2026
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0F2137] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0F2137] tracking-tight leading-tight">
             Ghostech Impact Social <br />
             & Insertion
           </h1>
           <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-xl">
             Ghostech s'engage au quotidien pour façonner un écosystème numérique inclusif, dynamique et porteur de changement social en Côte d'Ivoire. Nous formons la prochaine génération de talents de la tech africaine.
           </p>
-          <div className="pt-6 border-t border-slate-100 flex items-center gap-3">
+          <div className="pt-4 sm:pt-6 border-t border-slate-100 flex items-center gap-3">
             <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">En partenariat avec</span>
             <span className="text-[#357dab] font-extrabold text-sm tracking-wider uppercase">Ghostech Partners</span>
           </div>
         </div>
         
-        <div className="lg:col-span-6 min-h-[400px] lg:min-h-[500px] relative">
+        <div className="lg:col-span-6 min-h-[260px] sm:min-h-[360px] lg:min-h-[480px] relative rounded-3xl overflow-hidden shadow-lg border border-slate-100">
           <img 
             src="/Galeries/img_1.png" 
             alt="Impact Ghostech"
@@ -83,38 +83,38 @@ export default function ImpactPage() {
       </section>
 
       {/* 2. KEY HIGHLIGHTS SECTION (Ghostech Light Blue Band Style) */}
-      <section className="w-full bg-[#f5f8ff] py-20 px-6 md:px-12 flex flex-col items-center">
-        <h2 className="text-xl font-bold text-[#0F2137] mb-12 text-center tracking-tight uppercase tracking-wider">
+      <section className="w-full bg-[#f5f8ff] py-14 sm:py-20 px-4 sm:px-6 md:px-12 flex flex-col items-center">
+        <h2 className="text-lg sm:text-xl font-bold text-[#0F2137] mb-8 sm:mb-12 text-center tracking-tight uppercase tracking-wider">
           Key highlights
         </h2>
         
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center">
           {/* Highlight 1: Personnes Formées (Ghostech Blue) */}
           <div className="flex flex-col items-center px-4">
-            <div className="text-5xl md:text-6xl font-black text-[#357dab] mb-4 flex items-center justify-center">
+            <div className="text-4xl sm:text-5xl md:text-6xl font-black text-[#357dab] mb-3 flex items-center justify-center">
               <Counter target={198} />
             </div>
-            <p className="text-xs text-slate-700 font-medium max-w-[260px] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 font-medium max-w-[260px] leading-relaxed">
               <strong>Personnes formées</strong> et accompagnées aux compétences numériques clés pour le marché de l'emploi.
             </p>
           </div>
 
           {/* Highlight 2: Sorties Positives (Ghostech Orange) */}
           <div className="flex flex-col items-center px-4">
-            <div className="text-5xl md:text-6xl font-black text-[#e49834] mb-4 flex items-center justify-center">
+            <div className="text-4xl sm:text-5xl md:text-6xl font-black text-[#e49834] mb-3 flex items-center justify-center">
               <Counter target={87} suffix="%" />
             </div>
-            <p className="text-xs text-slate-700 font-medium max-w-[260px] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 font-medium max-w-[260px] leading-relaxed">
               de <strong>sorties positives</strong> (+200 apprenants insérés) grâce à nos programmes intensifs.
             </p>
           </div>
 
           {/* Highlight 3: Femmes Formées (Ghostech Green) */}
           <div className="flex flex-col items-center px-4">
-            <div className="text-5xl md:text-6xl font-black text-[#42C89A] mb-4 flex items-center justify-center">
+            <div className="text-4xl sm:text-5xl md:text-6xl font-black text-[#42C89A] mb-3 flex items-center justify-center">
               <Counter target={83} />
             </div>
-            <p className="text-xs text-slate-700 font-medium max-w-[260px] leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 font-medium max-w-[260px] leading-relaxed">
               <strong>Femmes formées</strong> et propulsées activement vers des carrières technologiques et de leadership.
             </p>
           </div>
@@ -122,32 +122,32 @@ export default function ImpactPage() {
       </section>
 
       {/* 3. ECOSYSTEM & OVERLAPPING CIRCLES SECTION */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-16 sm:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 items-center">
         
         {/* Left Column: Overlapping Circles Box */}
-        <div className="lg:col-span-6 bg-[#f8fafc] rounded-3xl p-8 md:p-12 flex flex-col items-center shadow-sm border border-slate-100">
-          <h3 className="text-md font-bold text-[#0F2137] mb-10 text-center tracking-tight">
+        <div className="lg:col-span-6 bg-[#f8fafc] rounded-3xl p-6 sm:p-10 flex flex-col items-center shadow-xs border border-slate-100">
+          <h3 className="text-base sm:text-lg font-bold text-[#0F2137] mb-8 text-center tracking-tight">
             Notre impact social
           </h3>
           
           {/* Overlapping Circles container */}
-          <div className="relative w-full max-w-[340px] h-[340px] mx-auto flex items-center justify-center">
+          <div className="relative w-full max-w-[300px] sm:max-w-[340px] h-[300px] sm:h-[340px] mx-auto flex items-center justify-center">
             {/* Circle 1: Actions associations (Ghostech Blue) */}
-            <div className="absolute top-0 left-2 w-44 h-44 rounded-full bg-[#357dab] text-white flex flex-col items-center justify-center p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-10 select-none">
-              <span className="text-3xl font-black">+10</span>
-              <span className="text-[10px] font-bold mt-1.5 leading-tight">Dons & actions aux associations</span>
+            <div className="absolute top-0 left-0 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-[#357dab] text-white flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-10 select-none">
+              <span className="text-2xl sm:text-3xl font-black">+10</span>
+              <span className="text-[9px] sm:text-[10px] font-bold mt-1 leading-tight">Dons & actions associatives</span>
             </div>
             
             {/* Circle 2: Entreprises partenaires (Ghostech Orange) */}
-            <div className="absolute top-0 right-2 w-44 h-44 rounded-full bg-[#e49834] text-white flex flex-col items-center justify-center p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-10 select-none">
-              <span className="text-3xl font-black">8</span>
-              <span className="text-[10px] font-bold mt-1.5 leading-tight">Entreprises partenaires</span>
+            <div className="absolute top-0 right-0 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-[#e49834] text-white flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-10 select-none">
+              <span className="text-2xl sm:text-3xl font-black">8</span>
+              <span className="text-[9px] sm:text-[10px] font-bold mt-1 leading-tight">Entreprises partenaires</span>
             </div>
             
             {/* Circle 3: Diversité & Mixité (Ghostech Green) */}
-            <div className="absolute bottom-2 left-[23%] w-44 h-44 rounded-full bg-[#42C89A] text-white flex flex-col items-center justify-center p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-20 select-none">
-              <span className="text-3xl font-black">43%</span>
-              <span className="text-[10px] font-bold mt-1.5 leading-tight">Diversité & mixité globale</span>
+            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-[#42C89A] text-white flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300 z-20 select-none">
+              <span className="text-2xl sm:text-3xl font-black">43%</span>
+              <span className="text-[9px] sm:text-[10px] font-bold mt-1 leading-tight">Diversité & mixité globale</span>
             </div>
           </div>
         </div>

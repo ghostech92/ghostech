@@ -1,0 +1,17 @@
+{
+  "name": "Ghostech Afrique — Hub d'Innovation & Tech",
+  "short_name": "Ghostech",
+  "description": "Plateforme africaine d'innovation technologique, de formations, hackathons et projets à fort impact social.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111210",
+  "theme_color": "#fd800a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo1_1.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

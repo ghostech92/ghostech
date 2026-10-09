@@ -126,14 +126,70 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
 
   body {
     @apply bg-background text-foreground;
+    min-width: 0;
+    overflow-x: hidden;
   }
 
   html {
     @apply font-sans;
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    max-width: 100%;
+  }
+}
+
+/* Shared safeguards for narrow screens. Components can opt into horizontal
+   scrolling for genuinely tabular content with .responsive-table. */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table > table {
+  min-width: 42rem;
+}
+
+@media (max-width: 640px) {
+  .vague-card {
+    height: 360px;
+  }
+
+  .vague-back-content {
+    padding: 20px;
+    gap: 14px;
+  }
+
+  .vague-front .vague-front-content {
+    padding: 18px;
+  }
+
+  .duo-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .duo-btn,
+  .duo-tab {
+    font-size: 11px;
+    padding: 9px 12px;
   }
 }
 

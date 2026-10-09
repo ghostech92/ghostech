@@ -1,68 +1,118 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-const EXP_IMAGES = ["/Galeries/img9.jpeg", "/Galeries/img3.jpg", "/Galeries/img8.jpeg"];
+const sectionVariants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
 
 export default function SectionExperimente() {
-  const [expSlideIndex, setExpSlideIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setExpSlideIndex((prev) => (prev + 1) % EXP_IMAGES.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="w-full bg-white py-24 px-4 flex justify-center">
+    <motion.section
+      className="w-full bg-white py-24 px-4 flex justify-center"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className="w-full max-w-7xl flex flex-col items-center">
-        <div className="text-center max-w-3xl mb-16">
-          <h2 className="text-3xl md:text-[40px] font-bold font-b612 text-[#357dab] mb-4">
-            Experimente une nouvelle facon d&apos;apprendre
-          </h2>
+        
+        {/* En-tête amélioré */}
+        <motion.div
+          className="flex flex-col items-center text-center max-w-3xl mb-16"
+          variants={cardVariants}
+        >
+          
+
+
+          {/* Titre principal */}
+          <motion.h2
+            className="text-3xl md:text-[40px] font-bold font-b612 text-black mb-4"
+            whileHover={{ letterSpacing: "0.02em" }}
+            transition={{ duration: 0.3 }}
+          >
+            Des valeurs  <span className="text-[#fd800a]">en action</span>
+          </motion.h2>
+
+          {/* Description */}
           <p className="text-gray-500 text-[15px] leading-relaxed max-w-2xl mx-auto">
-            La methode Ghostech : un apprentissage innovant, efficace et stimulant.<br />
-            Decouvre les avantages de notre approche unique :
+            La technologie évolue constamment. Nous faisons de l'apprentissage continu une culture.<br />
+            Excellence, engagement africain et impact guident nos actions.
           </p>
-        </div>
+        </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 w-full max-w-6xl mb-16">
-        {[
-          { icon: "bolt", title: "Une plateforme d'apprentissage interactive et collaborative", desc: "Travaille sur des projets concrets, partage tes idees et progresse en equipe." },
-          { icon: "local_library", title: "Des cours dynamiques et captivants", desc: "Apprends en pratiquant, a travers des exercices stimulants et des challenges qui te maintiendront motive." },
-          { icon: "diversity_3", title: "Un environnement d'apprentissage riche et stimulant", desc: "Participe a des evenements et des workshops exclusifs, rencontre des professionnels du secteur et developpe tes competences relationnelles." },
-          { icon: "schedule", title: "Une flexibilite totale pour un apprentissage personnalise", desc: "Choisis entre des cours en presentiel et un apprentissage en ligne, adapte ton rythme et optimise ton temps." },
-        ].map((item, idx) => (
-          <div key={idx} className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-left h-full gap-2 sm:gap-4">
-            <span className="material-symbols-rounded text-[#357dab] text-[24px] sm:text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
-            <h4 className="font-bold text-[13px] sm:text-[16px] text-[#0F2137] leading-snug">{item.title}</h4>
-            <p className="text-gray-500 text-[12px] sm:text-[13.5px] leading-relaxed line-clamp-4 sm:line-clamp-none">{item.desc}</p>
-          </div>
-        ))}
-      </div>
+        {/* Grille de cartes — Style original conservé */}
+        <motion.div
+          className="grid w-full max-w-6xl grid-cols-1 border-l border-t border-zinc-200 md:grid-cols-2 lg:grid-cols-3"
+          variants={sectionVariants}
+        >
+          {[
+            { icon: "school", title: "Innovation", desc: "Nous encourageons la créativité, l'expérimentation et la recherche de nouvelles solutions." },
+            { icon: "hub", title: "Impact", desc: "Nous ne créons pas uniquement pour créer. Nous cherchons à produire des solutions utiles et porteuses de changement." },
+            { icon: "lightbulb", title: "Collaboration", desc: "Nous croyons que les grandes innovations naissent de la rencontre des compétences et des idées." },
+            { icon: "groups", title: "Apprentissage", desc: "La technologie évolue constamment. Nous faisons de l'apprentissage continu une culture." },
+            { icon: "handshake", title: "Excellence", desc: "Nous recherchons la qualité, la rigueur et le professionnalisme dans nos projets et nos actions." },
+            { icon: "shield_person", title: "Engagement africain", desc: "Nous croyons au potentiel des talents africains et à leur capacité à créer des solutions pour l'Afrique et pour le monde." },
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              className="group relative flex min-h-65 flex-col items-center justify-center gap-4 border-b border-r border-zinc-200 bg-white px-6 py-8 text-center sm:px-8 transition-colors duration-300 hover:bg-[#fd800a]/2"
+              variants={cardVariants}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 18px 35px rgba(17, 17, 17, 0.08)",
+                transition: { duration: 0.3, ease: "easeOut" },
+              }}
+            >
+              {/* Barre orange décorative (apparaît au survol en haut de la carte) */}
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-[#fd800a] transition-all duration-500 group-hover:w-16 rounded-full" />
 
-      <div className="relative w-full max-w-4xl mx-auto">
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[16/9]">
-          {EXP_IMAGES.map((src, index) => (
-            <div key={src} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === expSlideIndex ? "opacity-100" : "opacity-0"}`}>
-              <img src={src} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
-            </div>
+              {/* Icône */}
+              <motion.span
+                className="material-symbols-rounded text-[44px] text-[#fd800a] transition-transform duration-300 group-hover:scale-110"
+                style={{ fontVariationSettings: "'FILL' 0, 'wght' 300" }}
+                whileHover={{ rotate: 6, scale: 1.12 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {item.icon}
+              </motion.span>
+
+              {/* Titre */}
+              <h4 className="max-w-xs text-lg font-bold leading-snug text-[#111111] sm:text-xl">
+                {item.title}
+              </h4>
+
+              {/* Description */}
+              <p className="max-w-xs text-sm leading-relaxed text-zinc-600 sm:text-[15px]">
+                {item.desc}
+              </p>
+            </motion.div>
           ))}
-        </div>
-        <button onClick={() => setExpSlideIndex((prev) => (prev - 1 + EXP_IMAGES.length) % EXP_IMAGES.length)} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center hover:bg-white transition-colors" aria-label="Precedent">
-          <svg className="w-5 h-5 text-[#0F2137]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button onClick={() => setExpSlideIndex((prev) => (prev + 1) % EXP_IMAGES.length)} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center hover:bg-white transition-colors" aria-label="Suivant">
-          <svg className="w-5 h-5 text-[#0F2137]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-        </button>
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-          {EXP_IMAGES.map((_, index) => (
-            <button key={index} onClick={() => setExpSlideIndex(index)} className={`transition-all duration-300 rounded-full ${index === expSlideIndex ? "w-8 h-2 bg-[#357dab] shadow-[0_0_8px_rgba(10,128,128,0.8)]" : "w-2 h-2 bg-gray-400 hover:bg-gray-600"}`} />
-          ))}
-        </div>
-        </div>
+        </motion.div>
+
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -39,7 +39,7 @@ export default function ClassementPage() {
   const top1 = leaderboard[0] || { name: "Aucun", points: 0, avatar: "https://i.pravatar.cc/150?u=1" };
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex justify-center pb-20">
+    <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex justify-center pb-20">
       <main className="p-4 lg:p-8 space-y-8 max-w-[1000px] w-full mx-auto pt-20">
 
         <LeaderboardHero 

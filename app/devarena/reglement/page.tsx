@@ -19,7 +19,7 @@ export default function ReglementPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex justify-center pb-20">
+    <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex justify-center pb-20">
       <main className="p-4 lg:p-8 space-y-8 max-w-[850px] w-full mx-auto pt-20">
 
         {/* Playful Header Banner (Violet) */}

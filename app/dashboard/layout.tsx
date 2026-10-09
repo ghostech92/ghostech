@@ -5,17 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
-  LayoutDashboard, 
   Users, 
-  Swords, 
   Activity,
-  Settings, 
+  LayoutDashboard,
   LogOut, 
   Bell, 
   Search,
   Menu,
   X,
-  Code2,
   ChevronRight
 } from "lucide-react";
 
@@ -50,22 +47,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const navItems: NavItem[] = [
     { href: "/dashboard", icon: <LayoutDashboard size={20} />, label: "Vue d'ensemble" },
     { href: "/dashboard/membres", icon: <Users size={20} />, label: "Membres" },
-    { 
-      href: "/dashboard/devarena", 
-      icon: <Swords size={20} />, 
-      label: "DevArena",
-      subItems: [
-        { href: "/dashboard/devarena/participants", label: "Participants" },
-        { href: "/dashboard/devarena/duos", label: "Duos & Notes" },
-        { href: "/dashboard/devarena/vagues", label: "Vagues & Phases" }
-      ]
-    },
-    { href: "/dashboard/evenements", icon: <Activity size={20} />, label: "Événements" },
-    { href: "/dashboard/parametres", icon: <Settings size={20} />, label: "Paramètres" }
+    { href: "/dashboard/evenements", icon: <Activity size={20} />, label: "Événements" }
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans flex overflow-hidden">
+    <div className="flex min-h-dvh overflow-hidden bg-[#111210] font-sans text-stone-100">
       
       {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
@@ -85,15 +71,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         initial={{ x: -300 }}
         animate={{ x: sidebarOpen ? 0 : -300 }}
         transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-        className="fixed lg:relative z-50 w-64 h-screen bg-white border-r border-slate-200/80 flex flex-col justify-between"
+        className="fixed z-50 flex h-screen w-64 flex-col justify-between border-r border-white/10 bg-[#171816] lg:relative"
       >
         <div>
-          <div className="h-20 flex items-center justify-between px-6 border-b border-slate-200/80">
+          <div className="flex h-20 items-center justify-between border-b border-white/10 px-6">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center">
-                <Code2 size={18} className="text-white" />
-              </div>
-              <span className="text-lg font-bold text-slate-800 tracking-wider">GHOSTECH</span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#fd800a] text-sm font-black text-white">G</div>
+              <span className="text-lg font-bold tracking-wider text-white">GHOSTECH</span>
             </Link>
             {isMobile && (
               <button onClick={() => setSidebarOpen(false)} className="text-slate-400 hover:text-slate-600">
@@ -102,7 +86,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             )}
           </div>
 
-          <nav className="p-4 space-y-2 mt-4">
+          <nav className="mt-4 space-y-2 p-4">
             {navItems.map((item) => {
               const isParentActive = item.href === "/dashboard" 
                 ? pathname === item.href 
@@ -113,8 +97,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <Link href={item.href} onClick={() => isMobile && !item.subItems && setSidebarOpen(false)}>
                     <div className={`flex items-center justify-between w-full px-4 py-3 rounded-xl transition-all ${
                       isParentActive 
-                      ? "bg-teal-50 text-teal-600 font-bold border border-teal-100" 
-                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-800 font-medium"
+                          ? "border border-white/10 bg-[#fd800a] font-bold text-white" 
+                          : "text-stone-500 hover:bg-white/5 hover:text-white font-medium"
                     }`}>
                       <div className="flex items-center gap-3">
                         {item.icon}
@@ -133,8 +117,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                           <Link key={sub.href} href={sub.href} onClick={() => isMobile && setSidebarOpen(false)}>
                             <div className={`text-xs py-2 px-3 rounded-lg transition-all ${
                               isSubActive 
-                                ? "text-teal-650 font-bold bg-teal-50/50" 
-                                : "text-slate-450 hover:text-slate-700 hover:bg-slate-50"
+                                ? "bg-white/10 font-bold text-[#fd800a]" 
+                                : "text-stone-500 hover:bg-white/5 hover:text-stone-200"
                             }`}>
                               • {sub.label}
                             </div>
@@ -149,8 +133,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </nav>
         </div>
 
-        <div className="p-4 border-t border-slate-200/80">
-          <button className="flex items-center gap-3 w-full px-4 py-3 text-sm font-medium text-slate-500 rounded-xl hover:bg-rose-50 hover:text-rose-600 transition-colors">
+        <div className="border-t border-white/10 p-4">
+          <button className="flex items-center gap-3 w-full px-4 py-3 text-sm font-medium text-stone-500 rounded-xl hover:bg-rose-500/10 hover:text-rose-400 transition-colors">
             <LogOut size={20} />
             Déconnexion
           </button>
@@ -158,47 +142,54 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </motion.aside>
 
       {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
+      <div className="min-w-0 flex-1 flex flex-col h-screen overflow-hidden">
         
         {/* HEADER */}
-        <header className="h-20 bg-white/85 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between px-4 lg:px-8 shrink-0 sticky top-0 z-30">
+        <header className="sticky top-0 z-30 flex h-20 shrink-0 items-center justify-between border-b border-white/10 bg-[#111210]/90 px-4 backdrop-blur-md lg:px-8">
           <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-slate-500 hover:text-slate-800 p-2 lg:hidden"
-            >
-              <Menu size={24} />
-            </button>
-            <div className="hidden md:flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full border border-slate-200/60 focus-within:border-teal-500/50 transition-colors">
-              <Search size={16} className="text-slate-400" />
+            <Link href="/" className="lg:hidden flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#fd800a] text-xs font-black text-white">G</div>
+              <span className="text-sm font-bold tracking-wider text-white">GHOSTECH</span>
+            </Link>
+            <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-[#1b1c1a] px-4 py-2 shadow-sm transition-colors focus-within:ring-2 focus-within:ring-[#fd800a]/40 md:flex">
+              <Search size={16} className="text-stone-500" />
               <input 
                 type="text" 
                 placeholder="Rechercher..." 
-                className="bg-transparent border-none outline-none text-sm w-64 text-slate-800 placeholder-slate-400"
+                className="bg-transparent border-none outline-none text-sm w-64 text-white placeholder-stone-600"
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-5">
-            <button className="relative text-slate-400 hover:text-slate-600 transition-colors">
+          <div className="flex items-center gap-3 sm:gap-5">
+            <button className="relative text-stone-500 hover:text-white transition-colors" aria-label="Notifications">
               <Bell size={20} />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-white"></span>
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#fd800a] rounded-full border-2 border-[#111210]"></span>
             </button>
-            <div className="w-px h-6 bg-slate-200"></div>
+            <div className="w-px h-6 bg-white/10"></div>
             <div className="flex items-center gap-3 cursor-pointer group">
-              <div className="w-9 h-9 rounded-full bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center overflow-hidden">
+              <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/50 shadow-md shadow-indigo-500/20 flex items-center justify-center overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100" alt="Admin" className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
               </div>
               <div className="hidden sm:block text-sm">
-                <p className="font-bold text-slate-800 leading-none">Admin Ghostech</p>
-                <p className="text-[10px] text-teal-600 mt-1">Superviseur</p>
+                <p className="font-bold text-white leading-none">Admin Ghostech</p>
+                <p className="text-[10px] text-[#fd800a] mt-1">Superviseur</p>
               </div>
             </div>
+
+            {/* Menu burger mobile placé à droite */}
+            <button 
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="text-stone-300 hover:text-white p-2 rounded-lg bg-white/5 border border-white/10 lg:hidden ml-1"
+              aria-label="Ouvrir le menu"
+            >
+              <Menu size={22} />
+            </button>
           </div>
         </header>
 
         {/* SCROLLABLE PAGE CONTENT */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-8 custom-scrollbar">
+        <main className="min-w-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 custom-scrollbar">
           {children}
         </main>
       </div>
@@ -206,8 +197,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <style dangerouslySetInnerHTML={{__html: `
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(253, 128, 10, 0.6); }
       `}} />
     </div>
   );

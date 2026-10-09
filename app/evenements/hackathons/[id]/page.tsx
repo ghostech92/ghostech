@@ -75,7 +75,7 @@ export default function HackathonDetailPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center">
+      <div className="min-h-dvh bg-[#FAFAFA] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
       </div>
     );
@@ -83,7 +83,7 @@ export default function HackathonDetailPage({ params }: PageProps) {
 
   if (!hack) {
     return (
-      <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center p-6 text-center text-slate-800">
+      <div className="min-h-dvh bg-[#FAFAFA] flex items-center justify-center p-6 text-center text-slate-800">
         <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm max-w-md w-full">
           <FaExclamationTriangle className="text-amber-500 text-5xl mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-900 mb-2">Hackathon introuvable</h2>
@@ -102,11 +102,11 @@ export default function HackathonDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="w-full min-h-screen bg-[#FAFAFA] text-slate-800 font-sans antialiased pt-28 pb-80">
-      <div className="max-w-6xl mx-auto px-6">
+    <main className="w-full min-h-dvh bg-[#FAFAFA] text-slate-800 font-sans antialiased pt-24 sm:pt-28 pb-16 sm:pb-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* GRILLE CÔTE À CÔTE */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* COLONNE GAUCHE : IMAGE UNIQUEMENT (SANS CARD, GRANDE TAILLE, CÔTÉ GAUCHE) */}
           <div className="lg:col-span-6 flex justify-center items-center">

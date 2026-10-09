@@ -27,7 +27,7 @@ export default function ActualitesDashboard() {
     .slice(0, 6);
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex justify-center pb-20">
+    <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex justify-center pb-20">
       <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto p-4 lg:p-8 gap-8">
         
         {/* ============================================================ */}

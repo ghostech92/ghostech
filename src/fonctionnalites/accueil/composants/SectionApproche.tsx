@@ -1,70 +1,70 @@
 "use client";
 
-import { COMPETENCES } from "@/src/fonctionnalites/accueil/donnees/competences";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 /**
  * SectionApproche — Section "Notre approche pédagogique" avec vidéo + compétences.
+ * Design harmonisé avec la SectionObjectifs (couleurs #fd800a, #111111, blanc, coins arrondis).
  */
 export default function SectionApproche() {
   return (
-    <section className="w-full bg-white py-20 px-4 flex justify-center">
-      <div className="w-full max-w-6xl flex flex-col items-center">
-        <h2 className="text-3xl md:text-[40px] font-bold font-b612 text-[#0F2137] text-center mb-16 tracking-tight">
-          Notre approche pédagogique
+    <section className="w-full bg-white py-20 px-4 flex justify-center relative overflow-hidden">
+      
+      {/* Effet d'arrière-plan discret (identique à SectionObjectifs) */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-0 opacity-5"
+        style={{
+          background: "radial-gradient(circle at 20% 80%, #fd800a 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="w-full max-w-7xl relative z-10 flex flex-col items-center">
+        
+        {/* Titre : style grand journal / magazine */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight leading-[1.08] text-center mb-8 sm:mb-12 md:mb-16 font-b612">
+          Qui est <span className="text-[#fd800a]">Ghostech ?</span>
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full mb-16">
-        <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
-          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="/video/v1.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="text-[15px] text-gray-600 leading-relaxed space-y-4 text-justify">
-          <p>
-            <span className="text-[#e49834] font-bold">
-              Chez Ghostech, nous croyons fermement en la pédagogie active pour favoriser l&apos;apprentissage optimal.
-            </span>{" "}
-            Nous adoptons une approche centrée sur l&apos;apprenant, où l&apos;apprentissage est actif, collaboratif et expérientiel.
-            Plutôt que de simplement transmettre des connaissances de manière passive, nous encourageons nos apprenants
-            à devenir des acteurs engagés dans leur propre apprentissage.
-          </p>
-          <p>
-            La pédagogie active permet aux apprenants de développer des compétences clés telles que la pensée critique,
-            la créativité, <span className="font-bold text-[#0F2137]">la résolution de problèmes et la collaboration, qui sont essentielles
-              dans le monde du numérique en constante évolution.</span>
-          </p>
-          <p>
-            En adoptant une pédagogie active, nous préparons nos talents à devenir des professionnels compétents et
-            adaptables, capables de résoudre des problèmes complexes, d&apos;innover et de s&apos;adapter aux défis du monde
-            du travail en constante mutation.
-          </p>
-          <div className="pt-2 flex justify-start">
-            <span className="w-6 h-6 rounded-full border border-[#e49834] flex items-center justify-center text-[#DE0A45] text-xs font-bold select-none cursor-pointer hover:bg-[#DE0A45]/5 transition">
-              →
-            </span>
+
+        {/* Grille Image/Média + Texte */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full mb-12 sm:mb-16 md:mb-20">
+          
+          {/* Image : coins très arrondis et ombre douce */}
+          <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl relative border border-zinc-200">
+            <Image
+              src="/Galeries/img_1.png"
+              alt="Talent Ghostech explorant les technologies numériques"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Texte : mise en page aérée et lisible */}
+          <div className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed space-y-4 sm:space-y-6 text-left sm:text-justify">
+            <p>
+              <span className="text-[#fd800a] font-bold">
+                Ghostech est une organisation technologique et d’innovation africaine
+              </span>{" "}
+              qui œuvre au développement des talents, à la promotion de la technologie et à la création de solutions numériques à fort impact.
+            </p>
+            <p>
+              Notre ambition est de contribuer à l’émergence d’une nouvelle génération de talents africains capables de maîtriser les technologies,
+              <span className="font-bold text-[#111111]"> d’innover et de répondre aux défis de leur environnement par des solutions concrètes.</span>
+            </p>
+            <p>
+              Ghostech crée un environnement où les jeunes talents peuvent apprendre, collaborer, expérimenter, créer et transformer leurs compétences en projets concrets, à travers sept pôles d’expertise. Notre action repose sur trois dimensions fondamentales : développer les talents, construire des solutions et créer de l’impact. Ghostech organise formations, conférences, ateliers, hackathons, rencontres professionnelles et projets collaboratifs afin de favoriser le partage de connaissances, l’innovation et la création d’opportunités — en créant des passerelles entre talents, entreprises, institutions, établissements d’enseignement, startups et communautés technologiques.
+            </p>
+            
+            {/* Bouton flèche orange identique à SectionObjectifs */}
+            <div className="pt-2 sm:pt-4 flex justify-start">
+              <button className="w-12 h-12 rounded-full bg-[#fd800a] hover:brightness-95 flex items-center justify-center text-white transition-all shadow-md group">
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:scale-110" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col md:flex-row rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-xl">
-        <div className="bg-gradient-to-br from-[#39779e] to-[#1f4d6e] p-8 md:p-12 md:w-2/5 lg:w-1/3 flex items-center shrink-0">
-          <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight tracking-wide">
-            Quelques <br />
-            compétences <br />
-            visées_
-          </h3>
-        </div>
-        <div className="p-8 md:p-10 flex-1 flex items-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 w-full">
-            {COMPETENCES.map((skill, index) => (
-              <div key={index} className="flex items-center gap-2.5 text-[14px] text-gray-700 font-medium">
-                <svg className="w-4 h-4 text-[#39779e] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{skill}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        </div>
+
       </div>
     </section>
   );

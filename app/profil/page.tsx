@@ -60,7 +60,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC]">
+      <div className="min-h-dvh flex items-center justify-center bg-[#F8FAFC]">
         <div className="w-9 h-9 border-3 border-[#06B6D4] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -85,7 +85,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] text-[#3C3C3C] font-sans antialiased pt-28 md:pt-32 pb-80 duo-font">
+    <div className="min-h-dvh bg-[#F7F7F7] text-[#3C3C3C] font-sans antialiased pt-24 md:pt-28 pb-16 md:pb-24 duo-font">
       <BadgeUnlockPopup />
       <div className="max-w-6xl mx-auto px-4 md:px-6">
 

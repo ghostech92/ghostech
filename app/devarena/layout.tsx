@@ -9,16 +9,16 @@ import PointsEarnedPopup from "@/src/fonctionnalites/devarena/composants/PointsE
 export default function DevArenaLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex w-full min-h-screen bg-[#F4F4F6]">
+      <div className="flex w-full min-h-dvh bg-[#F4F4F6]">
 
         <AppSidebar />
         <BadgeUnlockPopup />
         <PointsEarnedPopup />
 
         {/* Main Content Area */}
-        <main className="flex-1 flex flex-col relative z-10 w-full min-h-screen">
-          {/* Header minimal avec SidebarTrigger */}
-          <div className="absolute top-6 left-6 z-[100]">
+        <main className="min-w-0 flex-1 flex flex-col relative z-10 w-full min-h-dvh">
+          {/* Header minimal avec SidebarTrigger (placé à droite sur mobile pour respecter la consigne) */}
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-auto sm:left-6 z-[100]">
             <SidebarTrigger className="text-gray-700 bg-white/80 backdrop-blur-md hover:bg-white border border-gray-200 p-2 rounded-xl shadow-sm transition-all" />
           </div>
 

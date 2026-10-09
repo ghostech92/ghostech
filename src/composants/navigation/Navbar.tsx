@@ -5,62 +5,35 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { auth } from "@/src/services/firebase";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { FaGlobe } from "react-icons/fa";
-import { useScroll } from "@/src/hooks/useScroll";
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import { FaLinkedinIn, FaTiktok, FaWhatsapp, FaFacebookF } from "react-icons/fa";
 import { 
-  SITE_CONFIG, 
-  POLES_LINKS, 
-  EQUIPE_LINKS, 
-  PROJETS_LINKS,
-  LinkItem 
-} from "@/src/constantes/site-config";
+  FiHome, 
+  FiCalendar, 
+  FiGrid, 
+  FiUserPlus, 
+  FiUser, 
+  FiLogIn, 
+  FiLogOut, 
+  FiMenu, 
+  FiX 
+} from "react-icons/fi";
+import { useScroll } from "@/src/hooks/useScroll";
 
-// --- MATERIAL SYMBOL HELPER ---
-const Icon = ({ name, className }: { name: string; className?: string }) => (
-  <span className={`material-symbols-rounded ${className || ""}`}>{name}</span>
-);
+// --- LIENS DE NAVIGATION (BURGER MOBILE WHITE & REACT-ICONS) ---
+const MOBILE_NAV_LINKS = [
+  { label: "Accueil", href: "/", icon: FiHome, exact: true },
+  { label: "Événements", href: "/evenements/hackathons", icon: FiCalendar, exact: false, prefix: "/evenements" },
+  { label: "Pôles", href: "/poles/numerique", icon: FiGrid, exact: false, prefix: "/poles" },
+  { label: "Devenir membre", href: "/equipe/rejoindre", icon: FiUserPlus, exact: true },
+];
 
-
-// --- MENU DROPDOWN COMPONENTS ---
-function ListItem({ title, description, icon, href }: LinkItem) {
-  return (
-    <Link
-      href={href}
-      className="flex flex-row gap-3 rounded-lg p-3 hover:bg-gray-100 transition-colors items-center group"
-    >
-      <div className="flex aspect-square size-12 shrink-0 items-center justify-center rounded-lg bg-gray-50 border border-gray-100 shadow-sm group-hover:bg-white transition-colors">
-        <Icon name={icon} className="text-gray-600 text-2xl group-hover:text-[#357dab]" />
-      </div>
-      <div className="flex flex-col items-start justify-center">
-        <span className="font-semibold text-[15px] text-gray-900 group-hover:text-[#357dab] transition-colors">{title}</span>
-        {description && (
-          <span className="text-xs text-gray-500 line-clamp-1 mt-0.5">{description}</span>
-        )}
-      </div>
-    </Link>
-  );
-}
-
-function SimpleListItem({ title, icon, href }: LinkItem) {
-  return (
-    <Link
-      href={href}
-      className="flex flex-row gap-3 rounded-md p-2 hover:bg-gray-100 transition-colors items-center group"
-    >
-      <Icon name={icon} className="text-gray-500 text-lg shrink-0 group-hover:text-[#357dab]" />
-      <span className="font-medium text-[14px] text-gray-700 group-hover:text-[#357dab] transition-colors">{title}</span>
-    </Link>
-  );
-}
-
-// --- MAIN NAVBAR COMPONENT ---
 export default function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const scrolled = useScroll(20);
   const [user, setUser] = useState<User | null>(null);
-  const [lang, setLang] = useState("FR");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -69,289 +42,318 @@ export default function Navbar() {
     return () => unsubscribe();
   }, []);
 
-  // Prevent scroll when mobile menu is open
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (open) {
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [open]);
 
-  // Hide the navbar on the login, register, and devarena pages
+  // Close menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Hide the navbar on login, register, and devarena pages
   if (pathname === "/login" || pathname === "/register" || pathname.startsWith("/devarena")) {
     return null;
   }
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setOpen(false);
+    } catch (e) {
+      console.error("Sign out error", e);
+    }
+  };
+
+  const navLinkClass = isHome && !scrolled
+    ? "text-[14px] lg:text-[15px] font-semibold text-white/90 hover:text-white hover:bg-white/10 px-3.5 py-1.5 rounded-full transition-colors"
+    : "text-[14px] lg:text-[15px] font-medium text-gray-700 hover:text-[#357dab] hover:bg-gray-100 px-3.5 py-1.5 rounded-full transition-colors";
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b bg-white text-gray-800 ${
-          scrolled ? "shadow-md border-gray-200" : "border-gray-100"
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+          isHome
+            ? scrolled
+              ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900 shadow-xs"
+              : "bg-transparent text-white border-b border-transparent"
+            : scrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-xs text-gray-900"
+            : "bg-white border-b border-gray-100 text-gray-900"
         }`}
       >
-        {/* Top Utility Bar */}
-        {!scrolled && (
-          <div className="w-full bg-[#e49834] text-white py-2 px-4 md:py-3 md:px-8 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-1 sm:gap-0 border-b border-white/5 text-[11px] sm:text-[13px] md:text-sm font-semibold tracking-wide transition-all duration-300 text-center">
-            <span className="line-clamp-1 sm:line-clamp-none">{SITE_CONFIG.slogan}</span>
-            <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-[#000000] hover:text-white flex items-center gap-1.5 transition-colors shrink-0">
-              <span>{SITE_CONFIG.contact.email}</span>
-            </a>
-          </div>
-        )}
+        <nav
+          className={`mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+            scrolled ? "h-14 md:h-16" : isHome ? "h-18 md:h-20" : "h-16"
+          }`}
+          aria-label="Navigation principale"
+        >
+          {/* GAUCHE : Logo Ghostech */}
+          <Link href="/" className="flex items-center shrink-0 group">
+            <img
+              src={isHome && !scrolled ? "/logo1.svg" : "/logo1_1.svg"}
+              alt="Ghostech Logo"
+              className={`w-auto object-contain transition-all duration-300 ${
+                scrolled
+                  ? "h-8 md:h-9"
+                  : isHome
+                  ? "h-10 sm:h-12 md:h-14"
+                  : "h-9 sm:h-10 md:h-11"
+              }`}
+            />
+          </Link>
 
-        <nav className={`mx-auto flex w-full max-w-7xl items-center justify-between px-4 lg:px-8 transition-all duration-300 ${
-          scrolled ? "h-14" : "h-20"
-        }`}>
-          
-          <div className="flex items-center gap-6 lg:gap-10">
-            {/* LOGO */}
-            <Link href="/" className="flex items-center shrink-0">
-              <img
-                src="/logo1.svg"
-                alt="Ghostech Logo"
-                className={`w-auto object-contain transition-all duration-300 ${
-                  scrolled ? "h-5 md:h-6" : "h-9 md:h-10"
-                }`}
-              />
+          {/* CENTRE : Liens Navigation Desktop (Style Grand Portail / Média) */}
+          <div className="hidden md:flex items-center justify-center gap-1 lg:gap-2">
+            <Link
+              href="/"
+              className={`${navLinkClass} ${pathname === "/" ? (isHome && !scrolled ? "bg-white/15 text-white" : "bg-gray-100 text-[#357dab] font-bold") : ""}`}
+            >
+              Accueil
             </Link>
 
-            {/* DESKTOP NAVIGATION */}
-            <div className="hidden md:flex items-center gap-1 lg:gap-2">
-              <Link href="/" className="px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-                Accueil
-              </Link>
-
-            {/* PÔLES (Mega Menu) */}
-            <div className="relative group">
-              <button className="flex items-center gap-1 px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-                Pôles <Icon name="expand_more" className="text-[18px] opacity-70" />
-              </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-3 w-[400px]">
-                  <div className="flex flex-col gap-1">
-                    {POLES_LINKS.map((link) => (
-                      <ListItem key={link.title} {...link} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ÉQUIPE (Split Mega Menu) */}
-            <div className="relative group">
-              <button className="flex items-center gap-1 px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-                Équipe <Icon name="expand_more" className="text-[18px] opacity-70" />
-              </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-5 w-[500px] flex gap-6">
-                  {/* Colonne 1 : Bureaux */}
-                  <div className="flex-1">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="admin_panel_settings" className="text-[16px]" /> Direction
-                    </h4>
-                    <SimpleListItem title="Bureau Exécutif" href="/equipe/bureau" icon="stars" />
-                    <SimpleListItem title="Bureau Événementiels" href="/equipe/bureau/evenementiels" icon="event" />
-                    <SimpleListItem title="Bureau Pôles Techniques" href="/equipe/bureau/poles" icon="code" />
-                  </div>
-                  <div className="w-px bg-gray-100"></div>
-                  {/* Colonne 2 : Communauté */}
-                  <div className="flex-1">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="groups" className="text-[16px]" /> Communauté
-                    </h4>
-                    <SimpleListItem title="Membres" href="/equipe/membres" icon="people" />
-                    <SimpleListItem title="Nous Rejoindre" href="/equipe/rejoindre" icon="person_add" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ÉVÈNEMENTS (Split Mega Menu) */}
-            <div className="relative group">
-              <button className="flex items-center gap-1 px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-                Évènements <Icon name="expand_more" className="text-[18px] opacity-70" />
-              </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-200 p-5 w-[500px] flex gap-6">
-                  <div className="flex-1">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="event" className="text-[16px]" /> Événements
-                    </h4>
-                    <SimpleListItem title="Formation & Ateliers" href="/formation" icon="map" />
-                    <SimpleListItem title="Hackathons" href="/evenements/hackathons" icon="terminal" />
-                  </div>
-                  <div className="w-px bg-gray-100"></div>
-                  <div className="flex-1">
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-2 flex items-center gap-2">
-                      <Icon name="folder_open" className="text-[16px]" /> Projets
-                    </h4>
-                    {PROJETS_LINKS.map((link) => (
-                      <SimpleListItem key={link.title} {...link} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Link href="/apropos" className="px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-              À propos
+            <Link
+              href="/evenements/hackathons"
+              className={`${navLinkClass} ${pathname.startsWith("/evenements") ? "text-[#fd800a] font-bold" : ""}`}
+            >
+              Événements
             </Link>
-            <Link href="/contact" className="px-4 py-2 rounded-md font-medium text-[15px] transition-colors hover:bg-gray-100">
-              Contact
+
+            <Link
+              href="/formation"
+              className={`${navLinkClass} ${pathname.startsWith("/formation") ? "text-[#fd800a] font-bold" : ""}`}
+            >
+              Formations
             </Link>
-            </div>
+
+            <Link
+              href="/poles/numerique"
+              className={`${navLinkClass} ${pathname.startsWith("/poles") ? "text-[#357dab] font-bold" : ""}`}
+            >
+              Pôles
+            </Link>
+
+            <Link
+              href="/projets/impact"
+              className={`${navLinkClass} ${pathname.startsWith("/projets") ? "text-[#357dab] font-bold" : ""}`}
+            >
+              Impact
+            </Link>
+
+            <Link
+              href="/equipe/rejoindre"
+              className={`${navLinkClass} ${pathname === "/equipe/rejoindre" ? "text-[#fd800a] font-bold" : ""}`}
+            >
+              Devenir membre
+            </Link>
           </div>
 
-          {/* DESKTOP CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            {/* Call and Language Row (Matching the Image) */}
-            <div className="flex items-center gap-3 text-[15px] font-medium">
-              <span className="text-[#02073E]">Appelle-nous</span>
-              <a 
-                href={SITE_CONFIG.contact.phoneCall} 
-                className="text-[#8b5cf6] hover:text-[#7c3aed] font-semibold transition-colors"
-              >
-                {SITE_CONFIG.contact.phone}
-              </a>
+          {/* DROITE : Action CTA + MENU BURGER MOBILE STRICTEMENT À DROITE */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* CTA Desktop */}
+            <Link
+              href={user ? "/profil" : "/login"}
+              className={`hidden md:inline-flex items-center justify-center rounded-xl font-bold transition-all text-xs lg:text-sm px-4 py-2 shadow-md ${
+                isHome && !scrolled
+                  ? "border border-white/40 text-white hover:bg-white/15 hover:border-white shadow-black/20"
+                  : "border border-gray-200 bg-white text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-gray-200/50"
+              }`}
+            >
+              {user ? "Mon profil" : "Se connecter"}
+            </Link>
 
-              {/* Globe Language Selector */}
-              <div className="relative group flex items-center gap-1.5 cursor-pointer ml-1 py-1">
-                {/* Globe SVG */}
-                <svg className="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20M3 16.2h18M3 7.8h18" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                
-                <span className="text-[#02073E] font-semibold uppercase">{lang === "FR" ? "IC" : lang}</span>
-                
-                {/* Chevron SVG */}
-                <svg className="w-3.5 h-3.5 text-gray-900 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-
-                {/* Dropdown Menu */}
-                <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 py-1 w-24 overflow-hidden">
-                    <button 
-                      type="button"
-                      onClick={() => setLang("FR")}
-                      className="w-full px-3 py-2 text-left text-xs font-semibold hover:bg-gray-50 text-[#02073E] flex items-center justify-between transition-colors"
-                    >
-                      <span>IC</span>
-                      {lang === "FR" && <span className="text-[#357dab] font-black">✓</span>}
-                    </button>
-                    <button 
-                      type="button"
-                      onClick={() => setLang("EN")}
-                      className="w-full px-3 py-2 text-left text-xs font-semibold hover:bg-gray-50 text-[#02073E] flex items-center justify-between transition-colors"
-                    >
-                      <span>EN</span>
-                      {lang === "EN" && <span className="text-[#357dab] font-black">✓</span>}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            {/* CTA Rapide Mobile (Icône profil carrée avec bordures légèrement arrondies et shadow) */}
             {user && (
               <Link
                 href="/profil"
-                className="flex items-center justify-center w-10 h-10 bg-[#ff7b00] rounded-md hover:bg-[#e66a00] shadow-md transition-all hover:scale-105"
-                title="Mon Profil"
+                className={`md:hidden flex items-center justify-center w-9 h-9 rounded-xl font-bold text-xs shadow-md transition-all ${
+                  isHome && !scrolled
+                    ? "bg-white/20 text-white border border-white/30 shadow-black/20"
+                    : "bg-[#fd800a]/10 text-[#fd800a] border border-[#fd800a]/30 shadow-[#fd800a]/20"
+                }`}
+                aria-label="Mon profil"
               >
-                <Icon name="person" className="text-white text-[26px]" />
+                <FiUser className="w-5 h-5" />
               </Link>
             )}
-          </div>
 
-          {/* MOBILE MENU TOGGLE */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-md transition-colors hover:bg-gray-100 text-gray-900"
-            aria-label="Toggle menu"
-          >
-            <Icon name={open ? "close" : "menu"} className="text-3xl" />
-          </button>
+            {/* BOUTON BURGER MOBILE (STRICTEMENT SITUÉ TOUT À DROITE) */}
+            <button
+              onClick={() => setOpen(!open)}
+              className={`flex items-center justify-center p-2 rounded-xl transition-all md:hidden cursor-pointer ${
+                isHome && !scrolled
+                  ? "text-white hover:bg-white/10 active:scale-95"
+                  : "text-gray-900 hover:bg-gray-100 active:scale-95"
+              }`}
+              aria-label={open ? "Fermer le menu" : "Ouvrir le menu de navigation"}
+              aria-expanded={open}
+            >
+              {open ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            </button>
+          </div>
         </nav>
       </header>
 
-      {/* MOBILE MENU PORTAL */}
-      {open && typeof document !== "undefined" && createPortal(
-        <div className="fixed inset-0 top-[72px] z-40 bg-white overflow-y-auto pb-10 shadow-inner">
-          <div className="flex flex-col p-6 gap-8 animate-in slide-in-from-top-4 duration-300">
-            
-            {/* Sections */}
-            <div className="flex flex-col gap-6">
+      {/* MENU BURGER MOBILE SIMPLE - BACKGROUND WHITE & REACT-ICONS */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className={`fixed inset-0 z-50 transition-all duration-300 md:hidden ${
+              open ? "pointer-events-auto visible" : "pointer-events-none invisible"
+            }`}
+            aria-hidden={!open}
+          >
+            {/* Arrière-plan assombri */}
+            <div
+              className={`absolute inset-0 bg-black/50 backdrop-blur-xs transition-opacity duration-300 ${
+                open ? "opacity-100" : "opacity-0"
+              }`}
+              onClick={() => setOpen(false)}
+            />
 
-              {/* Accueil (Mobile only top link) */}
-              <Link href="/" onClick={() => setOpen(false)} className="text-lg font-bold text-[#02073E] hover:text-[#357dab] border-b border-gray-100 pb-4">
-                Accueil
-              </Link>
-              
-              {/* Pôles */}
-              <div className="flex flex-col gap-3">
-                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Pôles</span>
-                {POLES_LINKS.map((link) => (
-                  <Link key={link.title} href={link.href} onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                    <Icon name={link.icon} className="text-gray-400 text-xl" /> {link.title}
-                  </Link>
-                ))}
+            {/* Volet coulissant depuis la DROITE - Background White */}
+            <div
+              className={`absolute top-0 right-0 bottom-0 w-[84%] max-w-[320px] bg-white text-gray-900 shadow-2xl flex flex-col transition-transform duration-300 ease-out z-10 border-l border-gray-100 ${
+                open ? "translate-x-0" : "translate-x-full"
+              }`}
+            >
+              {/* En-tête : Logo + Bouton de fermeture */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white">
+                <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
+                  <img
+                    src="/logo1_1.svg"
+                    alt="Ghostech Logo"
+                    className="h-8 w-auto object-contain"
+                  />
+                </Link>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 hover:text-black hover:bg-gray-200 transition-all cursor-pointer"
+                  aria-label="Fermer le menu"
+                >
+                  <FiX className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Équipe */}
-              <div className="flex flex-col gap-3">
-                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Équipe</span>
-                {EQUIPE_LINKS.map((link) => (
-                  <Link key={link.title} href={link.href} onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                    <Icon name={link.icon} className="text-gray-400 text-xl" /> {link.title}
-                  </Link>
-                ))}
+              {/* Navigation simple */}
+              <div className="flex-1 overflow-y-auto px-4 py-5 space-y-1.5">
+                <p className="px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
+                  Navigation
+                </p>
+                {MOBILE_NAV_LINKS.map((item) => {
+                  const isActive = item.exact
+                    ? pathname === item.href
+                    : pathname.startsWith(item.prefix || item.href);
+                  const IconComponent = item.icon;
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={`group flex items-center justify-between px-4 py-3 rounded-xl text-[14.5px] font-medium transition-all ${
+                        isActive
+                          ? "bg-[#fd800a]/10 text-[#fd800a] font-bold border border-[#fd800a]/20"
+                          : "text-gray-700 hover:text-gray-950 hover:bg-gray-100"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3.5">
+                        <IconComponent
+                          className={`w-5 h-5 transition-colors ${isActive ? "text-[#fd800a]" : "text-gray-400 group-hover:text-gray-900"}`}
+                        />
+                        <span>{item.label}</span>
+                      </div>
+                      {isActive && (
+                        <span className="w-2 h-2 rounded-full bg-[#fd800a]" />
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
 
-              {/* Évènements */}
-              <div className="flex flex-col gap-3">
-                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 pb-2">Évènements</span>
-                <Link href="/formation" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                  <Icon name="map" className="text-gray-400 text-xl" /> Formation & Ateliers
-                </Link>
-                <Link href="/evenements/hackathons" onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                  <Icon name="terminal" className="text-gray-400 text-xl" /> Hackathons
-                </Link>
-                {PROJETS_LINKS.map((link) => (
-                  <Link key={link.title} href={link.href} onClick={() => setOpen(false)} className="flex items-center gap-3 text-gray-800 py-1.5 font-medium hover:text-[#357dab]">
-                    <Icon name={link.icon} className="text-gray-400 text-xl" /> {link.title}
+              {/* Pied du menu : CTA Connexion/Profil & Réseaux sociaux */}
+              <div className="p-5 border-t border-gray-100 bg-gray-50/80 space-y-4">
+                {user ? (
+                  <div className="space-y-2">
+                    <Link
+                      href="/profil"
+                      onClick={() => setOpen(false)}
+                      className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#fd800a] text-white text-sm font-bold hover:bg-[#e06f00] shadow-md shadow-[#fd800a]/20 transition-all active:scale-[0.98]"
+                    >
+                      <FiUser className="w-4 h-4" />
+                      <span>Mon profil</span>
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center justify-center gap-2 py-2 text-xs font-semibold text-rose-600 hover:text-rose-700 transition-colors cursor-pointer"
+                    >
+                      <FiLogOut className="w-4 h-4" />
+                      <span>Se déconnecter</span>
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setOpen(false)}
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#fd800a] to-[#ff9933] text-white text-sm font-bold hover:brightness-110 shadow-md shadow-[#fd800a]/20 transition-all active:scale-[0.98]"
+                  >
+                    <FiLogIn className="w-4 h-4" />
+                    <span>Se connecter</span>
                   </Link>
-                ))}
+                )}
+
+                {/* Réseaux sociaux épurés */}
+                <div className="flex items-center justify-center gap-5 pt-2 border-t border-gray-200/60 text-gray-500">
+                  <a
+                    href="https://lnkd.in/edXVXbH8"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    className="p-1.5 rounded-lg hover:text-[#0077b5] hover:bg-gray-200/60 transition-all"
+                  >
+                    <FaLinkedinIn className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@ghostech00"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="TikTok"
+                    className="p-1.5 rounded-lg hover:text-black hover:bg-gray-200/60 transition-all"
+                  >
+                    <FaTiktok className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://chat.whatsapp.com/Le6R6EvCKOR8I3kmQEd9XS"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="WhatsApp"
+                    className="p-1.5 rounded-lg hover:text-[#25D366] hover:bg-gray-200/60 transition-all"
+                  >
+                    <FaWhatsapp className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Facebook"
+                    className="p-1.5 rounded-lg hover:text-[#1877F2] hover:bg-gray-200/60 transition-all"
+                  >
+                    <FaFacebookF className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
-
             </div>
-
-            {/* General Links */}
-            <div className="flex flex-col gap-4 border-t border-gray-100 pt-6">
-              <Link href="/apropos" onClick={() => setOpen(false)} className="text-lg font-bold text-[#02073E] hover:text-[#357dab]">
-                À propos de Ghostech
-              </Link>
-              <Link href="/contact" onClick={() => setOpen(false)} className="text-lg font-bold text-[#02073E] hover:text-[#357dab]">
-                Contactez-nous
-              </Link>
-            </div>
-
-            {/* Auth Buttons */}
-            <div className="flex flex-col gap-3 mt-4">
-              {user && (
-                <Link href="/profil" onClick={() => setOpen(false)} className="w-full flex items-center justify-center gap-2 py-3.5 text-center rounded-xl bg-[#ff7b00] text-white font-bold hover:bg-[#e66a00] shadow-md transition-all">
-                  <Icon name="person" className="text-white text-xl" /> Mon Profil
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
+

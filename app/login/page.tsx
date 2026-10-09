@@ -142,7 +142,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row font-sans w-full bg-gray-50">
+    <div className="min-h-dvh flex flex-col md:flex-row font-sans w-full bg-gray-50">
       
       {/* Left column: sign-in form */}
       <section className="flex-1 flex items-center justify-center p-8 bg-white relative">

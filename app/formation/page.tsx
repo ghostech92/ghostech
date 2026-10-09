@@ -16,12 +16,12 @@ export default function ProgrammesFormation() {
   );
 
   return (
-    <main className="w-full min-h-screen bg-[#FAFAFA] text-[#0F2137] font-sans antialiased pt-20 ">
+    <main className="w-full min-h-dvh bg-[#FAFAFA] text-[#0F2137] font-sans antialiased pt-20 ">
 
       {/* 1. HERO SECTION COMPLÈTE */}
-      <section className="w-full max-w-7xl mx-auto px-6 lg:px-16 pt-12 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-black text-[#0F2137] leading-[1.15] tracking-tight">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 pt-8 sm:pt-12 pb-12 sm:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0F2137] leading-[1.15] tracking-tight">
             <span className="underline decoration-[#FF1949] decoration-4 underline-offset-4">Développez vos compétences</span> avec nos formations intensives
           </h1>
           <p className="text-gray-500 text-sm md:text-base max-w-xl leading-relaxed font-medium">
@@ -35,22 +35,22 @@ export default function ProgrammesFormation() {
               placeholder="Que souhaitez-vous apprendre ?"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-transparent px-3 py-2 text-sm text-gray-700 outline-none placeholder-gray-400"
+              className="w-full bg-transparent px-3 py-2 text-xs sm:text-sm text-gray-700 outline-none placeholder-gray-400 min-w-0"
             />
-            <button className="bg-[#FF1949] text-white px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-pink-700 transition shrink-0">
+            <button className="bg-[#FF1949] text-white px-4 sm:px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-pink-700 transition shrink-0">
               Rechercher
             </button>
           </div>
 
-          <div className="flex items-center gap-6 pt-2 text-xs font-bold text-gray-600">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-xs font-bold text-gray-600">
             <span className="flex items-center gap-2"><span className="text-emerald-500 text-sm">✓</span> Certification incluse</span>
             <span className="flex items-center gap-2"><span className="text-emerald-500 text-sm">✓</span> Projets réels pratiques</span>
           </div>
         </div>
 
         {/* ILLUSTRATION GEOMETRIQUE */}
-        <div className="lg:col-span-5 relative flex justify-center">
-          <div className="relative w-72 h-72 md:w-80 md:h-80">
+        <div className="lg:col-span-5 relative flex justify-center py-4">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
             <div className="absolute inset-0 bg-[#F7C324] rounded-full translate-x-4 -translate-y-4 z-0"></div>
             <div className="w-full h-full rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] overflow-hidden relative z-10 border-4 border-white bg-slate-200 shadow-xl">
               <img
@@ -59,8 +59,8 @@ export default function ProgrammesFormation() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 w-14 h-14 bg-cyan-400 rounded-tl-3xl rounded-br-3xl z-20 shadow-md"></div>
-            <div className="absolute bottom-6 -right-2 w-10 h-10 bg-[#FF1949] rounded-full z-20 shadow-sm"></div>
+            <div className="absolute -bottom-4 -left-4 w-12 h-12 sm:w-14 sm:h-14 bg-cyan-400 rounded-tl-3xl rounded-br-3xl z-20 shadow-md"></div>
+            <div className="absolute bottom-6 -right-2 w-9 h-9 sm:w-10 sm:h-10 bg-[#FF1949] rounded-full z-20 shadow-sm"></div>
           </div>
         </div>
       </section>

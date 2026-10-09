@@ -43,7 +43,7 @@ export default function RegisterPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row font-sans w-full bg-gray-50">
+    <div className="min-h-dvh flex flex-col md:flex-row font-sans w-full bg-gray-50">
       
       {/* Left column: sign-up form */}
       <section className="flex-1 flex items-center justify-center p-8 bg-white relative">
@@ -112,7 +112,7 @@ export default function RegisterPage() {
               <div className="flex items-start gap-2 text-sm mt-2">
                 <input type="checkbox" name="terms" className="rounded text-[#357dab] focus:ring-[#357dab] border-gray-300 w-4 h-4 cursor-pointer mt-1" required />
                 <span className="text-gray-600">
-                  J'accepte les <a href="#" className="font-medium text-[#357dab] hover:underline">conditions d'utilisation</a> et la <a href="#" className="font-medium text-[#357dab] hover:underline">politique de confidentialité</a>.
+                  J&apos;accepte les <Link href="/conditions-generales" className="font-medium text-[#357dab] hover:underline">conditions d&apos;utilisation</Link> et la <a href="#" className="font-medium text-[#357dab] hover:underline">politique de confidentialité</a>.
                 </span>
               </div>
 
@@ -142,7 +142,7 @@ export default function RegisterPage() {
       <section className="hidden md:flex flex-1 relative p-4 bg-gray-50">
         <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl">
           {/* Overlay gradient over the image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#02073E]/90 via-[#02073E]/40 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-[#02073E]/90 via-[#02073E]/40 to-transparent z-10"></div>
           
           <div 
             className="absolute inset-0 bg-cover bg-center" 

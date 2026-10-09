@@ -10,7 +10,7 @@ export default function Vague1Page() {
 
   if (isLocked) {
     return (
-      <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex items-center justify-center">
+      <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex items-center justify-center">
         <main className="p-4 lg:p-8 max-w-[600px] w-full mx-auto text-center pt-20">
           <div className="bg-white border-2 border-b-[6px] border-[#E5E5E5] rounded-3xl p-8 md:p-12 space-y-6 flex flex-col items-center">
             <div className="w-20 h-20 bg-[#F7F7F7] rounded-full border-2 border-[#E5E5E5] flex items-center justify-center text-3xl shadow-sm">
@@ -34,7 +34,7 @@ export default function Vague1Page() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-white text-gray-950 font-sans flex justify-center pb-20">
+    <div className="w-full min-h-dvh bg-white text-gray-950 font-sans flex justify-center pb-20">
       <main className="p-4 lg:p-8 space-y-8 max-w-[1000px] w-full mx-auto pt-20">
       
         {/* Playful Header Banner */}

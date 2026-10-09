@@ -10,10 +10,10 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
   const isDashboard = pathname?.startsWith("/dashboard");
 
   return (
-    <>
+    <div className="flex min-h-dvh w-full max-w-full min-w-0 flex-col overflow-x-hidden">
       {!isDashboard && <Navbar />}
-      {children}
+      <div className="w-full min-w-0 flex-1">{children}</div>
       {!isDashboard && <Footer />}
-    </>
+    </div>
   );
 }

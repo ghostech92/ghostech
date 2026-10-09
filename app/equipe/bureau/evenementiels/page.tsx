@@ -30,7 +30,7 @@ export default function EvenementielsEquipe() {
   ];
 
   return (
-    <main className="w-full min-h-screen bg-white text-[#0F2137] flex flex-col items-center antialiased font-sans relative overflow-x-hidden">
+    <main className="w-full min-h-dvh bg-white text-[#0F2137] flex flex-col items-center antialiased font-sans relative overflow-x-hidden">
       
       {/* Background Stylized Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
