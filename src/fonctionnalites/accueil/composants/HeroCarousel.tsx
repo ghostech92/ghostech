@@ -38,11 +38,7 @@ export default function HeroCarousel() {
           {/* Côté Gauche : Titre, description et bouton (Style Éditorial Grand Journal) */}
           <div className="w-full lg:w-[50%] flex flex-col items-start justify-end z-10">
 
-            {/* Badge GHOSTECH · IDENTITÉ GLOBALE */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#fd800a] text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.18em] mb-3 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#fd800a] animate-pulse"></span>
-              <span>GHOSTECH · IDENTITÉ GLOBALE</span>
-            </div>
+x
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-3 font-b612">
               Construire.{" "}
