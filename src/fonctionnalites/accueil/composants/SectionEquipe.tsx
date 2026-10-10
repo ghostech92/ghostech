@@ -40,7 +40,7 @@ export default function SectionEquipe() {
           {EQUIPE_ACCUEIL.map((member, i) => (
             <div key={i} className="flex flex-col items-center shrink-0 w-[200px] sm:w-[240px] md:w-[280px] snap-start bg-white rounded-2xl p-3 sm:p-4 border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="w-full aspect-[4/5] bg-gray-50 rounded-2xl mb-3 sm:mb-4 relative overflow-hidden">
-                <Image src={member.img} alt={member.name} fill className="object-cover" />
+                <Image src={member.img} alt={member.name} fill sizes="(max-width: 640px) 184px, (max-width: 768px) 224px, 264px" className="object-cover" />
               </div>
               <h4 className="text-[14px] sm:text-[17px] font-bold text-[#0F2137] mb-1 text-center">{member.name}</h4>
               <p className="text-[12px] sm:text-[14px] text-[#357dab] font-semibold mb-2 sm:mb-3 text-center line-clamp-2">{member.role}</p>

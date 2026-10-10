@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function SectionAventure() {
   return (
     <section className="w-full max-w-7xl py-24 px-4 flex flex-col items-center">
@@ -38,14 +40,14 @@ export default function SectionAventure() {
           </a>
         </div>
         <div className="flex gap-4 items-end justify-center flex-1">
-          <div className="w-[160px] md:w-[180px] h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-lg -mb-6">
-            <img src="/Rejoindre_aventure/r1.jpg" alt="Membre Ghostech" className="w-full h-full object-cover transition duration-300" />
+          <div className="relative w-[160px] md:w-[180px] h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-lg -mb-6">
+            <Image src="/Rejoindre_aventure/r1.jpg" alt="Membre Ghostech" fill sizes="(max-width: 768px) 160px, 180px" className="object-cover transition duration-300" />
           </div>
-          <div className="w-[160px] md:w-[180px] h-[280px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg">
-            <img src="/Rejoindre_aventure/r2.jpeg" alt="Membre Ghostech" className="w-full h-full object-cover transition duration-300" />
+          <div className="relative w-[160px] md:w-[180px] h-[280px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg">
+            <Image src="/Rejoindre_aventure/r2.jpeg" alt="Membre Ghostech" fill sizes="(max-width: 768px) 160px, 180px" className="object-cover transition duration-300" />
           </div>
-          <div className="w-[160px] md:w-[180px] h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-lg -mb-6">
-            <img src="/Rejoindre_aventure/r3.jpg" alt="Membre Ghostech" className="w-full h-full object-cover transition duration-300" />
+          <div className="relative w-[160px] md:w-[180px] h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-lg -mb-6">
+            <Image src="/Rejoindre_aventure/r3.jpg" alt="Membre Ghostech" fill sizes="(max-width: 768px) 160px, 180px" className="object-cover transition duration-300" />
           </div>
         </div>
       </div>

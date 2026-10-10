@@ -43,7 +43,7 @@ export default function SectionBlog() {
             </div>
           </div>
           <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 relative group flex-1 min-h-[220px]">
-            <Image src="/Galeries/Haka/haka2.png" alt="Projets collaboratifs Ghostech" fill className="object-cover opacity-90" />
+            <Image src="/Galeries/Haka/haka2.png" alt="Projets collaboratifs Ghostech" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover opacity-90" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-white pointer-events-none">
               <h4 className="font-bold text-[16px] leading-snug">Hackathons, rencontres professionnelles et projets collaboratifs</h4>
             </div>

@@ -30,7 +30,7 @@ export default function SectionApproche() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full mb-12 sm:mb-16 md:mb-20">
           
           {/* Image : coins très arrondis et ombre douce */}
-          <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl relative border border-zinc-200">
+          <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden relative border border-zinc-200">
             <Image
               src="/Galeries/img_1.png"
               alt="Talent Ghostech explorant les technologies numériques"

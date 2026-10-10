@@ -33,11 +33,11 @@ const SLIDES: Slide[] = [
     },
   },
   {
-    title: "Ruth Christelle Ledjou",
+    title: "",
     media: {
       type: "youtube",
       videoId: "nT4KbtG11sA",
-      alt: "Témoignage vidéo de Ruth Christelle Ledjou",
+      alt: "",
     },
   },
 ];

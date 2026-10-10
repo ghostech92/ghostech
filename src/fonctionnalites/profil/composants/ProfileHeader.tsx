@@ -41,47 +41,47 @@ export default function ProfileHeader({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-      <aside className="duo-card flex flex-col items-center text-center">
-        <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-[#3c3c3c] bg-[#f7f7f7]">
+      <aside className="profile-card flex flex-col items-center text-center">
+        <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-slate-100 shadow-lg ring-1 ring-slate-200">
           {displayAvatar ? (
             <img src={displayAvatar} alt={profile.name || "Photo de profil"} className="h-full w-full object-cover" />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-[#ddf4ff] text-4xl font-black text-[#1cb0f6]">
+            <div className="flex h-full w-full items-center justify-center bg-orange-50 text-4xl font-bold text-[#fd800a]">
               {profile.name?.charAt(0) || "U"}
             </div>
           )}
           {isEditing && (
-            <label className="absolute bottom-1 right-1 cursor-pointer rounded-full bg-[#ff7a00] px-2 py-1 text-xs font-bold text-white">
+            <label className="absolute bottom-1 right-1 cursor-pointer rounded-full bg-[#fd800a] px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm">
               Modifier
               <input type="file" accept="image/*" className="hidden" onChange={handleAvatarSelect} />
             </label>
           )}
         </div>
 
-        <h1 className="mt-5 text-xl font-black text-[#1f2937]">{profile.name || "Utilisateur"}</h1>
-        <p className="mt-1 break-all text-sm text-[#6b7280]">{displayedEmail}</p>
-        <div className="mt-5 h-2 w-full rounded-full bg-[#e5e7eb]">
-          <div className="h-2 w-full rounded-full bg-[#23a636]" />
+        <h1 className="mt-5 text-xl font-bold tracking-tight text-slate-900">{profile.name || "Utilisateur"}</h1>
+        <p className="mt-1 break-all text-sm text-slate-500">{displayedEmail}</p>
+        <div className="mt-6 h-1.5 w-full rounded-full bg-slate-100">
+          <div className="h-1.5 w-full rounded-full bg-[#fd800a]" />
         </div>
-        <p className="mt-2 text-xs text-[#777777]">Profil complété</p>
+        <p className="mt-2 text-xs text-slate-400">Profil complété</p>
 
-        <div className="mt-5 flex w-full flex-col gap-3">
+        <div className="mt-6 flex w-full flex-col gap-2.5">
           {!isEditing && (
-            <button onClick={() => setIsEditing(true)} className="duo-btn duo-btn-gray w-full">
+            <button onClick={() => setIsEditing(true)} className="profile-button profile-button-primary w-full">
               Modifier mon profil
             </button>
           )}
-          <button onClick={handleSignOut} className="duo-btn duo-btn-rose w-full">
+          <button onClick={handleSignOut} className="profile-button profile-button-danger w-full">
             Se déconnecter
           </button>
         </div>
       </aside>
 
       <section className="space-y-6">
-        <div className="duo-card p-0">
-          <div className="flex items-center justify-between border-b-2 border-[#1f1f1f] px-5 py-3">
-            <h2 className="font-black text-[#1f2937]">Identité et contact</h2>
-            <span className="rounded bg-[#1f1f1f] px-2 py-1 text-xs font-bold text-white">Profil</span>
+        <div className="profile-card overflow-hidden p-0">
+          <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+            <h2 className="font-semibold text-slate-900">Identité et contact</h2>
+            <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-[#fd800a]">Profil</span>
           </div>
           <div className="grid gap-4 px-5 py-5 sm:grid-cols-2">
             <InfoRow label="Nom complet" value={profile.name || "Non renseigné"} />
@@ -90,15 +90,15 @@ export default function ProfileHeader({
           </div>
         </div>
 
-        <div className="duo-card p-0">
-          <div className="flex items-center justify-between border-b-2 border-[#1f1f1f] px-5 py-3">
-            <h2 className="font-black text-[#1f2937]">Détails du profil</h2>
+        <div className="profile-card overflow-hidden p-0">
+          <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+            <h2 className="font-semibold text-slate-900">Détails du profil</h2>
             {isEditing && (
               <div className="flex gap-2">
-                <button onClick={() => setIsEditing(false)} className="duo-btn duo-btn-gray !px-3 !py-1.5 text-xs">
+                <button onClick={() => setIsEditing(false)} className="profile-button profile-button-secondary !px-3 !py-1.5 text-xs">
                   Annuler
                 </button>
-                <button onClick={handleSaveProfile} disabled={saving} className="duo-btn duo-btn-green !px-3 !py-1.5 text-xs">
+                <button onClick={handleSaveProfile} disabled={saving} className="profile-button profile-button-primary !px-3 !py-1.5 text-xs">
                   {saving ? "Enregistrement..." : "Sauvegarder"}
                 </button>
               </div>
@@ -136,8 +136,8 @@ export default function ProfileHeader({
 function InfoRow({ label, value, multiline = false }: { label: string; value: string; multiline?: boolean }) {
   return (
     <div className={multiline ? "sm:col-span-2" : ""}>
-      <dt className="text-sm font-black text-[#374151]">{label}</dt>
-      <dd className={`mt-1 text-sm text-[#4b5563] ${multiline ? "whitespace-pre-wrap leading-relaxed" : ""}`}>{value}</dd>
+      <dt className="text-xs font-semibold uppercase tracking-wide text-slate-400">{label}</dt>
+      <dd className={`mt-1 text-sm text-slate-700 ${multiline ? "whitespace-pre-wrap leading-relaxed" : ""}`}>{value}</dd>
     </div>
   );
 }

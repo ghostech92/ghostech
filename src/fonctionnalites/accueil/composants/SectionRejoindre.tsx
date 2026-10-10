@@ -86,7 +86,7 @@ export default function SectionRejoindre() {
           </button>
         </div>
         <div className="flex-1 relative w-full aspect-[4/3] max-w-lg bg-gray-50 rounded-3xl overflow-hidden shadow-xl">
-          <Image src="/Galeries/img9.jpeg" alt="Sept pôles d’expertise Ghostech" fill className="object-contain" />
+          <Image src="/Galeries/img9.jpeg" alt="Sept pôles d’expertise Ghostech" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain" />
         </div>
         </div>
       </div>

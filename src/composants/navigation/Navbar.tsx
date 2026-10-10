@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { createPortal } from "react-dom";
 import { auth } from "@/src/services/firebase";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { FaLinkedinIn, FaTiktok, FaWhatsapp, FaFacebookF } from "react-icons/fa";
@@ -202,9 +201,7 @@ export default function Navbar() {
       </header>
 
       {/* MENU BURGER MOBILE SIMPLE - BACKGROUND WHITE & REACT-ICONS */}
-      {typeof document !== "undefined" &&
-        createPortal(
-          <div
+      <div
             className={`fixed inset-0 z-50 transition-all duration-300 md:hidden ${
               open ? "pointer-events-auto visible" : "pointer-events-none invisible"
             }`}
@@ -350,10 +347,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </div>,
-          document.body
-        )}
+      </div>
     </>
   );
 }
-

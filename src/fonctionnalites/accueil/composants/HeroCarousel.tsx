@@ -29,6 +29,7 @@ export default function HeroCarousel() {
               alt="La technologie au service des talents africains"
               fill
               priority
+              sizes="100vw"
               className="object-cover object-center"
             />
           </picture>

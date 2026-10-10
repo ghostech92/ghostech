@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { DM_Sans, B612, Roboto, Geist } from "next/font/google";
 import "./globals.css";
 import ConditionalLayout from "@/src/composants/mise-en-page/ConditionalLayout";
@@ -162,6 +163,7 @@ export default function RootLayout({
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
+        <Analytics />
       </body>
     </html>
   );
