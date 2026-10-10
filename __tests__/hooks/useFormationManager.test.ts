@@ -7,6 +7,13 @@ vi.mock('@/src/lib/firebase/config', () => ({
   isFirebaseConfigured: false,
 }));
 
+vi.mock('@/src/lib/firebase/services/formations', () => ({
+  subscribeToFormations: vi.fn(),
+  addFormation: vi.fn(),
+  updateFormation: vi.fn(),
+  deleteFormation: vi.fn(),
+}));
+
 describe('useFormationManager', () => {
   beforeEach(() => {
     localStorage.clear();

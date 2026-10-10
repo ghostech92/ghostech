@@ -7,6 +7,13 @@ vi.mock('@/src/lib/firebase/config', () => ({
   isFirebaseConfigured: false,
 }));
 
+vi.mock('@/src/lib/firebase/services/hackathons', () => ({
+  subscribeToHackathons: vi.fn(),
+  addHackathon: vi.fn(),
+  updateHackathon: vi.fn(),
+  deleteHackathon: vi.fn(),
+}));
+
 describe('useHackathonManager', () => {
   beforeEach(() => {
     localStorage.clear();
