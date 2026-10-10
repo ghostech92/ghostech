@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   publisher: "Ghostech Afrique",
   manifest: "/manifest.json",
   icons: {
-    icon: "/logo.svg",
+    icon: "/favicon.ico",
     apple: "/logo.svg",
   },
   alternates: {
