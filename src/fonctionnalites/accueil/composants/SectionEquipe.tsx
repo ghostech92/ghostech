@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { EQUIPE_ACCUEIL } from "@/src/fonctionnalites/accueil/donnees/equipe-membres";
 
 /**
- * SectionEquipe — Carrousel horizontal des membres de l'équipe.
+ * SectionEquipe — Carrousel horizontal des memmbres de l'équipe.
  */
 export default function SectionEquipe() {
   const carouselRef = useRef<HTMLDivElement>(null);
